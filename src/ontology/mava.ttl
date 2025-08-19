@@ -64,7 +64,8 @@ mava:hasMedia a rdf:Property ;
     rdfs:label "Has media resource" ;
     rdfs:domain mava:Document ;
     rdfs:range mava:MediaResource ;
-    rdfs:subPropertyOf dcterms:hasPart .
+    rdfs:subPropertyOf dcterms:hasPart 
+    .
 
 mava:MediaResource a rdfs:Class, sh:NodeShape ;
     rdfs:label "Media Resource" ;
@@ -73,19 +74,22 @@ mava:MediaResource a rdfs:Class, sh:NodeShape ;
     sh:property [sh:path mava:hasMediaProfile ;
                  sh:datatype xsd:string ] ;
     sh:property [sh:path mava:hasResourceProxy ;
-                 sh:class mava:ResourceProxy] .
+                 sh:class mava:ResourceProxy] 
+    .
 
 mava:hasMediaProfile a rdf:Property ;
     rdfs:label "Has media profile" ;
     rdfs:domain mava:MediaResource ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf dcterms:description .
+    rdfs:subPropertyOf dcterms:description 
+    .
 
 mava:hasResourceProxy a rdf:Property ;
     rdfs:label "Has resource proxy" ;
     rdfs:domain mava:MediaResource ;
     rdfs:range mava:ResourceProxy ;
-    rdfs:subPropertyOf dcterms:hasPart .
+    rdfs:subPropertyOf dcterms:hasPart 
+    .
 
 mava:ResourceProxy a rdfs:Class ;
     rdfs:label "Resource Proxy" ;
