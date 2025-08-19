@@ -1,0 +1,737 @@
+<!DOCTYPE HTML><html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <style>
+		
+			body {
+						margin: 0;
+						font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+							"Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+							"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+							"Noto Color Emoji";
+						background-color: #fff;
+					}
+					
+					.anchor {
+						float: left;
+						padding-right: 4px;
+						margin-left: -20px;
+						line-height: 1;
+						padding-top: 12px;
+					}
+							
+					a {
+						color: #007bff;
+						text-decoration: none;
+						background-color: transparent;
+					}
+					
+					a:-webkit-any-link {
+						cursor: pointer;
+					}
+					
+					.p {
+						font-size: 0.875em;
+					}
+					
+					h2 {
+						margin: 25px 0px 10px 0px;
+					}
+					
+					h3 {
+						font-size: 1.4em;
+					}
+
+					h4 {
+						font-size: 1.1em;
+						font-weight: bold;
+					}
+
+					.constraint_list li {
+						list-style:"> ";
+						font-style: italic;
+					}
+					
+					@media only print {
+					}
+					
+					@page {
+						size: A4 portrait;
+						margin-top: 1.2cm;
+						margin-bottom: 1.2cm;
+						margin-left: 1.2cm;
+						margin-right: 1.2cm;
+						background-repeat: no-repeat;
+						background-position: 40px 10px;
+						
+						@bottom-center
+						{
+						content
+						:
+						counter(
+						page
+						);
+					}
+					
+					}
+							
+					/* This section draw the format web */
+					.ul_type_none {
+						list-style-type: none;
+					}
+					
+					.sp_list_description_properties {
+						/* don't set it lower otherwise it gets hidden in PDF */
+						padding-left: 20px;
+					}
+					
+					dl, ol, ul {
+						margin-top: 0;
+						margin-bottom: 1rem;
+					}
+					
+					li {
+						display: list-item;
+						text-align: -webkit-match-parent;
+					}
+					
+					.sp_section_title_header {
+						font-family: Georgia, Garamond, serif;	
+						margin-top: 25px;
+						margin-bottom: 2.5rem;
+					    font-size: 1.5625rem;
+						display: block;
+						font-weight: 500;
+						color: #1e1e1f;
+						line-height: 1.2em;   
+					}
+					
+					.sp_section_subtitle {
+						font-family: Georgia, Garamond, serif;	
+						margin-top: 0;
+						margin-bottom: 0.5rem;
+						display: block;
+						font-weight: 500;
+						color: #1e1e1f;
+						line-height: 1.2em;  
+					}
+					
+					.sp_section_title_table {
+						font-family: Georgia, Garamond, serif;	
+						/* 0 because URI is right under */
+						margin-bottom: 0rem;
+						display: block;
+						font-weight: 500;
+						color: #1e1e1f;
+						line-height: 1.2em; 
+					}
+							
+
+					.sp_section_title_toc {
+						font-family: Georgia, Garamond, serif;	
+					}
+
+					/* URI below the title of the section */
+					.sp_section_uri	 {
+						margin-top: 0px;
+					}
+
+					/* div wrapping section title and URI below - same as a paragraph margin */
+					.sp_section_title_table_wrapper {
+						margin-bottom: 16px;
+						border-bottom: 1px solid;	
+					}
+					
+					.sp_section_nodeshape_diagram {
+						padding-bottom: 16px;
+					}
+					
+					.sp_section_nodeshape_center {
+						display: flex;
+						justify-content: center;
+					}
+					
+					table {
+						display: table;
+						border-spacing: 0px;
+						margin-bottom: 1rem;
+					}
+					
+					.table-striped tr:nth-child(even) {
+						background-color: #eee;
+					}
+							
+					.sp_table_prefixes table {
+						border-collapse: collapse;
+						margin-bottom: 1rem;
+						color: #212529;
+					}
+											
+					.sp_table_prefixes td {
+						padding: 0.25rem;
+						vertical-align: top;
+						border-top: 1px solid #dee2e6;
+					}
+					
+					.sp_table_propertyshapes {
+						border-collapse: collapse;
+						width: 100%;
+					}
+										
+					.sp_table_propertyshapes thead {
+						display: table-header-group;
+						vertical-align: middle;
+						border-color: inherit;
+					}
+													
+					.sp_table_propertyshapes tr {
+					    display: table-row;
+					    vertical-align: inherit;
+					    border-color: inherit;					    
+					}
+													
+					.sp_table_propertyshapes th:nth-child(4) {
+						width: 6%;
+					}
+													
+					.sp_table_propertyshapes td {
+						padding: 0.75rem;
+						border-top: 1px solid #dee2e6;
+					}
+													
+					.sp_table_propertyshapes tbody {
+						display: table-row-group;
+						vertical-align: middle;
+						border-color: inherit;
+					}
+										
+					.sp_table_propertyshapes_col_description {
+						word-break: break-word;
+					}
+					
+					tr.sp_propertyGroup {
+						font-style: italic;
+						background-color: #def0f7;
+					}
+					
+					tr.sp_propertyGroup td {
+						border-bottom: 1px solid black;
+						padding-bottom: 0.25 rem;
+					}
+					
+					.sp_serialization_badge {
+						margin-right: 0.5em;
+					}
+
+					.sp_nodeshape_description {
+						background: #efefef;
+						padding-top:1px;
+						padding-bottom:1px;
+						padding-left:10px;
+						padding-right:10px;
+						border-radius: 5px;
+						margin-bottom:10px;
+					}
+					
+					
+							.container {
+							    width: calc(100% - 40px);
+							    max-width: 1100px;
+							    margin-left: 300px;
+							    margin-right: auto;
+							}
+							.container {width: calc(100% - 500px);}
+							.toc {
+								position: fixed;
+								top: 0;
+								left: 0;
+								font-size: small;
+								padding: 10px 10px;
+								width: auto;
+								border-right: solid 2px #eeeeee;
+								bottom: 0;
+								overflow-y: scroll;
+								background-color:white;
+								max-width:255px;
+							}
+							.sp_list_toc {padding-left: 0px;}
+							.sp_list_toc_l2 {padding-left: 10px;}	
+							.sp_list_toc_l3 {padding-left: 8px;}					
+						</style>
+      <!--EXTRA CSS-->
+      <meta charset="UTF-8">
+      <meta name="lang" content="en">
+      <meta property="og:locale" content="en">
+      <title>MAVA Ontology</title>
+      <meta name="apple-mobile-web-app-title" content="MAVA Ontology">
+      <meta name="twitter:title" content="MAVA Ontology">
+      <meta property="og:title" content="MAVA Ontology"><script type="application/ld+json">{
+    "datePublished": "2025-08-12",
+    "license": ["https://creativecommons.org/licenses/by/4.0/"],
+    "@type": "TechArticle",
+    "author": [{
+        "@type": "Organization",
+        "name": "Swiss Data Science Center"
+    }],
+    "name": "MAVA Ontology",
+    "publisher": [{
+        "@type": "Organization",
+        "name": "Swiss Data Science Center"
+    }],
+    "@context": "https://schema.org",
+    "version": "0.0.1",
+    "url": "http://example.org/mava/ontology#"
+}</script></head>
+   <body>
+      <div class="sp_container_principal container pt-4">
+         <h1 class="mb-4 sp_section_title_header">MAVA Ontology</h1>
+         <div><b>Creation date: </b>2025-08-12<br><b>Issue date: </b>2025-08-12<br><b>Last updated: </b>2025-08-12<br><b>Version: </b>0.0.1<br><b>License: </b><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">https://creativecommons.org/licenses/by/4.0/</a><br><b>Creator: </b>Swiss Data Science Center<br><b>Publisher: </b>ETH Zurich<br><b>Rightsholder: </b>ETH Zurich<br><b>Feedback: </b><a href="https://github.com/sdsc-ordes/mava-api" target="_blank">https://github.com/sdsc-ordes/mava-api</a><br><br></div>
+         <div class="row mt-3">
+            <div class="col">
+               <h2 id="abstract" class="sp_section_subtitle">Abstract</h2><p>An ontology for multimodal audio-visual corpora to allow interoperability and data exchange</p>
+</div>
+         </div>
+         <div class="sp_section_title_toc toc">
+            <h2 id="index">Table of Contents</h2>
+            <ul role="list" class="sp_list_toc ul_type_none t-x-mode">
+               <li><a href="#prefixes">Namespaces</a></li>
+               <li><a href="#diagrams">Diagrams</a></li>
+               <li><a href="#description">Description</a></li>
+               <li><a href="#documentation">Model documentation</a><ul role="list" class="ul_type_none sp_list_toc_l2">
+                     <li><a href="#mava:Annotation">Annotation</a></li>
+                     <li><a href="#mava:Corpus">Corpus</a></li>
+                     <li><a href="#mava:Document">Document</a></li>
+                     <li><a href="#mava:MediaResource">Media Resource</a></li>
+                     <li><a href="#mava:Segment">Segment</a></li>
+                     <li><a href="#mava:Timeline">Timeline</a></li>
+                  </ul>
+               </li>
+               <li><a href="#releaseNotes">Release notes</a></li>
+            </ul>
+         </div>
+         <div class="row mt-3">
+            <div class="col">
+               <section>
+                  <h2 id="prefixes" class="sp_section_subtitle">Namespaces</h2>
+                  <table class="sp_table_prefixes table table-striped table-responsive">
+                     <thead>
+                        <tr>
+                           <th>Prefix</th>
+                           <th>Namespace</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>mava</td>
+                           <td><a href="http://example.org/mava/ontology#" target="_blank">http://example.org/mava/ontology#</a></td>
+                        </tr>
+                        <tr>
+                           <td>xsd</td>
+                           <td><a href="http://www.w3.org/2001/XMLSchema#" target="_blank">http://www.w3.org/2001/XMLSchema#</a></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </div>
+         </div><br><div class="sp_section_row mt-3">
+            <div class="sp_section_col">
+               <section>
+                  <h2 id="diagrams" class="sp_section_subtitle">Diagrams</h2>
+                  <div><?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="604px" preserveAspectRatio="none" style="width:648px;height:604px;background:#FFFFFF;" version="1.1" viewBox="0 0 648 604" width="648px" zoomAndPan="magnify"><defs xmlns=""/><g><!--class mava:Segment--><a href="#mava:Segment" target="_top" title="#mava:Segment" xlink:actuate="onRequest" xlink:href="#mava:Segment" xlink:show="new" xlink:title="#mava:Segment" xlink:type="simple"><g id="elem_mava:Segment"><rect codeLine="8" fill="#F1F1F1" height="26.2969" id="uml_mava:Segment" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="110" x="69" y="366"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="104" x="72" y="383.9951">mava:Segment</text></g></a><!--class mava:Annotation--><a href="#mava:Annotation" target="_top" title="#mava:Annotation" xlink:actuate="onRequest" xlink:href="#mava:Annotation" xlink:show="new" xlink:title="#mava:Annotation" xlink:type="simple"><g id="elem_mava:Annotation"><rect codeLine="10" fill="#F1F1F1" height="26.2969" id="uml_mava:Annotation" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="122" x="63" y="469"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="116" x="66" y="486.9951">mava:Annotation</text></g></a><!--class mava:Agent--><g id="elem_mava:Agent"><rect fill="#F1F1F1" height="26.2969" id="uml_mava:Agent" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="88" x="7" y="572"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="82" x="10" y="589.9951">mava:Agent</text></g><!--class mava:Link--><g id="elem_mava:Link"><rect fill="#F1F1F1" height="26.2969" id="uml_mava:Link" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="74" x="161" y="572"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="68" x="164" y="589.9951">mava:Link</text></g><!--class mava:Timeline--><a href="#mava:Timeline" target="_top" title="#mava:Timeline" xlink:actuate="onRequest" xlink:href="#mava:Timeline" xlink:show="new" xlink:title="#mava:Timeline" xlink:type="simple"><g id="elem_mava:Timeline"><rect codeLine="13" fill="#F1F1F1" height="26.2969" id="uml_mava:Timeline" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="105" x="71.5" y="250.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="74.5" y="268.4951">mava:Timeline</text></g></a><!--class mava:Corpus--><a href="#mava:Corpus" target="_top" title="#mava:Corpus" xlink:actuate="onRequest" xlink:href="#mava:Corpus" xlink:show="new" xlink:title="#mava:Corpus" xlink:type="simple"><g id="elem_mava:Corpus"><rect codeLine="15" fill="#F1F1F1" height="26.2969" id="uml_mava:Corpus" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="97" x="286.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="91" x="289.5" y="24.9951">mava:Corpus</text></g></a><!--class mava:Document--><a href="#mava:Document" target="_top" title="#mava:Document" xlink:actuate="onRequest" xlink:href="#mava:Document" xlink:show="new" xlink:title="#mava:Document" xlink:type="simple"><g id="elem_mava:Document"><rect codeLine="20" fill="#F1F1F1" height="50.5938" id="uml_mava:Document" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="251" x="209.5" y="110"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="278" y="127.9951">mava:Document</text><line style="stroke:#181818;stroke-width:0.5;" x1="210.5" x2="459.5" y1="136.2969" y2="136.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="239" x="215.5" y="153.292">mava:documentProfile  : xsd:string</text></g></a><!--class mava:MediaResource--><a href="#mava:MediaResource" target="_top" title="#mava:MediaResource" xlink:actuate="onRequest" xlink:href="#mava:MediaResource" xlink:show="new" xlink:title="#mava:MediaResource" xlink:type="simple"><g id="elem_mava:MediaResource"><rect codeLine="17" fill="#F1F1F1" height="50.5938" id="uml_mava:MediaResource" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="246" x="212" y="238"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="149" x="260.5" y="255.9951">mava:MediaResource</text><line style="stroke:#181818;stroke-width:0.5;" x1="213" x2="457" y1="264.2969" y2="264.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="234" x="218" y="281.292">mava:hasMediaProfile  : xsd:string</text></g></a><!--class mava:ResourceProxy--><g id="elem_mava:ResourceProxy"><rect fill="#F1F1F1" height="26.2969" id="uml_mava:ResourceProxy" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="151" x="259.5" y="366"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="262.5" y="383.9951">mava:ResourceProxy</text></g><!--class mava:AnnotationTier--><g id="elem_mava:AnnotationTier"><rect fill="#F1F1F1" height="26.2969" id="uml_mava:AnnotationTier" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="148" x="493" y="250.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="142" x="496" y="268.4951">mava:AnnotationTier</text></g><!--link mava:Segment to mava:Annotation--><g id="link_mava:Segment_mava:Annotation"><path codeLine="9" d="M124,392.38 C124,411.87 124,443.47 124,462.83 " fill="none" id="mava:Segment-to-mava:Annotation" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="124,468.83,128,459.83,124,463.83,120,459.83,124,468.83" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="122" x="125" y="435.0669">mava:annotatedBy</text></g><!--link mava:Annotation to mava:Agent--><g id="link_mava:Annotation_mava:Agent"><path codeLine="11" d="M85.06,495 C70.82,501.49 56.2,511.11 48,525 C39.56,539.31 41.3258,553.3783 44.9958,566.0083 " fill="none" id="mava:Annotation-to-mava:Agent" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="46.67,571.77,47.9998,562.0113,45.2748,566.9686,40.3176,564.2436,46.67,571.77" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="105" x="49" y="538.0669">mava:createdBy</text></g><!--link mava:Annotation to mava:Link--><g id="link_mava:Annotation_mava:Link"><path codeLine="12" d="M134.78,495.21 C141.9,503.44 151.3,514.64 159,525 C170.72,540.76 179.8466,554.7841 187.4266,566.8941 " fill="none" id="mava:Annotation-to-mava:Link" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="190.61,571.98,189.2255,562.2289,187.9572,567.7418,182.4443,566.4735,190.61,571.98" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="83" x="172" y="538.0669">mava:linksTo</text></g><!--link mava:Timeline to mava:Segment--><g id="link_mava:Timeline_mava:Segment"><path codeLine="14" d="M124,276.65 C124,298.49 124,338.16 124,359.94 " fill="none" id="mava:Timeline-to-mava:Segment" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="124,365.94,128,356.94,124,360.94,120,356.94,124,365.94" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="122" x="125" y="332.0669">mava:hasSegment</text></g><!--link mava:Corpus to mava:Document--><g id="link_mava:Corpus_mava:Document"><path codeLine="16" d="M335,33.15 C335,51.33 335,80.03 335,103.71 " fill="none" id="mava:Corpus-to-mava:Document" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="335,109.71,339,100.71,335,104.71,331,100.71,335,109.71" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="336" y="76.0669">mava:hasDocument</text></g><!--link mava:MediaResource to mava:ResourceProxy--><g id="link_mava:MediaResource_mava:ResourceProxy"><path codeLine="19" d="M335,289.13 C335,312.86 335,341.77 335,359.96 " fill="none" id="mava:MediaResource-to-mava:ResourceProxy" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="335,365.96,339,356.96,335,360.96,331,356.96,335,365.96" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="157" x="336" y="332.0669">mava:hasResourceProxy</text></g><!--link mava:Document to mava:MediaResource--><g id="link_mava:Document_mava:MediaResource"><path codeLine="22" d="M335,161.09 C335,183.29 335,209.79 335,231.97 " fill="none" id="mava:Document-to-mava:MediaResource" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="335,237.97,339,228.97,335,232.97,331,228.97,335,237.97" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="336" y="204.0669">mava:hasMedia</text></g><!--link mava:Document to mava:Timeline--><g id="link_mava:Document_mava:Timeline"><path codeLine="23" d="M268.43,161.02 C248.7,169.41 227.45,179.59 209,191 C180.63,208.54 156.0756,230.841 140.3556,246.171 " fill="none" id="mava:Document-to-mava:Timeline" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="136.06,250.36,145.2961,246.9402,139.6397,246.8691,139.7107,241.2127,136.06,250.36" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="116" x="210" y="204.0669">mava:hasTimeline</text></g><!--link mava:Document to mava:AnnotationTier--><g id="link_mava:Document_mava:AnnotationTier"><path codeLine="24" d="M387.1,161.05 C405.83,170.15 427.01,180.75 446,191 C482.5,210.71 518.7741,232.6189 542.4641,247.2389 " fill="none" id="mava:Document-to-mava:AnnotationTier" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="547.57,250.39,542.0118,242.2594,543.315,247.7641,537.8104,249.0674,547.57,250.39" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="86" x="478" y="204.0669">mava:hasTier</text></g><!--SRC=[VP9DJm8n48Rl-oj6F9keySJ1YAXe0cg4n0FnKBV3qh3jRDgkWB_U0bkdYt5lz9bvFxhKeGSZDBfAv3Z5IbZXoO8XWvbRARC36l9IEFT0na_LDyB5LNOYSQ4CmlXfz3XxUHiyZ-xJTT9LC0ZhVbiYrBgyJAPhAwe9EYSAV5VIB-7Y_3mP3wobzP3AqE9q8YoHoTp_9I4Rxhf1JuilqPzYeKDi3-RpqnHyV41sj75sTjs81iQG5rwHwK4VzaWS4ChRRJiWtOqPp3WctKkIYdrq4v9RZ15Teh4ogrzD6GvkHkrICwKn390hHSA5U8UTVxz5OxuKha5j_o7PgdRiVZYpTvopyntbzR5rP6tl2Kebtj1HRVFa0YtCIKVRRBuVl5fQgF3U0jyusNVUAbF0Frek6rcGRxQfQMlGhiqNZ8qZuR9_Fe9iG7TFbd75xdjtAVb_Pr5aNJf-YpE5jgr62zbIIOHSsRp4ms-DVadI7GweAxyDI7-YTPb5JLy8DxNPFL-KFm00]--></g></svg></div><small class="form-text text-muted">Click diagram to navigate to corresponding section | <a href="http://www.plantuml.com/plantuml/png/VP9DJm8n48Rl-oj6F9keySJ1YAXe0cg4n0FnKBV3qh3jRDgkWB_U0bkdYt5lz9bvFxhKeGSZDBfAv3Z5IbZXoO8XWvbRARC36l9IEFT0na_LDyB5LNOYSQ4CmlXfz3XxUHiyZ-xJTT9LC0ZhVbiYrBgyJAPhAwe9EYSAV5VIB-7Y_3mP3wobzP3AqE9q8YoHoTp_9I4Rxhf1JuilqPzYeKDi3-RpqnHyV41sj75sTjs81iQG5rwHwK4VzaWS4ChRRJiWtOqPp3WctKkIYdrq4v9RZ15Teh4ogrzD6GvkHkrICwKn390hHSA5U8UTVxz5OxuKha5j_o7PgdRiVZYpTvopyntbzR5rP6tl2Kebtj1HRVFa0YtCIKVRRBuVl5fQgF3U0jyusNVUAbF0Frek6rcGRxQfQMlGhiqNZ8qZuR9_Fe9iG7TFbd75xdjtAVb_Pr5aNJf-YpE5jgr62zbIIOHSsRp4ms-DVadI7GweAxyDI7-YTPb5JLy8DxNPFL-KFm00" target="_blank">View as PNG</a></small>
+                  <!--@startuml
+set namespaceSeparator none
+skinparam classFontSize 14
+!define LIGHTORANGE
+skinparam componentStyle uml2
+skinparam wrapMessageWidth 100
+skinparam ArrowColor #Maroon
+set namespaceSeparator none 
+Class "mava:Segment" [[#mava:Segment]] 
+"mava:Segment" - -> "mava:Annotation" : mava:annotatedBy 
+Class "mava:Annotation" [[#mava:Annotation]] 
+"mava:Annotation" - -> "mava:Agent" : mava:createdBy 
+"mava:Annotation" - -> "mava:Link" : mava:linksTo 
+Class "mava:Timeline" [[#mava:Timeline]] 
+"mava:Timeline" - -> "mava:Segment" : mava:hasSegment 
+Class "mava:Corpus" [[#mava:Corpus]] 
+"mava:Corpus" - -> "mava:Document" : mava:hasDocument 
+Class "mava:MediaResource" [[#mava:MediaResource]] 
+"mava:MediaResource" : mava:hasMediaProfile  : xsd:string  
+"mava:MediaResource" - -> "mava:ResourceProxy" : mava:hasResourceProxy 
+Class "mava:Document" [[#mava:Document]] 
+"mava:Document" : mava:documentProfile  : xsd:string  
+"mava:Document" - -> "mava:MediaResource" : mava:hasMedia 
+"mava:Document" - -> "mava:Timeline" : mava:hasTimeline 
+"mava:Document" - -> "mava:AnnotationTier" : mava:hasTier 
+hide circle
+hide methods
+hide empty members
+remove @unlinked
+@enduml
+--></section>
+            </div>
+         </div>
+         <div>
+            <h2 id="description" class="sp_section_subtitle" style="margin-top: 1em;">Description</h2><p>This ontology provides classes and properties for representing corpora, documents, media resources, time and/or text annotations. It is designed to be a reference point for data exchange across annotation tools in linguistics.</p>
+</div>
+         <h2 id="documentation" class="sp_section_subtitle">Model documentation</h2>
+         <div class="row mt-3">
+            <div class="col">
+               <section>
+                  <div class="sp_section_title_table_wrapper">
+                     <h3 id="mava:Annotation" class="sp_section_title_table">Annotation</h3><code class="sp_section_uri"><a href="http://example.org/mava/ontology#Annotation">http://example.org/mava/ontology#Annotation</a></code></div>
+                  <div class="sp_nodeshape_description"><p>An annotation for a segment, which can provide additional information or context.</p>
+</div>
+                  <div class="sp_section_nodeshape_diagram">
+                     <div class="sp_section_nodeshape_center"><?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="245px" preserveAspectRatio="none" style="width:182px;height:245px;background:#FFFFFF;" version="1.1" viewBox="0 0 182 245" width="182px" zoomAndPan="magnify"><defs xmlns=""/><g><!--class mava:Annotation--><a href="#mava:Annotation" target="_top" title="#mava:Annotation" xlink:actuate="onRequest" xlink:href="#mava:Annotation" xlink:show="new" xlink:title="#mava:Annotation" xlink:type="simple"><g id="elem_mava:Annotation"><rect codeLine="8" fill="#F1F1F1" height="26.2969" id="uml_mava:Annotation" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="122" x="7" y="110"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="116" x="10" y="127.9951">mava:Annotation</text></g></a><!--class mava:Agent--><g id="elem_mava:Agent"><rect fill="#F1F1F1" height="26.2969" id="uml_mava:Agent" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="88" x="24" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="82" x="27" y="24.9951">mava:Agent</text></g><!--class mava:Link--><g id="elem_mava:Link"><rect fill="#F1F1F1" height="26.2969" id="uml_mava:Link" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="74" x="31" y="213"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="68" x="34" y="230.9951">mava:Link</text></g><!--reverse link mava:Agent to mava:Annotation--><g id="link_mava:Agent_mava:Annotation"><path codeLine="9" d="M68,39.38 C68,58.87 68,90.47 68,109.83 " fill="none" id="mava:Agent-backto-mava:Annotation" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="68,33.38,64,42.38,68,38.38,72,42.38,68,33.38" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="105" x="69" y="76.0669">mava:createdBy</text></g><!--link mava:Annotation to mava:Link--><g id="link_mava:Annotation_mava:Link"><path codeLine="10" d="M68,136.38 C68,155.87 68,187.47 68,206.83 " fill="none" id="mava:Annotation-to-mava:Link" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="68,212.83,72,203.83,68,207.83,64,203.83,68,212.83" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="83" x="69" y="179.0669">mava:linksTo</text></g><!--SRC=[TOvDImCn48Rl-HNZzbnenLCFmbgq2gs2BNWeFOp9s0rDPfPCQbb_lQd5ilXnc_ThU9GoC4RI5YqjgSM4MHAmC1dTUJuQ4Mn0rJlXlFGV1EChS-7epJF1_65sltfwhXzdj_swnBOyAFNS1O9z39Uzz92mNP0gRkd5kzp0U3JgnNLASfXAA1I31IOHDle_99ZfaGsgYEyugPabO_R25QpNWn_UPWFcTs-u7rv_pxU5kO89V2cR23Evc-xFbJklvfvtvr4eGbS2fl6EmFfa0vtkIBaHfoT1iSrTiU8h9Vq4]--></g></svg></div><small class="form-text text-muted">Click diagram to navigate to corresponding section | <a href="http://www.plantuml.com/plantuml/png/TOvDImCn48Rl-HNZzbnenLCFmbgq2gs2BNWeFOp9s0rDPfPCQbb_lQd5ilXnc_ThU9GoC4RI5YqjgSM4MHAmC1dTUJuQ4Mn0rJlXlFGV1EChS-7epJF1_65sltfwhXzdj_swnBOyAFNS1O9z39Uzz92mNP0gRkd5kzp0U3JgnNLASfXAA1I31IOHDle_99ZfaGsgYEyugPabO_R25QpNWn_UPWFcTs-u7rv_pxU5kO89V2cR23Evc-xFbJklvfvtvr4eGbS2fl6EmFfa0vtkIBaHfoT1iSrTiU8h9Vq4" target="_blank">View as PNG</a></small>
+                     <!--@startuml
+set namespaceSeparator none
+skinparam classFontSize 14
+!define LIGHTORANGE
+skinparam componentStyle uml2
+skinparam wrapMessageWidth 100
+skinparam ArrowColor #Maroon
+set namespaceSeparator none 
+Class "mava:Annotation" [[#mava:Annotation]] 
+"mava:Annotation" -u-> "mava:Agent" : mava:createdBy 
+"mava:Annotation" -d-> "mava:Link" : mava:linksTo 
+hide circle
+hide methods
+hide empty members
+@enduml
+--></div>
+                  <table class="sp_table_propertyshapes table-striped table-responsive">
+                     <thead>
+                        <tr>
+                           <th>Property name</th>
+                           <th>URI</th>
+                           <th>Expected value</th>
+                           <th>Card.</th>
+                           <th class="sp_description_column">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr style="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;''&#xA;&#x9;&#x9;&#x9;&#x9;">
+                           <td>Created by</td>
+                           <td id="mava:Annotation_mava:createdBy"><code><a href="http://example.org/mava/ontology#createdBy">mava:createdBy</a></code></td>
+                           <td><code><a href="http://example.org/mava/ontology#Agent">mava:Agent</a></code><br><small></small></td>
+                           <td>
+                              <div style="width:30px">0..*</div>
+                           </td>
+                           <td class="sp_table_propertyshapes_col_description"></td>
+                        </tr>
+                        <tr style="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;''&#xA;&#x9;&#x9;&#x9;&#x9;">
+                           <td>Links to</td>
+                           <td id="mava:Annotation_mava:linksTo"><code><a href="http://example.org/mava/ontology#linksTo">mava:linksTo</a></code></td>
+                           <td><code><a href="http://example.org/mava/ontology#Link">mava:Link</a></code><br><small></small></td>
+                           <td>
+                              <div style="width:30px">0..*</div>
+                           </td>
+                           <td class="sp_table_propertyshapes_col_description"></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </div>
+         </div><br><div class="row mt-3">
+            <div class="col">
+               <section>
+                  <div class="sp_section_title_table_wrapper">
+                     <h3 id="mava:Corpus" class="sp_section_title_table">Corpus</h3><code class="sp_section_uri"><a href="http://example.org/mava/ontology#Corpus">http://example.org/mava/ontology#Corpus</a></code></div>
+                  <div class="sp_nodeshape_description"><p>A collection of documents, media resources, and annotations.</p>
+</div>
+                  <div class="sp_section_nodeshape_diagram">
+                     <div class="sp_section_nodeshape_center"><?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="142px" preserveAspectRatio="none" style="width:206px;height:142px;background:#FFFFFF;" version="1.1" viewBox="0 0 206 142" width="206px" zoomAndPan="magnify"><defs xmlns=""/><g><!--class mava:Corpus--><a href="#mava:Corpus" target="_top" title="#mava:Corpus" xlink:actuate="onRequest" xlink:href="#mava:Corpus" xlink:show="new" xlink:title="#mava:Corpus" xlink:type="simple"><g id="elem_mava:Corpus"><rect codeLine="8" fill="#F1F1F1" height="26.2969" id="uml_mava:Corpus" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="97" x="18.5" y="110"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="91" x="21.5" y="127.9951">mava:Corpus</text></g></a><!--class mava:Document--><a href="#mava:Document" target="_top" title="#mava:Document" xlink:actuate="onRequest" xlink:href="#mava:Document" xlink:show="new" xlink:title="#mava:Document" xlink:type="simple"><g id="elem_mava:Document"><rect codeLine="10" fill="#F1F1F1" height="26.2969" id="uml_mava:Document" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="120" x="7" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="10" y="24.9951">mava:Document</text></g></a><!--reverse link mava:Document to mava:Corpus--><g id="link_mava:Document_mava:Corpus"><path codeLine="9" d="M67,39.38 C67,58.87 67,90.47 67,109.83 " fill="none" id="mava:Document-backto-mava:Corpus" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="67,33.38,63,42.38,67,38.38,71,42.38,67,33.38" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="68" y="76.0669">mava:hasDocument</text></g><!--SRC=[TOv1Jm8n48Nl_HNZSYO1uuc3aQoA9gA9c7WW7CPsT1lQJjFfGl3NsnKtBWTkCzzxy-O9PGZeII9gMb74X9aJ10waP6j31pneXoBt7FBAVXDChzI5eKyR29uU5mzlBw_pvyNTqCu-be1YpmT7q7ftEL3t2UEIHF2Btgt93Kmdau4yJudtDRlIOhJ4n1oKd2y9gkwwGULnXxEQKsobWlLwDDWt6r2d-hWTN_-TtB9kVQbQmGn-GOFIizFmVsSVtvFkGMCDWRP9EphEddB3HeuB-PWF1VaFIg8IUTuHtBJ1sR0bymC0]--></g></svg></div><small class="form-text text-muted">Click diagram to navigate to corresponding section | <a href="http://www.plantuml.com/plantuml/png/TOv1Jm8n48Nl_HNZSYO1uuc3aQoA9gA9c7WW7CPsT1lQJjFfGl3NsnKtBWTkCzzxy-O9PGZeII9gMb74X9aJ10waP6j31pneXoBt7FBAVXDChzI5eKyR29uU5mzlBw_pvyNTqCu-be1YpmT7q7ftEL3t2UEIHF2Btgt93Kmdau4yJudtDRlIOhJ4n1oKd2y9gkwwGULnXxEQKsobWlLwDDWt6r2d-hWTN_-TtB9kVQbQmGn-GOFIizFmVsSVtvFkGMCDWRP9EphEddB3HeuB-PWF1VaFIg8IUTuHtBJ1sR0bymC0" target="_blank">View as PNG</a></small>
+                     <!--@startuml
+set namespaceSeparator none
+skinparam classFontSize 14
+!define LIGHTORANGE
+skinparam componentStyle uml2
+skinparam wrapMessageWidth 100
+skinparam ArrowColor #Maroon
+set namespaceSeparator none 
+Class "mava:Corpus" [[#mava:Corpus]] 
+"mava:Corpus" -u-> "mava:Document" : mava:hasDocument 
+Class "mava:Document" [[#mava:Document]] 
+hide circle
+hide methods
+hide empty members
+remove @unlinked
+@enduml
+--></div>
+                  <table class="sp_table_propertyshapes table-striped table-responsive">
+                     <thead>
+                        <tr>
+                           <th>Property name</th>
+                           <th>URI</th>
+                           <th>Expected value</th>
+                           <th>Card.</th>
+                           <th class="sp_description_column">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr style="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;''&#xA;&#x9;&#x9;&#x9;&#x9;">
+                           <td>Has document</td>
+                           <td id="mava:Corpus_mava:hasDocument"><code><a href="http://example.org/mava/ontology#hasDocument">mava:hasDocument</a></code></td>
+                           <td><code><a href="#mava:Document">Document</a></code><br><small></small></td>
+                           <td>
+                              <div style="width:30px">0..*</div>
+                           </td>
+                           <td class="sp_table_propertyshapes_col_description"></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </div>
+         </div><br><div class="row mt-3">
+            <div class="col">
+               <section>
+                  <div class="sp_section_title_table_wrapper">
+                     <h3 id="mava:Document" class="sp_section_title_table">Document</h3><code class="sp_section_uri"><a href="http://example.org/mava/ontology#Document">http://example.org/mava/ontology#Document</a></code></div>
+                  <div class="sp_nodeshape_description"><p>A document within a corpus, which can contain media resources and annotations.</p>
+</div>
+                  <div class="sp_section_nodeshape_diagram">
+                     <div class="sp_section_nodeshape_center"><?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="270px" preserveAspectRatio="none" style="width:535px;height:270px;background:#FFFFFF;" version="1.1" viewBox="0 0 535 270" width="535px" zoomAndPan="magnify"><defs xmlns=""/><g><!--class mava:Document--><a href="#mava:Document" target="_top" title="#mava:Document" xlink:actuate="onRequest" xlink:href="#mava:Document" xlink:show="new" xlink:title="#mava:Document" xlink:type="simple"><g id="elem_mava:Document"><rect codeLine="8" fill="#F1F1F1" height="50.5938" id="uml_mava:Document" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="251" x="7" y="110"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="75.5" y="127.9951">mava:Document</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="257" y1="136.2969" y2="136.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="239" x="13" y="153.292">mava:documentProfile  : xsd:string</text></g></a><!--class mava:MediaResource--><a href="#mava:MediaResource" target="_top" title="#mava:MediaResource" xlink:actuate="onRequest" xlink:href="#mava:MediaResource" xlink:show="new" xlink:title="#mava:MediaResource" xlink:type="simple"><g id="elem_mava:MediaResource"><rect codeLine="13" fill="#F1F1F1" height="26.2969" id="uml_mava:MediaResource" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="155" x="55" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="149" x="58" y="24.9951">mava:MediaResource</text></g></a><!--class mava:Timeline--><a href="#mava:Timeline" target="_top" title="#mava:Timeline" xlink:actuate="onRequest" xlink:href="#mava:Timeline" xlink:show="new" xlink:title="#mava:Timeline" xlink:type="simple"><g id="elem_mava:Timeline"><rect codeLine="14" fill="#F1F1F1" height="26.2969" id="uml_mava:Timeline" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="105" x="80" y="238"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="83" y="255.9951">mava:Timeline</text></g></a><!--class mava:AnnotationTier--><g id="elem_mava:AnnotationTier"><rect fill="#F1F1F1" height="26.2969" id="uml_mava:AnnotationTier" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="148" x="380.5" y="122.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="142" x="383.5" y="140.4951">mava:AnnotationTier</text></g><!--reverse link mava:MediaResource to mava:Document--><g id="link_mava:MediaResource_mava:Document"><path codeLine="10" d="M132.5,39.15 C132.5,57.33 132.5,86.03 132.5,109.71 " fill="none" id="mava:MediaResource-backto-mava:Document" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="132.5,33.15,128.5,42.15,132.5,38.15,136.5,42.15,132.5,33.15" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="133.5" y="76.0669">mava:hasMedia</text></g><!--link mava:Document to mava:Timeline--><g id="link_mava:Document_mava:Timeline"><path codeLine="11" d="M132.5,161.13 C132.5,184.86 132.5,213.77 132.5,231.96 " fill="none" id="mava:Document-to-mava:Timeline" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="132.5,237.96,136.5,228.96,132.5,232.96,128.5,228.96,132.5,237.96" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="116" x="133.5" y="204.0669">mava:hasTimeline</text></g><!--link mava:Document to mava:AnnotationTier--><g id="link_mava:Document_mava:AnnotationTier"><path codeLine="12" d="M258.38,135.5 C299.65,135.5 338.17,135.5 374.33,135.5 " fill="none" id="mava:Document-to-mava:AnnotationTier" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="380.33,135.5,371.33,131.5,375.33,135.5,371.33,139.5,380.33,135.5" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="86" x="276.25" y="128.5669">mava:hasTier</text></g><!--SRC=[TP31Ji9048RlVOeHpYHWF74mDgXeOjK0YGV2OUqET4DtfvdPWlZqRe5YYtZR_UR_Tl-Ce0UdB4gXKfnYeLXvOd3aC9ArSHMmaEPAv96SdvflXC5DTALnQHp2o_FuQVOsYL_73yqusI8y4E9-boEKDhzkJBUiYWH5r0e_ZFOP3FhznZXcfks8yj2YcoWcSf7yNnAYKTKDEbPjrF2UqjA6VpimdtTRPB60w3mpX3tGH_3Ej3IXRk1VeeVYsRWL_DLwPU_s-5-2sgW92fMSukd1JCb-S47L9tLcBEPXXKshPXT4FecnS-ILD-Hc1hcj8xVtSTQlNaeBLvjfEh_5wdXDgcHcD49gECtnSBReCz9okA0j_2uW-uai4QEb3S9TwOAzHlq3]--></g></svg></div><small class="form-text text-muted">Click diagram to navigate to corresponding section | <a href="http://www.plantuml.com/plantuml/png/TP31Ji9048RlVOeHpYHWF74mDgXeOjK0YGV2OUqET4DtfvdPWlZqRe5YYtZR_UR_Tl-Ce0UdB4gXKfnYeLXvOd3aC9ArSHMmaEPAv96SdvflXC5DTALnQHp2o_FuQVOsYL_73yqusI8y4E9-boEKDhzkJBUiYWH5r0e_ZFOP3FhznZXcfks8yj2YcoWcSf7yNnAYKTKDEbPjrF2UqjA6VpimdtTRPB60w3mpX3tGH_3Ej3IXRk1VeeVYsRWL_DLwPU_s-5-2sgW92fMSukd1JCb-S47L9tLcBEPXXKshPXT4FecnS-ILD-Hc1hcj8xVtSTQlNaeBLvjfEh_5wdXDgcHcD49gECtnSBReCz9okA0j_2uW-uai4QEb3S9TwOAzHlq3" target="_blank">View as PNG</a></small>
+                     <!--@startuml
+set namespaceSeparator none
+skinparam classFontSize 14
+!define LIGHTORANGE
+skinparam componentStyle uml2
+skinparam wrapMessageWidth 100
+skinparam ArrowColor #Maroon
+set namespaceSeparator none 
+Class "mava:Document" [[#mava:Document]] 
+"mava:Document" : mava:documentProfile  : xsd:string  
+"mava:Document" -u-> "mava:MediaResource" : mava:hasMedia 
+"mava:Document" -d-> "mava:Timeline" : mava:hasTimeline 
+"mava:Document" -r-> "mava:AnnotationTier" : mava:hasTier 
+Class "mava:MediaResource" [[#mava:MediaResource]] 
+Class "mava:Timeline" [[#mava:Timeline]] 
+hide circle
+hide methods
+hide empty members
+remove @unlinked
+@enduml
+--></div>
+                  <table class="sp_table_propertyshapes table-striped table-responsive">
+                     <thead>
+                        <tr>
+                           <th>Property name</th>
+                           <th>URI</th>
+                           <th>Expected value</th>
+                           <th>Card.</th>
+                           <th class="sp_description_column">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr style="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;''&#xA;&#x9;&#x9;&#x9;&#x9;">
+                           <td></td>
+                           <td id="mava:Document_mava:documentProfile"><code><a href="http://example.org/mava/ontology#documentProfile">mava:documentProfile</a></code></td>
+                           <td><code>xsd:string</code><br><small></small></td>
+                           <td>
+                              <div style="width:30px">0..*</div>
+                           </td>
+                           <td class="sp_table_propertyshapes_col_description"></td>
+                        </tr>
+                        <tr style="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;''&#xA;&#x9;&#x9;&#x9;&#x9;">
+                           <td>Has media resource</td>
+                           <td id="mava:Document_mava:hasMedia"><code><a href="http://example.org/mava/ontology#hasMedia">mava:hasMedia</a></code></td>
+                           <td><code><a href="#mava:MediaResource">Media Resource</a></code><br><small></small></td>
+                           <td>
+                              <div style="width:30px">0..*</div>
+                           </td>
+                           <td class="sp_table_propertyshapes_col_description"></td>
+                        </tr>
+                        <tr style="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;''&#xA;&#x9;&#x9;&#x9;&#x9;">
+                           <td></td>
+                           <td id="mava:Document_mava:hasTier"><code><a href="http://example.org/mava/ontology#hasTier">mava:hasTier</a></code></td>
+                           <td><code><a href="http://example.org/mava/ontology#AnnotationTier">mava:AnnotationTier</a></code><br><small></small></td>
+                           <td>
+                              <div style="width:30px">0..*</div>
+                           </td>
+                           <td class="sp_table_propertyshapes_col_description"></td>
+                        </tr>
+                        <tr style="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;''&#xA;&#x9;&#x9;&#x9;&#x9;">
+                           <td></td>
+                           <td id="mava:Document_mava:hasTimeline"><code><a href="http://example.org/mava/ontology#hasTimeline">mava:hasTimeline</a></code></td>
+                           <td><code><a href="#mava:Timeline">Timeline</a></code><br><small></small></td>
+                           <td>
+                              <div style="width:30px">0..*</div>
+                           </td>
+                           <td class="sp_table_propertyshapes_col_description"></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </div>
+         </div><br><div class="row mt-3">
+            <div class="col">
+               <section>
+                  <div class="sp_section_title_table_wrapper">
+                     <h3 id="mava:MediaResource" class="sp_section_title_table">Media Resource</h3><code class="sp_section_uri"><a href="http://example.org/mava/ontology#MediaResource">http://example.org/mava/ontology#MediaResource</a></code></div>
+                  <div class="sp_nodeshape_description"><p>A media resource such as audio or video within a document.</p>
+</div>
+                  <div class="sp_section_nodeshape_diagram">
+                     <div class="sp_section_nodeshape_center"><?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="167px" preserveAspectRatio="none" style="width:296px;height:167px;background:#FFFFFF;" version="1.1" viewBox="0 0 296 167" width="296px" zoomAndPan="magnify"><defs xmlns=""/><g><!--class mava:MediaResource--><a href="#mava:MediaResource" target="_top" title="#mava:MediaResource" xlink:actuate="onRequest" xlink:href="#mava:MediaResource" xlink:show="new" xlink:title="#mava:MediaResource" xlink:type="simple"><g id="elem_mava:MediaResource"><rect codeLine="8" fill="#F1F1F1" height="50.5938" id="uml_mava:MediaResource" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="246" x="7" y="110"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="149" x="55.5" y="127.9951">mava:MediaResource</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="252" y1="136.2969" y2="136.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="234" x="13" y="153.292">mava:hasMediaProfile  : xsd:string</text></g></a><!--class mava:ResourceProxy--><g id="elem_mava:ResourceProxy"><rect fill="#F1F1F1" height="26.2969" id="uml_mava:ResourceProxy" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="151" x="54.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="57.5" y="24.9951">mava:ResourceProxy</text></g><!--reverse link mava:ResourceProxy to mava:MediaResource--><g id="link_mava:ResourceProxy_mava:MediaResource"><path codeLine="10" d="M130,39.15 C130,57.33 130,86.03 130,109.71 " fill="none" id="mava:ResourceProxy-backto-mava:MediaResource" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="130,33.15,126,42.15,130,38.15,134,42.15,130,33.15" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="157" x="131" y="76.0669">mava:hasResourceProxy</text></g><!--SRC=[TOx1JW9138RlynGLpYHWFEt1X1154rSDc7WW7EfCOIVkJ3VjhB0-lGDeiaQvjT__j_cK4aGCf0rQMbA3Wea58aSo-kxZ0GImDQhUSanB_qamkJ8NZZO-4ZpSp-zUdXRJn_bDlywXoGzoFNKrGHlgorww4snAKiKjlNgNAfYCnxruAiAx6TVPObYYC4UZvoN1p0vkC0ZuWKL9pkE2b5knD83LQlWNhzTW_cqNSAGLwZ5u5jxuR9_vNbsXINpSmfdRKJkw_dRuWVb-t_M__Wh0LDuHM2-sfjCSA5NizBHGQ5ANKNWZqIy0]--></g></svg></div><small class="form-text text-muted">Click diagram to navigate to corresponding section | <a href="http://www.plantuml.com/plantuml/png/TOx1JW9138RlynGLpYHWFEt1X1154rSDc7WW7EfCOIVkJ3VjhB0-lGDeiaQvjT__j_cK4aGCf0rQMbA3Wea58aSo-kxZ0GImDQhUSanB_qamkJ8NZZO-4ZpSp-zUdXRJn_bDlywXoGzoFNKrGHlgorww4snAKiKjlNgNAfYCnxruAiAx6TVPObYYC4UZvoN1p0vkC0ZuWKL9pkE2b5knD83LQlWNhzTW_cqNSAGLwZ5u5jxuR9_vNbsXINpSmfdRKJkw_dRuWVb-t_M__Wh0LDuHM2-sfjCSA5NizBHGQ5ANKNWZqIy0" target="_blank">View as PNG</a></small>
+                     <!--@startuml
+set namespaceSeparator none
+skinparam classFontSize 14
+!define LIGHTORANGE
+skinparam componentStyle uml2
+skinparam wrapMessageWidth 100
+skinparam ArrowColor #Maroon
+set namespaceSeparator none 
+Class "mava:MediaResource" [[#mava:MediaResource]] 
+"mava:MediaResource" : mava:hasMediaProfile  : xsd:string  
+"mava:MediaResource" -u-> "mava:ResourceProxy" : mava:hasResourceProxy 
+hide circle
+hide methods
+hide empty members
+@enduml
+--></div>
+                  <table class="sp_table_propertyshapes table-striped table-responsive">
+                     <thead>
+                        <tr>
+                           <th>Property name</th>
+                           <th>URI</th>
+                           <th>Expected value</th>
+                           <th>Card.</th>
+                           <th class="sp_description_column">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr style="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;''&#xA;&#x9;&#x9;&#x9;&#x9;">
+                           <td>Has media profile</td>
+                           <td id="mava:MediaResource_mava:hasMediaProfile"><code><a href="http://example.org/mava/ontology#hasMediaProfile">mava:hasMediaProfile</a></code></td>
+                           <td><code>xsd:string</code><br><small></small></td>
+                           <td>
+                              <div style="width:30px">0..*</div>
+                           </td>
+                           <td class="sp_table_propertyshapes_col_description"></td>
+                        </tr>
+                        <tr style="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;''&#xA;&#x9;&#x9;&#x9;&#x9;">
+                           <td>Has resource proxy</td>
+                           <td id="mava:MediaResource_mava:hasResourceProxy"><code><a href="http://example.org/mava/ontology#hasResourceProxy">mava:hasResourceProxy</a></code></td>
+                           <td><code><a href="http://example.org/mava/ontology#ResourceProxy">mava:ResourceProxy</a></code><br><small></small></td>
+                           <td>
+                              <div style="width:30px">0..*</div>
+                           </td>
+                           <td class="sp_table_propertyshapes_col_description"></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </div>
+         </div><br><div class="row mt-3">
+            <div class="col">
+               <section>
+                  <div class="sp_section_title_table_wrapper">
+                     <h3 id="mava:Segment" class="sp_section_title_table">Segment</h3><code class="sp_section_uri"><a href="http://example.org/mava/ontology#Segment">http://example.org/mava/ontology#Segment</a></code></div>
+                  <div class="sp_nodeshape_description"><p>A segment within a timeline, which can represent a time span or a text span.</p>
+</div>
+                  <div class="sp_section_nodeshape_diagram">
+                     <div class="sp_section_nodeshape_center"><?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="142px" preserveAspectRatio="none" style="width:199px;height:142px;background:#FFFFFF;" version="1.1" viewBox="0 0 199 142" width="199px" zoomAndPan="magnify"><defs xmlns=""/><g><!--class mava:Segment--><a href="#mava:Segment" target="_top" title="#mava:Segment" xlink:actuate="onRequest" xlink:href="#mava:Segment" xlink:show="new" xlink:title="#mava:Segment" xlink:type="simple"><g id="elem_mava:Segment"><rect codeLine="8" fill="#F1F1F1" height="26.2969" id="uml_mava:Segment" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="110" x="13" y="110"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="104" x="16" y="127.9951">mava:Segment</text></g></a><!--class mava:Annotation--><a href="#mava:Annotation" target="_top" title="#mava:Annotation" xlink:actuate="onRequest" xlink:href="#mava:Annotation" xlink:show="new" xlink:title="#mava:Annotation" xlink:type="simple"><g id="elem_mava:Annotation"><rect codeLine="10" fill="#F1F1F1" height="26.2969" id="uml_mava:Annotation" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="122" x="7" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="116" x="10" y="24.9951">mava:Annotation</text></g></a><!--reverse link mava:Annotation to mava:Segment--><g id="link_mava:Annotation_mava:Segment"><path codeLine="9" d="M68,39.38 C68,58.87 68,90.47 68,109.83 " fill="none" id="mava:Annotation-backto-mava:Segment" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="68,33.38,64,42.38,68,38.38,72,42.38,68,33.38" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="122" x="69" y="76.0669">mava:annotatedBy</text></g><!--SRC=[TOv1JyCm38Nl-HMcEq_Q4AST46M2WSH0eaWSfXrCOzPeYLqbwQRowqafY329c_szPxyNA0AZez1YJHMrw36A1nOc5VQ61-2WjXZ2hN2ip0V1_4ATQNetJF1mlxfxUNek7rStkLrScnuaU-mjGUViUQOUFRPh2W5tz6fqR60-csLowRqSbs9JYyaQlGYhy7z9KCkX6nGE3xYeQETIR06RpIG7sose4yUqcrv-NvNC4Z4QuG8My8LmHAIl-xy9kVSdv9SDEOtH1BNnjQLnTXGRqM5SoBMnJyYzaG_AavC3mLN7rl2Uz2S0]--></g></svg></div><small class="form-text text-muted">Click diagram to navigate to corresponding section | <a href="http://www.plantuml.com/plantuml/png/TOv1JyCm38Nl-HMcEq_Q4AST46M2WSH0eaWSfXrCOzPeYLqbwQRowqafY329c_szPxyNA0AZez1YJHMrw36A1nOc5VQ61-2WjXZ2hN2ip0V1_4ATQNetJF1mlxfxUNek7rStkLrScnuaU-mjGUViUQOUFRPh2W5tz6fqR60-csLowRqSbs9JYyaQlGYhy7z9KCkX6nGE3xYeQETIR06RpIG7sose4yUqcrv-NvNC4Z4QuG8My8LmHAIl-xy9kVSdv9SDEOtH1BNnjQLnTXGRqM5SoBMnJyYzaG_AavC3mLN7rl2Uz2S0" target="_blank">View as PNG</a></small>
+                     <!--@startuml
+set namespaceSeparator none
+skinparam classFontSize 14
+!define LIGHTORANGE
+skinparam componentStyle uml2
+skinparam wrapMessageWidth 100
+skinparam ArrowColor #Maroon
+set namespaceSeparator none 
+Class "mava:Segment" [[#mava:Segment]] 
+"mava:Segment" -u-> "mava:Annotation" : mava:annotatedBy 
+Class "mava:Annotation" [[#mava:Annotation]] 
+hide circle
+hide methods
+hide empty members
+remove @unlinked
+@enduml
+--></div>
+                  <table class="sp_table_propertyshapes table-striped table-responsive">
+                     <thead>
+                        <tr>
+                           <th>Property name</th>
+                           <th>URI</th>
+                           <th>Expected value</th>
+                           <th>Card.</th>
+                           <th class="sp_description_column">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr style="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;''&#xA;&#x9;&#x9;&#x9;&#x9;">
+                           <td>Annotated by</td>
+                           <td id="mava:Segment_mava:annotatedBy"><code><a href="http://example.org/mava/ontology#annotatedBy">mava:annotatedBy</a></code></td>
+                           <td><code><a href="#mava:Annotation">Annotation</a></code><br><small></small></td>
+                           <td>
+                              <div style="width:30px">0..*</div>
+                           </td>
+                           <td class="sp_table_propertyshapes_col_description"></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </div>
+         </div><br><div class="row mt-3">
+            <div class="col">
+               <section>
+                  <div class="sp_section_title_table_wrapper">
+                     <h3 id="mava:Timeline" class="sp_section_title_table">Timeline</h3><code class="sp_section_uri"><a href="http://example.org/mava/ontology#Timeline">http://example.org/mava/ontology#Timeline</a></code></div>
+                  <div class="sp_nodeshape_description"><p>A timeline for a document, which can contain annotations.</p>
+</div>
+                  <div class="sp_section_nodeshape_diagram">
+                     <div class="sp_section_nodeshape_center"><?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="142px" preserveAspectRatio="none" style="width:193px;height:142px;background:#FFFFFF;" version="1.1" viewBox="0 0 193 142" width="193px" zoomAndPan="magnify"><defs xmlns=""/><g><!--class mava:Timeline--><a href="#mava:Timeline" target="_top" title="#mava:Timeline" xlink:actuate="onRequest" xlink:href="#mava:Timeline" xlink:show="new" xlink:title="#mava:Timeline" xlink:type="simple"><g id="elem_mava:Timeline"><rect codeLine="8" fill="#F1F1F1" height="26.2969" id="uml_mava:Timeline" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="105" x="9.5" y="110"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="12.5" y="127.9951">mava:Timeline</text></g></a><!--class mava:Segment--><a href="#mava:Segment" target="_top" title="#mava:Segment" xlink:actuate="onRequest" xlink:href="#mava:Segment" xlink:show="new" xlink:title="#mava:Segment" xlink:type="simple"><g id="elem_mava:Segment"><rect codeLine="10" fill="#F1F1F1" height="26.2969" id="uml_mava:Segment" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="110" x="7" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="104" x="10" y="24.9951">mava:Segment</text></g></a><!--reverse link mava:Segment to mava:Timeline--><g id="link_mava:Segment_mava:Timeline"><path codeLine="9" d="M62,39.38 C62,58.87 62,90.47 62,109.83 " fill="none" id="mava:Segment-backto-mava:Timeline" style="stroke:#800000;stroke-width:1.0;"/><polygon fill="#800000" points="62,33.38,58,42.38,62,38.38,66,42.38,62,33.38" style="stroke:#800000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="122" x="63" y="76.0669">mava:hasSegment</text></g><!--SRC=[TOx1JW8n48RlVOfnEPC0ySJ1I8WYYMZYadWW78Rjo3PqsgRJXU3JsvNLB2RUEj_y_USJIk2GIG9ML5B0YCb7SDwHaeDnBM2eB8eyUfTAyqamlbKtcZwC8tXUBfxMhs-pbyL3F-uvv88SJsTBqB2TzBQdY6558hYdTwDJ3UFHgBUUnUXFSs-pnM25qNkdv7z9KFFM3Gh68qxNXibchm8scy4LsMv1_SqCc-5Tzx6aFMVV0gRmFTSe7Re-y9lxwUz0MryRJL2PM5cwl9bIxRLS1kAGpXdnZgAeIEoF1FUDooe7qby0]--></g></svg></div><small class="form-text text-muted">Click diagram to navigate to corresponding section | <a href="http://www.plantuml.com/plantuml/png/TOx1JW8n48RlVOfnEPC0ySJ1I8WYYMZYadWW78Rjo3PqsgRJXU3JsvNLB2RUEj_y_USJIk2GIG9ML5B0YCb7SDwHaeDnBM2eB8eyUfTAyqamlbKtcZwC8tXUBfxMhs-pbyL3F-uvv88SJsTBqB2TzBQdY6558hYdTwDJ3UFHgBUUnUXFSs-pnM25qNkdv7z9KFFM3Gh68qxNXibchm8scy4LsMv1_SqCc-5Tzx6aFMVV0gRmFTSe7Re-y9lxwUz0MryRJL2PM5cwl9bIxRLS1kAGpXdnZgAeIEoF1FUDooe7qby0" target="_blank">View as PNG</a></small>
+                     <!--@startuml
+set namespaceSeparator none
+skinparam classFontSize 14
+!define LIGHTORANGE
+skinparam componentStyle uml2
+skinparam wrapMessageWidth 100
+skinparam ArrowColor #Maroon
+set namespaceSeparator none 
+Class "mava:Timeline" [[#mava:Timeline]] 
+"mava:Timeline" -u-> "mava:Segment" : mava:hasSegment 
+Class "mava:Segment" [[#mava:Segment]] 
+hide circle
+hide methods
+hide empty members
+remove @unlinked
+@enduml
+--></div>
+                  <table class="sp_table_propertyshapes table-striped table-responsive">
+                     <thead>
+                        <tr>
+                           <th>Property name</th>
+                           <th>URI</th>
+                           <th>Expected value</th>
+                           <th>Card.</th>
+                           <th class="sp_description_column">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr style="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;''&#xA;&#x9;&#x9;&#x9;&#x9;">
+                           <td>Has segment</td>
+                           <td id="mava:Timeline_mava:hasSegment"><code><a href="http://example.org/mava/ontology#hasSegment">mava:hasSegment</a></code></td>
+                           <td><code><a href="#mava:Segment">Segment</a></code><br><small></small></td>
+                           <td>
+                              <div style="width:30px">0..*</div>
+                           </td>
+                           <td class="sp_table_propertyshapes_col_description"></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </div>
+         </div><br><div>
+            <h2 id="releaseNotes" class="sp_section_subtitle">Release notes</h2><p>Initial version. Please update with release notes as needed.</p>
+</div>
+      </div><script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js">//</script><script>				
+					anchors.options = {
+	                    icon: '#'
+	                  };
+               		anchors.options.placement = 'left';
+					anchors.add('h2,h3');
+					// for links inside tables		
+					anchors.add('td[id]');
+				</script></body>
+</html>
