@@ -17,7 +17,7 @@ prefix mava: <http://mava-project.org/ontology#>
 
 mava: a owl:Ontology ;
   dcterms:title "MAVA Ontology" ;
-  dcterms:author "Stefan Milosavljevic" , "Sabine Maennel" ;
+  dcterms:author "Stefan Milosavljevic" , "Sabine Maennel" , "Robin Franken";
   dcterms:abstract "An ontology for multimodal audio-visual corpora to allow interoperability and data exchange" ;
   dcterms:description "This ontology provides classes and properties for representing corpora, documents, media resources, time and/or text annotations. It is designed to be a reference point for data exchange across annotation tools in linguistics." ;
   adms:versionNotes "Initial version. Please update with release notes as needed." ;
