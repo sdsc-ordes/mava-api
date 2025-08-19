@@ -1,6 +1,9 @@
 prefix mava: <http://mava-project.org/ontology#>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix tei: <http://www.tei-c.org/ns/1.0/> .
+@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 @prefix tei: <http://www.tei-c.org/ns/1.0/> .
 @prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -37,9 +40,11 @@ mava: a owl:Ontology ;
 mava:Corpus a rdfs:Class, sh:NodeShape ;
     rdfs:label "Corpus" ;
     rdfs:comment "A collection of documents, media resources, and annotations." ;
+    skos:definition "A large and structured set of multimodal data (audio, video and/or text) that is collected and stored for the purpose of linguistic analysis." .
     rdfs:subClassOf dcterms:Collection ;
     sh:property [sh:path mava:hasDocument ;
                  sh:class mava:Document].
+
 
 mava:hasDocument a rdf:Property ;
     rdfs:label "Has document" ;
@@ -47,9 +52,11 @@ mava:hasDocument a rdf:Property ;
     rdfs:range mava:Document ;
     rdfs:subPropertyOf dcterms:hasPart .
 
+
 mava:Document a rdfs:Class, sh:NodeShape ;
     rdfs:label "Document" ;
     rdfs:comment "A document within a corpus, which can contain media resources and annotations." ;
+    skos:definition "A unit of a corpus that can be either an audio, video or text." .
     rdfs:subClassOf dcterms:Text , tei:TEI ;
     sh:property [sh:path mava:hasMedia ;
                  sh:class mava:MediaResource] ;
@@ -109,7 +116,7 @@ mava:hasSegment a rdf:Property ;
     rdfs:label "Has segment" ;
     rdfs:domain mava:Timeline ;
     rdfs:range mava:Segment ;
-    rdfs:subPropertyOf dcterms:hasPart .  
+    rdfs:subPropertyOf dcterms:hasPart .
 
 mava:Segment a rdfs:Class, sh:NodeShape ;
     rdfs:label "Segment" ;
@@ -123,7 +130,7 @@ mava:annotatedBy a rdf:Property ;
     rdfs:label "Annotated by" ;
     rdfs:domain mava:Segment ;
     rdfs:range mava:Annotation ;
-    rdfs:subPropertyOf dcterms:hasPart . 
+    rdfs:subPropertyOf dcterms:hasPart .
 
 mava:Annotation a rdfs:Class, sh:NodeShape ;
     rdfs:label "Annotation" ;
@@ -143,24 +150,41 @@ mava:linksTo a rdf:Property ;
 
 mava:createdBy a rdf:Property ;
     rdfs:label "Created by" ;
-    rdfs:domain mava:Annotation ; 
+    rdfs:domain mava:Annotation ;
     rdfs:range mava:Agent ;
     rdfs:subPropertyOf dcterms:creator .
+mava:Document a rdfs:Class ;
+    rdfs:subClassOf tei:TEI ;
+    skos:definition "A unit of a corpus that can be either an audio, video or text." .
 
 mava:Annotation a rdfs:Class ;
     rdfs:subClassOf tei:Span ;
     rdfs:label "Annotation" .
+    rdfs:subClassOf tei:span ;
+    rdfs:label "Annotation" ;
+    skos:definition "Structured piece of metadata that links specific segments of audio, video, or text to defined concepts or entities." .
 
 mava:Tier a rdfs:Class ;
-    rdfs:label "Annotation Tier" .
+    rdfs:label "Annotation Tier" ;
+    skos:definition "Structured layer of related annotations grouped together to represent a specific linguistic or semantic feature" .
+
+mava:Segment a rdfs:Class ;
+    rdfs:label "Segment" ;
+    skos:definition "Defined portion of audio or video marked by specific start and end times"
 
 mava:start a rdf:Property ;
-    rdfs:label "Start reference" ;
-    rdfs:subPropertyOf tei:start .
+    rdfs:label "Start time" ;
+    rdfs:subPropertyOf tei:from ;
+    rdfs:domain mava:Segment ;
+    rdfs:range xsd:string ;
+    skos:example "00:01:32" .
 
 mava:end a rdf:Property ;
-    rdfs:label "End reference" ;
-    rdfs:subPropertyOf tei:end .
+    rdfs:label "End time" ;
+    rdfs:subPropertyOf tei:to .
+    rdfs:domain mava:Segment ;
+    rdfs:range xsd:string ;
+    skos:example "00:02:45" .
 
 mava:value a rdf:Property ;
     rdfs:label "Annotation value" ;
