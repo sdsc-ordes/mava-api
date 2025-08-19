@@ -4,6 +4,16 @@ prefix mava: <http://mava-project.org/ontology#>
 @prefix tei: <http://www.tei-c.org/ns/1.0/> .
 @prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix mava: <http://example.org/mava/ontology#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
 
 mava: a owl:Ontology ;
   dcterms:title "MAVA Ontology" ;
