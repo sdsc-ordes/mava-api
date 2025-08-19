@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "mava-api"
+
+authors:
+  - family-names: Milosavljevic
+    given-names: Stefan
+    orcid: "..."
+    affiliation: "SDSC - Swiss Data Science Center"
+  - family-names: Maennel
+    given-names: Sabine
+    orcid: "..."
+    affiliation: "SDSC - Swiss Data Science Center"
+date-released: 2025-53-05
+version: "0.0.1"
+doi: ""
+url: https://github.com/sdsc-ordes/mava-api
+repository-code: https://github.com/sdsc-ordes/mava-api
+keywords: []
+license: apache2

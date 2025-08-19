@@ -1,0 +1,53 @@
+prefix mava: <http://mava-project.org/ontology#>
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix tei: <http://www.tei-c.org/ns/1.0/>
+@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#>
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+mava: a owl:Ontology ;
+  dcterms:title "MAVA Ontology" ;
+  dcterms:author "Stefan Milosavljevic" , "Sabine Maennel" ;
+  dcterms:abstract "An ontology for multimodal audio-visual corpora to allow interoperability and data exchange" ;
+  dcterms:description "This ontology provides classes and properties for representing corpora, documents, media resources, time and/or text annotations. It is designed to be a reference point for data exchange across annotation tools in linguistics." ;
+  adms:versionNotes "Initial version. Please update with release notes as needed." ;
+  dcterms:modified "2025-08-12"^^xsd:date ;
+  dcterms:created "2025-08-12"^^xsd:date ;
+  dcterms:creator "Swiss Data Science Center" ;
+  dcterms:issued "2025-08-12"^^xsd:date ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcterms:publisher "ETH Zurich" ;
+  dcterms:rightsHolder "ETH Zurich" ;
+  owl:versionInfo "0.0.1" ;
+  doap:repository <https://github.com/sdsc-ordes/mava-api> ;
+  rdfs:label "MAVA Ontology" ;
+  rdfs:comment "Ontology for corpora, documents, media resources, time and/or text annotations in linguistics." ;
+.
+
+mava:Corpus a rdfs:class ;
+    rdfs:subClassOf dcterms:collection .
+
+mava:Document a rdfs:Class ;
+    rdfs:subClassOf tei:TEI .
+
+mava:Annotation a rdfs:Class ;
+    rdfs:subClassOf tei:span ;
+    rdfs:label "Annotation" .
+
+mava:Tier a rdfs:Class ;
+    rdfs:label "Annotation Tier" .
+
+mava:start a rdf:Property ;
+    rdfs:label "Start reference" ;
+    rdfs:subPropertyOf tei:start .
+
+mava:end a rdf:Property ;
+    rdfs:label "End reference" ;
+    rdfs:subPropertyOf tei:end .
+
+mava:value a rdf:Property ;
+    rdfs:label "Annotation value" ;
+    rdfs:subPropertyOf tei:content .
+
+mava:belongsToTier a rdf:Property ;
+    rdfs:label "Belongs to tier" .
