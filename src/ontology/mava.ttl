@@ -36,10 +36,10 @@ mava: a owl:Ontology ;
 mava:Corpus a rdfs:Class, sh:NodeShape ;
     rdfs:label "Corpus" ;
     rdfs:comment "A collection of documents, media resources, and annotations." ;
-    skos:definition "A large and structured set of multimodal data (audio, video and/or text) that is collected and stored for the purpose of linguistic analysis." .
+    skos:definition "A large and structured set of multimodal data (audio, video and/or text) that is collected and stored for the purpose of linguistic analysis." ;
     rdfs:subClassOf dcterms:Collection ;
     sh:property [sh:path mava:hasDocument ;
-                 sh:class mava:Document].
+                 sh:class mava:Document ] .
 
 
 mava:hasDocument a rdf:Property ;
@@ -67,7 +67,7 @@ mava:hasMedia a rdf:Property ;
     rdfs:label "Has media resource" ;
     rdfs:domain mava:Document ;
     rdfs:range mava:MediaResource ;
-    rdfs:subPropertyOf dcterms:hasPart 
+    rdfs:subPropertyOf dcterms:hasPart
     .
 
 mava:MediaResource a rdfs:Class, sh:NodeShape ;
@@ -77,21 +77,21 @@ mava:MediaResource a rdfs:Class, sh:NodeShape ;
     sh:property [sh:path mava:hasMediaProfile ;
                  sh:datatype xsd:string ] ;
     sh:property [sh:path mava:hasResourceProxy ;
-                 sh:class mava:ResourceProxy] 
+                 sh:class mava:ResourceProxy]
     .
 
 mava:hasMediaProfile a rdf:Property ;
     rdfs:label "Has media profile" ;
     rdfs:domain mava:MediaResource ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf dcterms:description 
+    rdfs:subPropertyOf dcterms:description
     .
 
 mava:hasResourceProxy a rdf:Property ;
     rdfs:label "Has resource proxy" ;
     rdfs:domain mava:MediaResource ;
     rdfs:range mava:ResourceProxy ;
-    rdfs:subPropertyOf dcterms:hasPart 
+    rdfs:subPropertyOf dcterms:hasPart
     .
 
 mava:ResourceProxy a rdfs:Class ;
