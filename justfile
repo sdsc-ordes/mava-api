@@ -31,10 +31,23 @@ ci *args:
 # Lint the project.
 lint *args:
     ruff check
+    just validate-ontology
 
 # Build the project.
 build *args:
     uv build --out-dir "{{build_dir}}" "$@"
+
+# Build the ontology.
+build-ontology *args:
+    mkdir -p "{{build_dir}}/ontology"
+    uv run build-ontology \
+        "{{build_dir}}/ontology/enriched.ttl" "$@"
+
+# Validate the ontology.
+validate-ontology: build-ontology
+    uv run validate-ontology \
+        "{{build_dir}}/ontology/enriched.ttl" \
+        "src/ontology/mava.ttl" "$@"
 
 # Test the project.
 test *args:

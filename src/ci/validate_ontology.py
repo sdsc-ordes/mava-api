@@ -39,7 +39,7 @@ def run_shacl_validation(data_file, shapes_file):
     return conforms
 
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) != 3:  # noqa: PLR2004
         print(f"Usage: python {sys.argv[0]} <data_file> <shapes_file>")
         sys.exit(1)
@@ -52,3 +52,7 @@ if __name__ == "__main__":
     )
     conforms = run_shacl_validation(data_file, shapes_file)
     sys.exit(0 if conforms else 1)
+
+
+if __name__ == "__main__":
+    main()

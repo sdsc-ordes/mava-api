@@ -21,6 +21,8 @@ dev = [
 
 [project.scripts]
 cli = 'mava.cli:main'
+build-ontology = 'ci.build_ontology:main'
+validate-ontology = 'ci.validate_ontology:main'
 
 [build-system]
 requires = ["hatchling"]
