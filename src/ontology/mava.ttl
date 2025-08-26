@@ -1,5 +1,5 @@
-prefix mava: <http://mava-project.org/ontology#>
-prefix skos: <http://www.w3.org/2004/02/skos/core#>
+@prefix mava: <http://mava-project.org/ontology#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix tei: <http://www.tei-c.org/ns/1.0/> .
 @prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
@@ -150,9 +150,6 @@ mava:createdBy a rdf:Property ;
     rdfs:domain mava:Annotation ;
     rdfs:range mava:Agent ;
     rdfs:subPropertyOf dcterms:creator .
-mava:Document a rdfs:Class ;
-    rdfs:subClassOf tei:TEI ;
-    skos:definition "A unit of a corpus that can be either an audio, video or text." .
 
 mava:Annotation a rdfs:Class ;
     rdfs:subClassOf tei:Span ;
@@ -188,3 +185,15 @@ mava:value a rdf:Property ;
 
 mava:belongsToTier a rdf:Property ;
     rdfs:label "Belongs to tier" .
+
+mava:hasTimeline a rdf:Property ;
+  rdfs:label "Has timeline" ;
+  rdfs:comment "Relates a document to its timeline." .
+
+mava:documentProfile a rdf:Property ;
+  rdfs:label "Document profile" ;
+  rdfs:comment "A descriptive profile for the document." .
+
+mava:hasTier a rdf:Property ;
+  rdfs:label "Has tier" ;
+  rdfs:comment "Relates a document to an annotation tier." .
