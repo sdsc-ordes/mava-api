@@ -13,49 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        ref: ${{ github.head_ref || github.ref_name }}
-
-      - name: Set up Python and install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install rdflib
-
-      - name: Enrich ontology with rdflib
-        id: enrich
-        run: |
-          python tools/python/docs/sparql.py
-          echo "enriched_file=/tmp/enriched.ttl" >> $GITHUB_ENV
-
-      - name: Set up Java 11
-        uses: actions/setup-java@v4
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-nix
         with:
-          distribution: "temurin"
-          java-version: "11"
+          cachix_cache_name: "${{ secrets.CACHIX_CACHE_NAME }}"
+          cachix_auth_token: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - name: Install Graphviz
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y graphviz
+      - name: Build Documentation
+        run: just ci just build-documentation
 
-      - name: Set DOT_PATH environment variable
-        run: echo "GRAPHVIZ_DOT=/usr/bin/dot" >> $GITHUB_ENV
-
-      - name: Download SHACL Play CLI
-        run: |
-          wget https://github.com/sparna-git/shacl-play/releases/download/0.10.2/shacl-play-app-0.10.2-onejar.jar -O shacl-play-cli.jar
-
-      - name: Generate Documentation
-        run: |
-          java -jar shacl-play-cli.jar \
-            doc \
-            -d \
-            -i ${{ env.enriched_file }} \
-            -l en \
-            -o docs/index.html
-
-      - name: Commit generated docs
+      - name: Push Documentation
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -63,7 +30,7 @@ jobs:
           git commit -m "Update generated docs" || echo "No changes to commit"
           git push
 
-      - name: Upload generated documentation as an artifact
+      - name: Upload Documentation
         uses: actions/upload-artifact@v4
         with:
           name: shacl-documentation

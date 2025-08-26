@@ -2,6 +2,7 @@ import sys
 
 from rdflib import Graph, Namespace
 
+
 def main():
     if len(sys.argv) != 2:  # noqa: PLR2004
         print(f"Usage: python {sys.argv[0]} <output_file>")

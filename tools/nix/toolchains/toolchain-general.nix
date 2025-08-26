@@ -20,6 +20,9 @@ let
     {
       packages = [
         self'.packages.bootstrap
+
+        pkgs.graphviz
+        pkgs.semeru-jre-bin
       ];
     }
   ];
