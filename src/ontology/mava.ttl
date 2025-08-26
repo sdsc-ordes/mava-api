@@ -1,9 +1,6 @@
 prefix mava: <http://mava-project.org/ontology#>
 prefix skos: <http://www.w3.org/2004/02/skos/core#>
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix tei: <http://www.tei-c.org/ns/1.0/> .
-@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 @prefix tei: <http://www.tei-c.org/ns/1.0/> .
 @prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -13,7 +10,6 @@ prefix skos: <http://www.w3.org/2004/02/skos/core#>
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix mava: <http://example.org/mava/ontology#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
