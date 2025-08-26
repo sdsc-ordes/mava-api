@@ -1,19 +1,15 @@
-prefix mava: <http://mava-project.org/ontology#>
+@prefix mava: <http://example.org/mava/ontology#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix tei: <http://www.tei-c.org/ns/1.0/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix adms: <http://www.w3.org/ns/adms#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix doap: <http://usefulinc.com/ns/doap#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix mava: <http://example.org/mava/ontology#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-
+@prefix tei: <http://www.tei-c.org/ns/1.0/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 mava: a owl:Ontology ;
   dcterms:title "MAVA Ontology" ;
@@ -37,34 +33,41 @@ mava: a owl:Ontology ;
 mava:Corpus a rdfs:Class, sh:NodeShape ;
     rdfs:label "Corpus" ;
     rdfs:comment "A collection of documents, media resources, and annotations." ;
+    skos:definition "A large and structured set of multimodal data (audio, video and/or text) that is collected and stored for the purpose of linguistic analysis." ;
     rdfs:subClassOf dcterms:Collection ;
     sh:property [sh:path mava:hasDocument ;
-                 sh:class mava:Document].
+                 sh:class mava:Document ] .
+
 
 mava:hasDocument a rdf:Property ;
     rdfs:label "Has document" ;
     rdfs:domain mava:Corpus ;
     rdfs:range mava:Document ;
+    rdfs:comment "Relates a document to a corpus." ;
     rdfs:subPropertyOf dcterms:hasPart .
+
 
 mava:Document a rdfs:Class, sh:NodeShape ;
     rdfs:label "Document" ;
     rdfs:comment "A document within a corpus, which can contain media resources and annotations." ;
-    rdfs:subClassOf dcterms:Text , tei:TEI ;
+    skos:definition "A unit of a corpus that can be either an audio, video or text." ;
+    rdfs:subClassOf dcterms:Text ;
+    rdfs:subClassOf tei:TEI ;
     sh:property [sh:path mava:hasMedia ;
                  sh:class mava:MediaResource] ;
     sh:property [sh:path mava:hasTimeline ;
                  sh:class mava:Timeline] ;
     sh:property [sh:path mava:hasTier ;
-                 sh:class mava:AnnotationTier];
+                 sh:class mava:AnnotationTier] ;
     sh:property [sh:path mava:documentProfile ;
                  sh:datatype xsd:string ] .
 
 mava:hasMedia a rdf:Property ;
     rdfs:label "Has media resource" ;
+    rdfs:comment "Relates a media resource to a document." ;
     rdfs:domain mava:Document ;
     rdfs:range mava:MediaResource ;
-    rdfs:subPropertyOf dcterms:hasPart 
+    rdfs:subPropertyOf dcterms:hasPart
     .
 
 mava:MediaResource a rdfs:Class, sh:NodeShape ;
@@ -74,21 +77,23 @@ mava:MediaResource a rdfs:Class, sh:NodeShape ;
     sh:property [sh:path mava:hasMediaProfile ;
                  sh:datatype xsd:string ] ;
     sh:property [sh:path mava:hasResourceProxy ;
-                 sh:class mava:ResourceProxy] 
+                 sh:class mava:ResourceProxy]
     .
 
 mava:hasMediaProfile a rdf:Property ;
     rdfs:label "Has media profile" ;
+    rdfs:comment "Relates a media resource to its profile." ;
     rdfs:domain mava:MediaResource ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf dcterms:description 
+    rdfs:subPropertyOf dcterms:description
     .
 
 mava:hasResourceProxy a rdf:Property ;
     rdfs:label "Has resource proxy" ;
+    rdfs:comment "Relates a media resource to its proxy." ;
     rdfs:domain mava:MediaResource ;
     rdfs:range mava:ResourceProxy ;
-    rdfs:subPropertyOf dcterms:hasPart 
+    rdfs:subPropertyOf dcterms:hasPart
     .
 
 mava:ResourceProxy a rdfs:Class ;
@@ -107,13 +112,15 @@ mava:Timeline a rdfs:Class, sh:NodeShape ;
 
 mava:hasSegment a rdf:Property ;
     rdfs:label "Has segment" ;
+    rdfs:comment "Relates a segment to its timeline." ;
     rdfs:domain mava:Timeline ;
     rdfs:range mava:Segment ;
-    rdfs:subPropertyOf dcterms:hasPart .  
+    rdfs:subPropertyOf dcterms:hasPart .
 
 mava:Segment a rdfs:Class, sh:NodeShape ;
     rdfs:label "Segment" ;
     rdfs:comment "A segment within a timeline, which can represent a time span or a text span." ;
+    skos:definition "Defined portion of audio or video marked by specific start and end times" ;
     rdfs:subClassOf tei:Span ;
     sh:property [sh:path mava:annotatedBy ;
                  sh:class mava:Annotation] ;
@@ -121,13 +128,15 @@ mava:Segment a rdfs:Class, sh:NodeShape ;
 
 mava:annotatedBy a rdf:Property ;
     rdfs:label "Annotated by" ;
+    rdfs:comment "Relates an annotation to the segment it annotates." ;
     rdfs:domain mava:Segment ;
     rdfs:range mava:Annotation ;
-    rdfs:subPropertyOf dcterms:hasPart . 
+    rdfs:subPropertyOf dcterms:hasPart .
 
 mava:Annotation a rdfs:Class, sh:NodeShape ;
     rdfs:label "Annotation" ;
     rdfs:comment "An annotation for a segment, which can provide additional information or context." ;
+    skos:definition "Structured piece of metadata that links specific segments of audio, video, or text to defined concepts or entities." ;
     rdfs:subClassOf tei:Span ;
     sh:property [sh:path mava:linksTo ;
                 sh:class mava:Link ] ;
@@ -137,34 +146,57 @@ mava:Annotation a rdfs:Class, sh:NodeShape ;
 
 mava:linksTo a rdf:Property ;
     rdfs:label "Links to" ;
+    rdfs:comment "Links an annotation to a specific resource." ;
     rdfs:domain mava:Annotation ;
     rdfs:range mava:Link ;
     rdfs:subPropertyOf dcterms:relation .
 
 mava:createdBy a rdf:Property ;
     rdfs:label "Created by" ;
-    rdfs:domain mava:Annotation ; 
+    rdfs:comment "Links an annotation to the agent that created it." ;
+    rdfs:domain mava:Annotation ;
     rdfs:range mava:Agent ;
     rdfs:subPropertyOf dcterms:creator .
 
-mava:Annotation a rdfs:Class ;
-    rdfs:subClassOf tei:Span ;
-    rdfs:label "Annotation" .
 
 mava:Tier a rdfs:Class ;
-    rdfs:label "Annotation Tier" .
+    rdfs:label "Annotation Tier" ;
+    skos:definition "Structured layer of related annotations grouped together to represent a specific linguistic or semantic feature" .
+
 
 mava:start a rdf:Property ;
-    rdfs:label "Start reference" ;
-    rdfs:subPropertyOf tei:start .
+    rdfs:label "Start time" ;
+    rdfs:comment "Links an annotation to its start time." ;
+    rdfs:subPropertyOf tei:from ;
+    rdfs:domain mava:Segment ;
+    rdfs:range xsd:string ;
+    skos:example "00:01:32" .
 
 mava:end a rdf:Property ;
-    rdfs:label "End reference" ;
-    rdfs:subPropertyOf tei:end .
+    rdfs:label "End time" ;
+    rdfs:comment "Links an annotation to its end time." ;
+    rdfs:subPropertyOf tei:to ;
+    rdfs:domain mava:Segment ;
+    rdfs:range xsd:string ;
+    skos:example "00:02:45" .
 
 mava:value a rdf:Property ;
     rdfs:label "Annotation value" ;
+    rdfs:comment "Annotation value." ;
     rdfs:subPropertyOf tei:content .
 
 mava:belongsToTier a rdf:Property ;
-    rdfs:label "Belongs to tier" .
+    rdfs:label "Belongs to tier" ;
+    rdfs:comment "Relates a segment to its annotation tier." .
+
+mava:hasTimeline a rdf:Property ;
+  rdfs:label "Has timeline" ;
+  rdfs:comment "Relates a document to its timeline." .
+
+mava:documentProfile a rdf:Property ;
+  rdfs:label "Document profile" ;
+  rdfs:comment "A descriptive profile for the document." .
+
+mava:hasTier a rdf:Property ;
+  rdfs:label "Has tier" ;
+  rdfs:comment "Relates a document to an annotation tier." .
