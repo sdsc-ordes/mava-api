@@ -43,6 +43,7 @@ mava:hasDocument a rdf:Property ;
     rdfs:label "Has document" ;
     rdfs:domain mava:Corpus ;
     rdfs:range mava:Document ;
+    rdfs:comment "Relates a document to a corpus." ;
     rdfs:subPropertyOf dcterms:hasPart .
 
 
@@ -63,6 +64,7 @@ mava:Document a rdfs:Class, sh:NodeShape ;
 
 mava:hasMedia a rdf:Property ;
     rdfs:label "Has media resource" ;
+    rdfs:comment "Relates a media resource to a document." ;
     rdfs:domain mava:Document ;
     rdfs:range mava:MediaResource ;
     rdfs:subPropertyOf dcterms:hasPart
@@ -80,6 +82,7 @@ mava:MediaResource a rdfs:Class, sh:NodeShape ;
 
 mava:hasMediaProfile a rdf:Property ;
     rdfs:label "Has media profile" ;
+    rdfs:comment "Relates a media resource to its profile." ;
     rdfs:domain mava:MediaResource ;
     rdfs:range xsd:string ;
     rdfs:subPropertyOf dcterms:description
@@ -87,6 +90,7 @@ mava:hasMediaProfile a rdf:Property ;
 
 mava:hasResourceProxy a rdf:Property ;
     rdfs:label "Has resource proxy" ;
+    rdfs:comment "Relates a media resource to its proxy." ;
     rdfs:domain mava:MediaResource ;
     rdfs:range mava:ResourceProxy ;
     rdfs:subPropertyOf dcterms:hasPart
@@ -108,6 +112,7 @@ mava:Timeline a rdfs:Class, sh:NodeShape ;
 
 mava:hasSegment a rdf:Property ;
     rdfs:label "Has segment" ;
+    rdfs:comment "Relates a segment to its timeline." ;
     rdfs:domain mava:Timeline ;
     rdfs:range mava:Segment ;
     rdfs:subPropertyOf dcterms:hasPart .
@@ -123,6 +128,7 @@ mava:Segment a rdfs:Class, sh:NodeShape ;
 
 mava:annotatedBy a rdf:Property ;
     rdfs:label "Annotated by" ;
+    rdfs:comment "Relates an annotation to the segment it annotates." ;
     rdfs:domain mava:Segment ;
     rdfs:range mava:Annotation ;
     rdfs:subPropertyOf dcterms:hasPart .
@@ -140,12 +146,14 @@ mava:Annotation a rdfs:Class, sh:NodeShape ;
 
 mava:linksTo a rdf:Property ;
     rdfs:label "Links to" ;
+    rdfs:comment "Links an annotation to a specific resource." ;
     rdfs:domain mava:Annotation ;
     rdfs:range mava:Link ;
     rdfs:subPropertyOf dcterms:relation .
 
 mava:createdBy a rdf:Property ;
     rdfs:label "Created by" ;
+    rdfs:comment "Links an annotation to the agent that created it." ;
     rdfs:domain mava:Annotation ;
     rdfs:range mava:Agent ;
     rdfs:subPropertyOf dcterms:creator .
@@ -158,6 +166,7 @@ mava:Tier a rdfs:Class ;
 
 mava:start a rdf:Property ;
     rdfs:label "Start time" ;
+    rdfs:comment "Links an annotation to its start time." ;
     rdfs:subPropertyOf tei:from ;
     rdfs:domain mava:Segment ;
     rdfs:range xsd:string ;
@@ -165,6 +174,7 @@ mava:start a rdf:Property ;
 
 mava:end a rdf:Property ;
     rdfs:label "End time" ;
+    rdfs:comment "Links an annotation to its end time." ;
     rdfs:subPropertyOf tei:to ;
     rdfs:domain mava:Segment ;
     rdfs:range xsd:string ;
@@ -172,10 +182,12 @@ mava:end a rdf:Property ;
 
 mava:value a rdf:Property ;
     rdfs:label "Annotation value" ;
+    rdfs:comment "Annotation value." ;
     rdfs:subPropertyOf tei:content .
 
 mava:belongsToTier a rdf:Property ;
-    rdfs:label "Belongs to tier" .
+    rdfs:label "Belongs to tier" ;
+    rdfs:comment "Relates a segment to its annotation tier." .
 
 mava:hasTimeline a rdf:Property ;
   rdfs:label "Has timeline" ;
