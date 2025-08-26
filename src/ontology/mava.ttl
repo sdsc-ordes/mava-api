@@ -1,18 +1,15 @@
-@prefix mava: <http://mava-project.org/ontology#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix tei: <http://www.tei-c.org/ns/1.0/> .
-@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix adms: <http://www.w3.org/ns/adms#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix mava: <http://example.org/mava/ontology#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> ..
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-
+@prefix tei: <http://www.tei-c.org/ns/1.0/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 mava: a owl:Ontology ;
   dcterms:title "MAVA Ontology" ;
@@ -118,6 +115,7 @@ mava:hasSegment a rdf:Property ;
 mava:Segment a rdfs:Class, sh:NodeShape ;
     rdfs:label "Segment" ;
     rdfs:comment "A segment within a timeline, which can represent a time span or a text span." ;
+    skos:definition "Defined portion of audio or video marked by specific start and end times" ;
     rdfs:subClassOf tei:Span ;
     sh:property [sh:path mava:annotatedBy ;
                  sh:class mava:Annotation] ;
@@ -132,6 +130,7 @@ mava:annotatedBy a rdf:Property ;
 mava:Annotation a rdfs:Class, sh:NodeShape ;
     rdfs:label "Annotation" ;
     rdfs:comment "An annotation for a segment, which can provide additional information or context." ;
+    skos:definition "Structured piece of metadata that links specific segments of audio, video, or text to defined concepts or entities." ;
     rdfs:subClassOf tei:Span ;
     sh:property [sh:path mava:linksTo ;
                 sh:class mava:Link ] ;
@@ -151,19 +150,11 @@ mava:createdBy a rdf:Property ;
     rdfs:range mava:Agent ;
     rdfs:subPropertyOf dcterms:creator .
 
-mava:Annotation a rdfs:Class ;
-    rdfs:subClassOf tei:Span ;
-    rdfs:subClassOf tei:span ;
-    rdfs:label "Annotation" ;
-    skos:definition "Structured piece of metadata that links specific segments of audio, video, or text to defined concepts or entities." .
 
 mava:Tier a rdfs:Class ;
     rdfs:label "Annotation Tier" ;
     skos:definition "Structured layer of related annotations grouped together to represent a specific linguistic or semantic feature" .
 
-mava:Segment a rdfs:Class ;
-    rdfs:label "Segment" ;
-    skos:definition "Defined portion of audio or video marked by specific start and end times" .
 
 mava:start a rdf:Property ;
     rdfs:label "Start time" ;
