@@ -1,6 +1,4 @@
-from rdflib import Graph, Namespace, URIRef
-import tempfile
-import os
+from rdflib import Graph, Namespace
 
 # Define SHACL namespace
 SH = Namespace("http://www.w3.org/ns/shacl#")
@@ -54,7 +52,7 @@ g.update(delete_query)
 enriched_file = "/tmp/enriched.ttl"
 ttl_data = g.serialize(format="turtle")
 with open(enriched_file, "w") as f:
-  f.write(ttl_data)
+    f.write(ttl_data)
 print("Ontology enriched with new node shapes.")
 print(ttl_data)
 print(f"Enriched ontology saved to: {enriched_file}")

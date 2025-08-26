@@ -8,7 +8,6 @@
 <p align="center">
 </p>
 
-
 [![Current Release](https://img.shields.io/github/release/sdsc-ordes/mava-api.svg?label=release)](https://github.com/sdsc-ordes/mava-api/releases/latest)
 [![Pipeline Status](https://img.shields.io/github/actions/workflow/status/sdsc-ordes/mava-api/normal.yaml?label=ci)](https://github.com/sdsc-ordes/mava-api/actions/workflows/normal.yaml)
 [![License label](https://img.shields.io/badge/License-Apache2.0-blue.svg?)](http://www.apache.org/licenses/LICENSE-2.0.html)
@@ -17,7 +16,6 @@
 
 - [Stefan Milosavljevic](mailto:stefan.milosavljevic@sdsc.ethz.ch)
 - [Sabine Maennel](mailto:sabine.maennel@sdsc.ethz.ch)
-
 
 ## Installation
 

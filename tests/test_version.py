@@ -1,6 +1,6 @@
 import re
 
-from mava-api import __version__
+from mava import __version__
 
 
 def test_version_format():
