@@ -52,14 +52,15 @@ mava:hasDocument a rdf:Property ;
 mava:Document a rdfs:Class, sh:NodeShape ;
     rdfs:label "Document" ;
     rdfs:comment "A document within a corpus, which can contain media resources and annotations." ;
-    skos:definition "A unit of a corpus that can be either an audio, video or text." .
-    rdfs:subClassOf dcterms:Text , tei:TEI ;
+    skos:definition "A unit of a corpus that can be either an audio, video or text." ;
+    rdfs:subClassOf dcterms:Text ;
+    rdfs:subClassOf tei:TEI ;
     sh:property [sh:path mava:hasMedia ;
                  sh:class mava:MediaResource] ;
     sh:property [sh:path mava:hasTimeline ;
                  sh:class mava:Timeline] ;
     sh:property [sh:path mava:hasTier ;
-                 sh:class mava:AnnotationTier];
+                 sh:class mava:AnnotationTier] ;
     sh:property [sh:path mava:documentProfile ;
                  sh:datatype xsd:string ] .
 
@@ -155,7 +156,6 @@ mava:Document a rdfs:Class ;
 
 mava:Annotation a rdfs:Class ;
     rdfs:subClassOf tei:Span ;
-    rdfs:label "Annotation" .
     rdfs:subClassOf tei:span ;
     rdfs:label "Annotation" ;
     skos:definition "Structured piece of metadata that links specific segments of audio, video, or text to defined concepts or entities." .
@@ -166,7 +166,7 @@ mava:Tier a rdfs:Class ;
 
 mava:Segment a rdfs:Class ;
     rdfs:label "Segment" ;
-    skos:definition "Defined portion of audio or video marked by specific start and end times"
+    skos:definition "Defined portion of audio or video marked by specific start and end times" .
 
 mava:start a rdf:Property ;
     rdfs:label "Start time" ;
@@ -177,7 +177,7 @@ mava:start a rdf:Property ;
 
 mava:end a rdf:Property ;
     rdfs:label "End time" ;
-    rdfs:subPropertyOf tei:to .
+    rdfs:subPropertyOf tei:to ;
     rdfs:domain mava:Segment ;
     rdfs:range xsd:string ;
     skos:example "00:02:45" .
