@@ -5,13 +5,15 @@ flake_dir := root_dir / "tools/nix"
 output_dir := root_dir / ".output"
 build_dir := output_dir / "build"
 
+mod nix "./tools/just/nix.just"
+
 # Default target if you do not specify a target.
 default:
     just --list --unsorted
 
 # Enter the default Nix development shell and execute the command `"$@`.
 develop *args:
-    just nix-develop "default" "$@"
+    just nix::develop "default" "$@"
 
 # Format the project.
 format *args:
@@ -24,32 +26,50 @@ setup *args:
 
 # Run commands over the ci development shell.
 ci *args:
-    just nix-develop "ci" "$@"
-
-## Nix Stuff ==================================================================
-# Show all packages configured in the Nix `flake.nix`.
-nix-list *args:
-    cd tools/nix && nix flake --no-pure-eval show
-
-# Enter the Nix `devShell` with name `$1` and execute the command `${@:2}` (default command is '$SHELL')
-[private]
-nix-develop *args:
-    #!/usr/bin/env bash
-    set -eu
-    cd "{{root_dir}}"
-    shell="$1"; shift 1;
-    args=("$@") && [ "${#args[@]}" != 0 ] || args="$SHELL"
-    nix develop --no-pure-eval --accept-flake-config \
-        "{{flake_dir}}#$shell" --command "${args[@]}"
-## ============================================================================
+    just nix::develop "ci" "$@"
 
 # Lint the project.
 lint *args:
     ruff check
+    just validate-ontology
 
 # Build the project.
 build *args:
     uv build --out-dir "{{build_dir}}" "$@"
+
+# Build the ontology.
+build-ontology *args:
+    mkdir -p "{{build_dir}}/ontology"
+    uv run build-ontology \
+        "{{build_dir}}/ontology/enriched.ttl" "$@"
+
+# Validate the ontology.
+validate-ontology: build-ontology
+    echo "Validating ontology..."
+    uv run validate-ontology \
+        src/ontology/mava.ttl \
+        src/quality-checks/shacl-shacl.ttl
+
+build-documentation:
+    #!/usr/bin/env bash
+    set -eu
+    just build-ontology
+
+    echo "Download 'shacl-play-cli' ..."
+    mkdir -p "{{build_dir}}/shacl-play"
+    curl -L https://github.com/sparna-git/shacl-play/releases/download/0.10.2/shacl-play-app-0.10.2-onejar.jar \
+      --output "{{build_dir}}/shacl-play/cli.jar"
+
+    echo "Run 'shacl-play-cli' ..."
+    export GRAPHVIZ_DOT="$(which dot)"
+
+    cd "{{build_dir}}/shacl-play"
+    java -jar "cli.jar" \
+        doc \
+        -d \
+        -i "{{build_dir}}/ontology/enriched.ttl" \
+        -l en \
+        -o "{{root_dir}}/docs/index.html"
 
 # Test the project.
 test *args:

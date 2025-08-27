@@ -18,7 +18,8 @@
   };
   programs.shellcheck.enable = true;
 
-  
+  programs.gofmt.enable = true;
+  programs.goimports.enable = true;
 
   # Lua.
   programs.stylua.enable = true;

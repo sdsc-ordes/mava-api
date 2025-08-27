@@ -2,16 +2,17 @@
 _src_path: src/generic
 project_affiliation: SDSC - Swiss Data Science Center
 project_authors:
--   email: stefan.milosavljevic@sdsc.ethz.ch
+  - email: stefan.milosavljevic@sdsc.ethz.ch
     first_name: Stefan
     last_name: Milosavljevic
--   email: sabine.maennel@sdsc.ethz.ch
+  - email: sabine.maennel@sdsc.ethz.ch
     first_name: Sabine
     last_name: Maennel
-project_description: An ontology based API to allow video-annotation tools to communicate
-    and exchange information.
+project_description:
+  An ontology based API to allow video-annotation tools to communicate
+  and exchange information.
 project_hosts:
--   host: github.com
+  - host: github.com
     organization: sdsc-ordes
     repo: mava-api
 project_language: python
