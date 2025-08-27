@@ -19,10 +19,10 @@ jobs:
           cachix_cache_name: "${{ secrets.CACHIX_CACHE_NAME }}"
           cachix_auth_token: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - name: Build Documentation
+      - name: build-docs
         run: just ci just build-documentation
 
-      - name: Push Documentation
+      - name: commit-docs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -30,7 +30,7 @@ jobs:
           git commit -m "Update generated docs" || echo "No changes to commit"
           git push
 
-      - name: Upload Documentation
+      - name: publish-docs
         uses: actions/upload-artifact@v4
         with:
           name: shacl-documentation
