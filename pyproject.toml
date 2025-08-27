@@ -65,6 +65,3 @@ ignore = [
 "__init__.py" = ["F401"]
 "tests/**" = ["INP001"]
 "[!t][!e][!s][!t][!s]*/**" = ["PT"]
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/mava_api"]
