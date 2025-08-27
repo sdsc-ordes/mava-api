@@ -22,7 +22,7 @@ jobs:
       - name: build-docs
         run: just ci just build-documentation
 
-      - name: commit-docs
+      - name: publish-docs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -30,7 +30,7 @@ jobs:
           git commit -m "Update generated docs" || echo "No changes to commit"
           git push
 
-      - name: publish-docs
+      - name: publish-artifact-docs
         uses: actions/upload-artifact@v4
         with:
           name: shacl-documentation
