@@ -3,7 +3,7 @@ name: SHACL Documentation Generation
 on:
   push:
     branches:
-      - main
+      - feat/ontology-in-owl
     paths:
       - "src/ontology/**"
   pull_request:
