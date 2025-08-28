@@ -6,11 +6,10 @@ authors = [
 ]
 description = "An ontology based API to allow video-annotation tools to communicate and exchange information."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.13"
 version = "0.0.1"
 
 dependencies = [
-  "ontospy>=2.1.1",
   "pydantic>=2.10.6",
   "notebook>=7.3.2",
   "pylode>=3.2.1",
