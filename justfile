@@ -50,7 +50,7 @@ validate-ontology: build-ontology
         src/ontology/mava.ttl \
         src/quality-checks/shacl-shacl.ttl
 
-build-documentation:
+build-shacl-docs:
     #!/usr/bin/env bash
     set -eu
     just build-ontology
@@ -69,7 +69,11 @@ build-documentation:
         -d \
         -i "{{build_dir}}/ontology/enriched.ttl" \
         -l en \
-        -o "{{root_dir}}/docs/index.html"
+        -o "{{root_dir}}/docs/shacl/index.html"
+
+build-owl-docs:
+    pylode src/ontology/mava-owl.ttl -o docs/owl/index.html
+
 
 # Test the project.
 test *args:
