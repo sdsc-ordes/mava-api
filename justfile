@@ -37,43 +37,9 @@ lint *args:
 build *args:
     uv build --out-dir "{{build_dir}}" "$@"
 
-# Build the ontology.
-build-ontology *args:
-    mkdir -p "{{build_dir}}/ontology"
-    uv run build-ontology \
-        "{{build_dir}}/ontology/enriched.ttl" "$@"
-
-# Validate the ontology.
-validate-ontology: build-ontology
-    echo "Validating ontology..."
-    uv run validate-ontology \
-        src/ontology/mava.ttl \
-        src/quality-checks/shacl-shacl.ttl
-
-build-shacl-docs:
-    #!/usr/bin/env bash
-    set -eu
-    just build-ontology
-
-    echo "Download 'shacl-play-cli' ..."
-    mkdir -p "{{build_dir}}/shacl-play"
-    curl -L https://github.com/sparna-git/shacl-play/releases/download/0.10.2/shacl-play-app-0.10.2-onejar.jar \
-      --output "{{build_dir}}/shacl-play/cli.jar"
-
-    echo "Run 'shacl-play-cli' ..."
-    export GRAPHVIZ_DOT="$(which dot)"
-
-    cd "{{build_dir}}/shacl-play"
-    java -jar "cli.jar" \
-        doc \
-        -d \
-        -i "{{build_dir}}/ontology/enriched.ttl" \
-        -l en \
-        -o "{{root_dir}}/docs/shacl/index.html"
-
-build-owl-docs:
-    pylode src/ontology/mava-owl.ttl -o docs/owl/index.html
-
+# Build the documentation.
+build-docs:
+    pylode src/ontology/mava-owl.ttl -o docs/index.html
 
 # Test the project.
 test *args:
@@ -82,7 +48,3 @@ test *args:
 # Run an executable.
 run *args:
     uv run cli "$@"
-
-# Run the Jupyter notebook.
-notebook *args:
-    uv run python -m notebook "$@"
