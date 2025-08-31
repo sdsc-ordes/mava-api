@@ -38,7 +38,7 @@ def add_to_graph(
     The RDF data should be sent in the request body.
     """
     try:
-        format = guess_format(content_type) or "turtle"
+        format = "turtle"
         g.parse(data=rdf_data, format=format)
         return {
             "message": "Data added successfully",
