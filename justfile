@@ -5,8 +5,9 @@ flake_dir := root_dir / "tools/nix"
 output_dir := root_dir / ".output"
 build_dir := output_dir / "build"
 api_base_url := "http://localhost:8000"
-default_import_file := "examples/input.ttl"
-default_export_file := "examples/export.ttl"
+default_import_file := "examples/input/input.ttl"
+default_export_file := "examples/output/export.ttl"
+default_csv_file := "examples/input/input.csv"
 
 mod nix "./tools/just/nix.just"
 
@@ -64,6 +65,14 @@ import filename=default_import_file:
     @curl -sS -X POST {{api_base_url}}/graph/add \
         -H "Content-Type: text/turtle" \
         -d @{{filename}} | jq
+
+
+# Imports data from a specified CSV file (defaults to input.csv)
+import-csv filename=default_csv_file:
+    @echo ">> Importing data from CSV file '{{filename}}'..."
+    @curl -sS -X POST {{api_base_url}}/graph/import_csv \
+        -F "file=@{{filename}};type=text/csv" | jq
+
 
 # Exports the entire graph to a file (defaults to export.ttl)
 export filename=default_export_file:
