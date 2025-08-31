@@ -1,11 +1,17 @@
-from fastapi import FastAPI, Body, Response, HTTPException
-from rdflib import Graph, URIRef
-from rdflib.util import guess_format
+import csv
+import io
+from fastapi import FastAPI, Body, Response, HTTPException, UploadFile, File
+from rdflib import Graph, Namespace, URIRef, Literal
+from rdflib.namespace import RDF, XSD
 
 # --- Global State ---
 # This graph object will live in memory as long as the server is running.
 # All API calls will interact with this single object.
 g = Graph()
+MAVA = Namespace("http://example.org/mava/ontology#")
+EX = Namespace("http://example.org/data/")
+g.bind("mava", MAVA)
+g.bind("ex", EX)
 
 
 # --- FastAPI Application ---
@@ -41,6 +47,41 @@ def add_to_graph(
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Failed to parse RDF data: {e}")
 
+@app.post("/graph/import_csv", summary="Import data from a CSV file")
+async def import_csv(file: UploadFile = File(...)):
+    """
+    Accepts a CSV file upload, transforms it to RDF, and adds it to the graph.
+    Expects CSV with columns: 'startTime', 'value'
+    """
+    try:
+        # Read the uploaded file content as bytes
+        contents = await file.read()
+        # Decode bytes to a string and treat it like a file for the csv reader
+        csv_file = io.StringIO(contents.decode("utf-8"))
+        reader = csv.DictReader(csv_file)
+
+        # Define the DataSeries this data belongs to
+        analysis_series = EX.MyAudioAnalysis
+        g.add((analysis_series, RDF.type, MAVA.DataSeries))
+        g.add((analysis_series, MAVA.seriesType, Literal("Voice Activity Score")))
+
+        # Loop through CSV rows and create triples
+        for i, row in enumerate(reader):
+            start_time = row['startTime']
+            numeric_value = row['value']
+            data_point_uri = EX[f"point_csv_{i+1}"]
+
+            g.add((data_point_uri, RDF.type, MAVA.DataPoint))
+            g.add((data_point_uri, MAVA.atTime, Literal(start_time, datatype=XSD.decimal)))
+            g.add((data_point_uri, MAVA.numericValue, Literal(numeric_value, datatype=XSD.decimal)))
+            g.add((data_point_uri, MAVA.belongsToSeries, analysis_series))
+
+        return {
+            "message": f"Successfully imported data from {file.filename}",
+            "new_graph_size": len(g)
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Failed to process CSV file: {e}")
 
 @app.get("/graph/export", summary="Export the entire graph")
 def export_graph(format: str = "turtle"):
