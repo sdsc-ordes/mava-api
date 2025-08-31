@@ -1,15 +1,9 @@
-@prefix : <file:///Users/smaennel/WORK/MAVA/mava-api/src/ontology/mava-owl.ttl#> .
 @prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
-@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 @prefix mava: <http://example.org/mava/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix tei: <http://www.tei-c.org/ns/1.0/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 mava: a owl:Ontology ;
@@ -31,193 +25,106 @@ mava: a owl:Ontology ;
   rdfs:comment "Ontology for corpora, documents, media resources, time and/or text annotations in linguistics." ;
 .
 
-# Classes
+# --- Core Classes ---
 
-mava:Corpus a owl:Class, sh:NodeShape ;
-    rdfs:label "Corpus" ;
-    rdfs:comment "A collection of documents, media resources, and annotations." ;
-    skos:definition "A large and structured set of multimodal data (audio, video and/or text) that is collected and stored for the purpose of linguistic analysis." ;
-    rdfs:subClassOf dcterms:Collection ;
-    sh:property [sh:path mava:hasDocument ;
-                 sh:class mava:Document ] ;
-    .
+mava:VideoCorpus a owl:Class ;
+    rdfs:label "Video Corpus" ;
+    rdfs:comment "A collection of videos that share a common context or purpose." ;
+    rdfs:subClassOf dcterms:Collection .
 
-mava:Document a owl:Class, sh:NodeShape ;
-    rdfs:label "Document" ;
-    rdfs:comment "A document within a corpus, which can contain media resources and annotations." ;
-    skos:definition "A unit of a corpus that can be either an audio, video or text." ;
-    rdfs:subClassOf dcterms:Text ;
-    rdfs:subClassOf tei:TEI ;
-    sh:property [sh:path mava:hasMedia ;
-                 sh:class mava:MediaResource] ;
-    sh:property [sh:path mava:hasTimeline ;
-                 sh:class mava:Timeline] ;
-    sh:property [sh:path mava:hasTier ;
-                 sh:class mava:AnnotationTier] ;
-    sh:property [sh:path mava:documentProfile ;
-                 sh:datatype xsd:string ] ;
-    .
+mava:Video a owl:Class ;
+    rdfs:label "Video" ;
+    rdfs:comment "A media resource consisting of a sequence of images creating the illusion of movement." ;
+    rdfs:subClassOf dcterms:MovingImage .
 
-mava:MediaResource a owl:Class, sh:NodeShape ;
-    rdfs:label "Media Resource" ;
-    rdfs:comment "A media resource such as audio or video within a document." ;
-    rdfs:subClassOf ebucore:MediaResource ;
-    sh:property [sh:path mava:hasMediaProfile ;
-                 sh:datatype xsd:string ] ;
-    sh:property [sh:path mava:hasResourceProxy ;
-                 sh:class mava:ResourceProxy] ;
-    .
+# --- Span-Based Annotation Classes ---
 
-mava:ResourceProxy a owl:Class ;
-    rdfs:label "Resource Proxy" ;
-    rdfs:comment "A proxy for a media resource, which can be used to reference the resource in a different context." ;
-    rdfs:subClassOf ebucore:ResourceProxy ;
-    .
-
-mava:Timeline a owl:Class, sh:NodeShape ;
+mava:Timeline a owl:Class ;
     rdfs:label "Timeline" ;
-    rdfs:comment "A timeline for a document, which can contain annotations." ;
-    rdfs:subClassOf tei:Timeline ;
-    sh:property [sh:path mava:hasSegment ;
-                sh:class mava:Segment] ;
-    .
+    rdfs:comment "A temporal representation of a video, containing segments." .
 
-mava:Segment a owl:Class, sh:NodeShape ;
+mava:Segment a owl:Class ;
     rdfs:label "Segment" ;
-    rdfs:comment "A segment within a timeline, which can represent a time span or a text span." ;
-    skos:definition "Defined portion of audio or video marked by specific start and end times" ;
-    rdfs:subClassOf tei:Span ;
-    sh:property [sh:path mava:annotatedBy ;
-                 sh:class mava:Annotation] ;
-    .
+    rdfs:comment "A defined portion of a timeline marked by a specific start and end time." .
 
-mava:Annotation a owl:Class, sh:NodeShape ;
+mava:Annotation a owl:Class ;
     rdfs:label "Annotation" ;
-    rdfs:comment "An annotation for a segment, which can provide additional information or context." ;
-    skos:definition "Structured piece of metadata that links specific segments of audio, video, or text to defined concepts or entities." ;
-    rdfs:subClassOf tei:Span ;
-    sh:property [sh:path mava:linksTo ;
-                sh:class mava:Link ] ;
-    sh:property [sh:path mava:createdBy ;
-                 sh:class mava:Agent ] ;
-    .
+    rdfs:comment "A descriptive piece of metadata (e.g., a textual transcription) linked to a specific segment." .
 
-mava:Tier a owl:Class ;
-    rdfs:label "Annotation Tier" ;
-    skos:definition "Structured layer of related annotations grouped together to represent a specific linguistic or semantic feature" ;
-    .
+# --- Time-Series Data Classes ---
 
-# Object Properties
+mava:DataSeries a owl:Class ;
+    rdfs:label "Data Series" ;
+    rdfs:comment "A collection of time-stamped data points, typically from an automated analysis." .
 
-mava:hasDocument a owl:ObjectProperty ;
-    rdfs:label "Has document" ;
-    rdfs:domain mava:Corpus ;
-    rdfs:range mava:Document ;
-    rdfs:comment "Relates a document to a corpus." ;
-    rdfs:subPropertyOf dcterms:hasPart ;
-    .
+mava:DataPoint a owl:Class ;
+    rdfs:label "Data Point" ;
+    rdfs:comment "A single quantitative value recorded at a specific point in time." .
 
-mava:hasMedia a owl:ObjectProperty ;
-    rdfs:label "Has media resource" ;
-    rdfs:comment "Relates a media resource to a document." ;
-    rdfs:domain mava:Document ;
-    rdfs:range mava:MediaResource ;
-    rdfs:subPropertyOf dcterms:hasPart ;
-    .
 
-mava:belongsToTier a owl:ObjectProperty ;
-    rdfs:label "Belongs to tier" ;
-    rdfs:comment "Relates a segment to its annotation tier." ;
-    rdfs:domain mava:Segment ;
-    rdfs:range mava:Tier ;
-    .
+# --- Properties to Link Everything ---
 
+# Corpus and Video
+mava:hasMember a owl:ObjectProperty ;
+    rdfs:label "has member" ;
+    rdfs:domain mava:VideoCorpus ;
+    rdfs:range mava:Video .
+
+# Video and Span-Based Annotations
 mava:hasTimeline a owl:ObjectProperty ;
-  rdfs:label "Has timeline" ;
-  rdfs:comment "Relates a document to its timeline." ;
-  rdfs:domain mava:Document ;
-  rdfs:range mava:Timeline ;
-  .
-
-mava:hasResourceProxy a owl:ObjectProperty ;
-    rdfs:label "Has resource proxy" ;
-    rdfs:comment "Relates a media resource to its proxy." ;
-    rdfs:domain mava:MediaResource ;
-    rdfs:range mava:ResourceProxy ;
-    rdfs:subPropertyOf dcterms:hasPart
-    .
+    rdfs:label "has timeline" ;
+    rdfs:domain mava:Video ;
+    rdfs:range mava:Timeline .
 
 mava:hasSegment a owl:ObjectProperty ;
-    rdfs:label "Has segment" ;
-    rdfs:comment "Relates a segment to its timeline." ;
+    rdfs:label "has segment" ;
     rdfs:domain mava:Timeline ;
-    rdfs:range mava:Segment ;
-    rdfs:subPropertyOf dcterms:hasPart .
+    rdfs:range mava:Segment .
 
-mava:annotatedBy a owl:ObjectProperty ;
-    rdfs:label "Annotated by" ;
-    rdfs:comment "Relates an annotation to the segment it annotates." ;
+mava:hasAnnotation a owl:ObjectProperty ;
+    rdfs:label "has annotation" ;
     rdfs:domain mava:Segment ;
-    rdfs:range mava:Annotation ;
-    rdfs:subPropertyOf dcterms:hasPart ;.
+    rdfs:range mava:Annotation .
 
-mava:hasTier a owl:ObjectProperty ;
-  rdfs:label "Has tier" ;
-  rdfs:range mava:Tier ;
-  rdfs:comment "Relates a document to an annotation tier." ;
-  rdfs:domain mava:Document ;
-  .
+mava:startTime a owl:DatatypeProperty ;
+    rdfs:label "start time" ;
+    rdfs:domain mava:Segment ;
+    rdfs:range xsd:decimal .
 
-mava:createdBy a owl:ObjectProperty ;
-    rdfs:label "Created by" ;
-    rdfs:comment "Links an annotation to the agent that created it." ;
+mava:endTime a owl:DatatypeProperty ;
+    rdfs:label "end time" ;
+    rdfs:domain mava:Segment ;
+    rdfs:range xsd:decimal .
+
+mava:hasTextValue a owl:DatatypeProperty ;
+    rdfs:label "has text value" ;
     rdfs:domain mava:Annotation ;
-    rdfs:range mava:Agent ;
-    rdfs:subPropertyOf dcterms:creator ;
-    .
-
-# Datatype Properties
-
-mava:linksTo a rdf:Property ;
-    rdfs:label "Links to" ;
-    rdfs:comment "Links an annotation to a specific resource." ;
-    rdfs:domain mava:Annotation ;
-    rdfs:range mava:Link ;
-    rdfs:subPropertyOf dcterms:relation .
+    rdfs:range xsd:string .
 
 
-mava:start a rdf:Property ;
-    rdfs:label "Start time" ;
-    rdfs:comment "Links an annotation to its start time." ;
-    rdfs:subPropertyOf tei:from ;
-    rdfs:domain mava:Segment ;
-    rdfs:range xsd:string ;
-    skos:example "00:01:32" .
+# Video and Time-Series Data
+mava:describesResource a owl:ObjectProperty ;
+    rdfs:label "describes resource" ;
+    rdfs:domain mava:DataSeries ;
+    rdfs:range mava:Video .
 
-mava:end a rdf:Property ;
-    rdfs:label "End time" ;
-    rdfs:comment "Links an annotation to its end time." ;
-    rdfs:subPropertyOf tei:to ;
-    rdfs:domain mava:Segment ;
-    rdfs:range xsd:string ;
-    skos:example "00:02:45" .
+mava:belongsToSeries a owl:ObjectProperty ;
+    rdfs:label "belongs to series" ;
+    rdfs:comment "Relates a data point back to the data series it is a member of." ;
+    rdfs:domain mava:DataPoint ;
+    rdfs:range mava:DataSeries .
 
-mava:value a rdf:Property ;
-    rdfs:label "Annotation value" ;
-    rdfs:comment "Annotation value." ;
-    rdfs:subPropertyOf tei:content .
+mava:seriesType a owl:DatatypeProperty ;
+    rdfs:label "series type" ;
+    rdfs:domain mava:DataSeries ;
+    rdfs:range xsd:string .
 
-mava:documentProfile a owl:DatatypeProperty, owl:FunctionalProperty ;
-  rdfs:label "Document profile" ;
-  rdfs:comment "A descriptive profile for the document." ;
-  rdfs:domain mava:Document ;
-  rdfs:range xsd:string ;
-  .
+mava:atTime a owl:DatatypeProperty ;
+    rdfs:label "at time" ;
+    rdfs:domain mava:DataPoint ;
+    rdfs:range xsd:decimal .
 
-mava:hasMediaProfile a owl:DatatypeProperty, owl:FunctionalProperty ;
-    rdfs:label "Has media profile" ;
-    rdfs:comment "Relates a media resource to its profile." ;
-    rdfs:domain mava:MediaResource ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf dcterms:description
-    .
+mava:numericValue a owl:DatatypeProperty ;
+    rdfs:label "numeric value" ;
+    rdfs:domain mava:DataPoint ;
+    rdfs:range xsd:decimal .
