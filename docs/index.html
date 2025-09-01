@@ -416,27 +416,22 @@ td {
       </div>
       <div class="section" id="classes">
         <h2>Classes</h2>
-        <div class="property entity" id="Corpus">
-          <h3>Corpus
+        <div class="property entity" id="VideoCorpus">
+          <h3>Video Corpus
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
           <table>
             <tr>
               <th>IRI</th>
               <td>
-                <code>http://example.org/mava/ontology#Corpus</code>
+                <code>http://example.org/mava/ontology#VideoCorpus</code>
               </td>
             </tr>
             <tr>
               <th>
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
-              <td>
-                <ul>
-                  <li><p>A collection of documents, media resources, and annotations.</p></li>
-                  <li><p>A large and structured set of multimodal data (audio, video and/or text) that is collected and stored for the purpose of linguistic analysis.</p></li>
-                </ul>
-              </td>
+              <td><p>A collection of videos that share a common context or purpose.</p></td>
             </tr>
             <tr>
               <th>
@@ -452,48 +447,36 @@ td {
               </th>
               <td>
                 <span>
-                  <a href="#hasDocument">Has document</a>
+                  <a href="#hasMember">has member</a>
                   <sup class="sup-op" title="OWL Object Property">op</sup>
                 </span>
               </td>
             </tr>
           </table>
         </div>
-        <div class="property entity" id="Document">
-          <h3>Document
+        <div class="property entity" id="Video">
+          <h3>Video
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
           <table>
             <tr>
               <th>IRI</th>
               <td>
-                <code>http://example.org/mava/ontology#Document</code>
+                <code>http://example.org/mava/ontology#Video</code>
               </td>
             </tr>
             <tr>
               <th>
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
-              <td>
-                <ul>
-                  <li><p>A document within a corpus, which can contain media resources and annotations.</p></li>
-                  <li><p>A unit of a corpus that can be either an audio, video or text.</p></li>
-                </ul>
-              </td>
+              <td><p>A media resource consisting of a sequence of images creating the illusion of movement.</p></td>
             </tr>
             <tr>
               <th>
                 <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
               </th>
               <td>
-                <ul>
-                  <li>
-                    <a href="http://purl.org/dc/terms/Text">dcterms:Text</a>
-                  </li>
-                  <li>
-                    <a href="http://www.tei-c.org/ns/1.0/TEI">tei:TEI</a>
-                  </li>
-                </ul>
+                <a href="http://purl.org/dc/terms/MovingImage">dcterms:MovingImage</a>
               </td>
             </tr>
             <tr>
@@ -501,140 +484,31 @@ td {
                 <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="Inverse of rdfs:domain. Defined in Ontology Documentation Profile">In Domain Of</a>
               </th>
               <td>
-                <ul>
-                  <li>
-                    <span>
-                      <a href="#hasMedia">Has media resource</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasTimeline">Has timeline</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#hasTier">Has tier</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#documentProfile">Document profile</a>
-                      <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
-                    </span>
-                  </li>
-                </ul>
+                <span>
+                  <a href="#hasTimeline">has timeline</a>
+                  <sup class="sup-op" title="OWL Object Property">op</sup>
+                </span>
               </td>
             </tr>
             <tr>
               <th>
                 <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="Inverse of rdfs:range. Defined in Ontology Documentation Profile">In Range Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#hasDocument">Has document</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="MediaResource">
-          <h3>Media Resource
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://example.org/mava/ontology#MediaResource</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>A media resource such as audio or video within a document.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
-              </th>
-              <td>
-                <a href="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#MediaResource">ebucore:MediaResource</a>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="Inverse of rdfs:domain. Defined in Ontology Documentation Profile">In Domain Of</a>
               </th>
               <td>
                 <ul>
                   <li>
                     <span>
-                      <a href="#hasResourceProxy">Has resource proxy</a>
+                      <a href="#hasMember">has member</a>
                       <sup class="sup-op" title="OWL Object Property">op</sup>
                     </span>
                   </li>
                   <li>
                     <span>
-                      <a href="#hasMediaProfile">Has media profile</a>
-                      <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
+                      <a href="#describesResource">describes resource</a>
+                      <sup class="sup-op" title="OWL Object Property">op</sup>
                     </span>
                   </li>
                 </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="Inverse of rdfs:range. Defined in Ontology Documentation Profile">In Range Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#hasMedia">Has media resource</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="ResourceProxy">
-          <h3>Resource Proxy
-            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://example.org/mava/ontology#ResourceProxy</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>A proxy for a media resource, which can be used to reference the resource in a different context.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
-              </th>
-              <td>
-                <a href="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#ResourceProxy">ebucore:ResourceProxy</a>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="Inverse of rdfs:range. Defined in Ontology Documentation Profile">In Range Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#hasResourceProxy">Has resource proxy</a>
-                  <sup class="sup-op" title="OWL Object Property">op</sup>
-                </span>
               </td>
             </tr>
           </table>
@@ -654,15 +528,7 @@ td {
               <th>
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
-              <td><p>A timeline for a document, which can contain annotations.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
-              </th>
-              <td>
-                <a href="http://www.tei-c.org/ns/1.0/Timeline">tei:Timeline</a>
-              </td>
+              <td><p>A temporal representation of a video, containing segments.</p></td>
             </tr>
             <tr>
               <th>
@@ -670,7 +536,7 @@ td {
               </th>
               <td>
                 <span>
-                  <a href="#hasSegment">Has segment</a>
+                  <a href="#hasSegment">has segment</a>
                   <sup class="sup-op" title="OWL Object Property">op</sup>
                 </span>
               </td>
@@ -681,7 +547,7 @@ td {
               </th>
               <td>
                 <span>
-                  <a href="#hasTimeline">Has timeline</a>
+                  <a href="#hasTimeline">has timeline</a>
                   <sup class="sup-op" title="OWL Object Property">op</sup>
                 </span>
               </td>
@@ -703,20 +569,7 @@ td {
               <th>
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
-              <td>
-                <ul>
-                  <li><p>A segment within a timeline, which can represent a time span or a text span.</p></li>
-                  <li><p>Defined portion of audio or video marked by specific start and end times</p></li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
-              </th>
-              <td>
-                <a href="http://www.tei-c.org/ns/1.0/Span">tei:Span</a>
-              </td>
+              <td><p>A defined portion of a timeline marked by a specific start and end time.</p></td>
             </tr>
             <tr>
               <th>
@@ -726,26 +579,20 @@ td {
                 <ul>
                   <li>
                     <span>
-                      <a href="#belongsToTier">Belongs to tier</a>
+                      <a href="#hasAnnotation">has annotation</a>
                       <sup class="sup-op" title="OWL Object Property">op</sup>
                     </span>
                   </li>
                   <li>
                     <span>
-                      <a href="#annotatedBy">Annotated by</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
+                      <a href="#startTime">start time</a>
+                      <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
                     </span>
                   </li>
                   <li>
                     <span>
-                      <a href="#start">Start time</a>
-                      <sup class="sup-p" title="RDF Property">p</sup>
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#end">End time</a>
-                      <sup class="sup-p" title="RDF Property">p</sup>
+                      <a href="#endTime">end time</a>
+                      <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
                     </span>
                   </li>
                 </ul>
@@ -757,7 +604,7 @@ td {
               </th>
               <td>
                 <span>
-                  <a href="#hasSegment">Has segment</a>
+                  <a href="#hasSegment">has segment</a>
                   <sup class="sup-op" title="OWL Object Property">op</sup>
                 </span>
               </td>
@@ -779,20 +626,48 @@ td {
               <th>
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
+              <td><p>A descriptive piece of metadata (e.g., a textual transcription) linked to a specific segment.</p></td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="Inverse of rdfs:domain. Defined in Ontology Documentation Profile">In Domain Of</a>
+              </th>
               <td>
-                <ul>
-                  <li><p>An annotation for a segment, which can provide additional information or context.</p></li>
-                  <li><p>Structured piece of metadata that links specific segments of audio, video, or text to defined concepts or entities.</p></li>
-                </ul>
+                <span>
+                  <a href="#hasTextValue">has text value</a>
+                  <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
+                </span>
               </td>
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">Sub Class Of</a>
+                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="Inverse of rdfs:range. Defined in Ontology Documentation Profile">In Range Of</a>
               </th>
               <td>
-                <a href="http://www.tei-c.org/ns/1.0/Span">tei:Span</a>
+                <span>
+                  <a href="#hasAnnotation">has annotation</a>
+                  <sup class="sup-op" title="OWL Object Property">op</sup>
+                </span>
               </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="DataSeries">
+          <h3>Data Series
+            <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>http://example.org/mava/ontology#DataSeries</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
+              </th>
+              <td><p>A collection of time-stamped data points, typically from an automated analysis.</p></td>
             </tr>
             <tr>
               <th>
@@ -802,14 +677,14 @@ td {
                 <ul>
                   <li>
                     <span>
-                      <a href="#createdBy">Created by</a>
+                      <a href="#describesResource">describes resource</a>
                       <sup class="sup-op" title="OWL Object Property">op</sup>
                     </span>
                   </li>
                   <li>
                     <span>
-                      <a href="#linksTo">Links to</a>
-                      <sup class="sup-p" title="RDF Property">p</sup>
+                      <a href="#seriesType">series type</a>
+                      <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
                     </span>
                   </li>
                 </ul>
@@ -821,236 +696,55 @@ td {
               </th>
               <td>
                 <span>
-                  <a href="#annotatedBy">Annotated by</a>
+                  <a href="#belongsToSeries">belongs to series</a>
                   <sup class="sup-op" title="OWL Object Property">op</sup>
                 </span>
               </td>
             </tr>
           </table>
         </div>
-        <div class="property entity" id="AnnotationTier">
-          <h3>Annotation Tier
+        <div class="property entity" id="DataPoint">
+          <h3>Data Point
             <sup class="sup-c" title="OWL/RDFS Class">c</sup>
           </h3>
           <table>
             <tr>
               <th>IRI</th>
               <td>
-                <code>http://example.org/mava/ontology#Tier</code>
+                <code>http://example.org/mava/ontology#DataPoint</code>
               </td>
             </tr>
             <tr>
               <th>
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
-              <td><p>Structured layer of related annotations grouped together to represent a specific linguistic or semantic feature</p></td>
+              <td><p>A single quantitative value recorded at a specific point in time.</p></td>
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="Inverse of rdfs:range. Defined in Ontology Documentation Profile">In Range Of</a>
+                <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="Inverse of rdfs:domain. Defined in Ontology Documentation Profile">In Domain Of</a>
               </th>
               <td>
                 <ul>
                   <li>
                     <span>
-                      <a href="#belongsToTier">Belongs to tier</a>
+                      <a href="#belongsToSeries">belongs to series</a>
                       <sup class="sup-op" title="OWL Object Property">op</sup>
                     </span>
                   </li>
                   <li>
                     <span>
-                      <a href="#hasTier">Has tier</a>
-                      <sup class="sup-op" title="OWL Object Property">op</sup>
+                      <a href="#atTime">at time</a>
+                      <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="#numericValue">numeric value</a>
+                      <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
                     </span>
                   </li>
                 </ul>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="section" id="properties">
-        <h2>Properties</h2>
-        <div class="property entity" id="linksTo">
-          <h3>Links to
-            <sup class="sup-p" title="RDF Property">p</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://example.org/mava/ontology#linksTo</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Links an annotation to a specific resource.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="http://purl.org/dc/terms/relation">Relation</a>
-                  <sup class="sup-p" title="RDF Property">p</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Annotation">Annotation</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
-              </th>
-              <td>
-                <a href="#Link">mava:Link</a>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="start">
-          <h3>Start time
-            <sup class="sup-p" title="RDF Property">p</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://example.org/mava/ontology#start</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Links an annotation to its start time.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#example" title="An example of the use of a concept. Defined in SKOS Vocabulary">Example</a>
-              </th>
-              <td>
-                <pre>00:01:32</pre>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
-              </th>
-              <td>
-                <a href="http://www.tei-c.org/ns/1.0/from">tei:from</a>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Segment">Segment</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
-              </th>
-              <td>
-                <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="end">
-          <h3>End time
-            <sup class="sup-p" title="RDF Property">p</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://example.org/mava/ontology#end</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Links an annotation to its end time.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2004/02/skos/core#example" title="An example of the use of a concept. Defined in SKOS Vocabulary">Example</a>
-              </th>
-              <td>
-                <pre>00:02:45</pre>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
-              </th>
-              <td>
-                <a href="http://www.tei-c.org/ns/1.0/to">tei:to</a>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Segment">Segment</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
-              </th>
-              <td>
-                <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="Annotationvalue">
-          <h3>Annotation value
-            <sup class="sup-p" title="RDF Property">p</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://example.org/mava/ontology#value</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Annotation value.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
-              </th>
-              <td>
-                <a href="http://www.tei-c.org/ns/1.0/content">tei:content</a>
               </td>
             </tr>
           </table>
@@ -1058,32 +752,15 @@ td {
       </div>
       <div class="section" id="objectproperties">
         <h2>Object Properties</h2>
-        <div class="property entity" id="hasDocument">
-          <h3>Has document
+        <div class="property entity" id="hasMember">
+          <h3>has member
             <sup class="sup-op" title="OWL Object Property">op</sup>
           </h3>
           <table>
             <tr>
               <th>IRI</th>
               <td>
-                <code>http://example.org/mava/ontology#hasDocument</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Relates a document to a corpus.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="http://purl.org/dc/terms/hasPart">Has Part</a>
-                  <sup class="sup-p" title="RDF Property">p</sup>
-                </span>
+                <code>http://example.org/mava/ontology#hasMember</code>
               </td>
             </tr>
             <tr>
@@ -1092,7 +769,7 @@ td {
               </th>
               <td>
                 <span>
-                  <a href="#Corpus">Corpus</a>
+                  <a href="#VideoCorpus">Video Corpus</a>
                   <sup class="sup-c" title="OWL/RDFS Class">c</sup>
                 </span>
               </td>
@@ -1103,100 +780,7 @@ td {
               </th>
               <td>
                 <span>
-                  <a href="#Document">Document</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="hasMedia">
-          <h3>Has media resource
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://example.org/mava/ontology#hasMedia</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Relates a media resource to a document.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="http://purl.org/dc/terms/hasPart">Has Part</a>
-                  <sup class="sup-p" title="RDF Property">p</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Document">Document</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#MediaResource">Media Resource</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="belongsToTier">
-          <h3>Belongs to tier
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://example.org/mava/ontology#belongsToTier</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Relates a segment to its annotation tier.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#Segment">Segment</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#AnnotationTier">Annotation Tier</a>
+                  <a href="#Video">Video</a>
                   <sup class="sup-c" title="OWL/RDFS Class">c</sup>
                 </span>
               </td>
@@ -1204,7 +788,7 @@ td {
           </table>
         </div>
         <div class="property entity" id="hasTimeline">
-          <h3>Has timeline
+          <h3>has timeline
             <sup class="sup-op" title="OWL Object Property">op</sup>
           </h3>
           <table>
@@ -1216,17 +800,11 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Relates a document to its timeline.</p></td>
-            </tr>
-            <tr>
-              <th>
                 <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Domain</a>
               </th>
               <td>
                 <span>
-                  <a href="#Document">Document</a>
+                  <a href="#Video">Video</a>
                   <sup class="sup-c" title="OWL/RDFS Class">c</sup>
                 </span>
               </td>
@@ -1244,60 +822,8 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="hasResourceProxy">
-          <h3>Has resource proxy
-            <sup class="sup-op" title="OWL Object Property">op</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://example.org/mava/ontology#hasResourceProxy</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Relates a media resource to its proxy.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="http://purl.org/dc/terms/hasPart">Has Part</a>
-                  <sup class="sup-p" title="RDF Property">p</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#MediaResource">Media Resource</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#ResourceProxy">Resource Proxy</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
         <div class="property entity" id="hasSegment">
-          <h3>Has segment
+          <h3>has segment
             <sup class="sup-op" title="OWL Object Property">op</sup>
           </h3>
           <table>
@@ -1309,23 +835,6 @@ td {
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Relates a segment to its timeline.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="http://purl.org/dc/terms/hasPart">Has Part</a>
-                  <sup class="sup-p" title="RDF Property">p</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
                 <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Domain</a>
               </th>
               <td>
@@ -1348,32 +857,15 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="annotatedBy">
-          <h3>Annotated by
+        <div class="property entity" id="hasAnnotation">
+          <h3>has annotation
             <sup class="sup-op" title="OWL Object Property">op</sup>
           </h3>
           <table>
             <tr>
               <th>IRI</th>
               <td>
-                <code>http://example.org/mava/ontology#annotatedBy</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Relates an annotation to the segment it annotates.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="http://purl.org/dc/terms/hasPart">Has Part</a>
-                  <sup class="sup-p" title="RDF Property">p</sup>
-                </span>
+                <code>http://example.org/mava/ontology#hasAnnotation</code>
               </td>
             </tr>
             <tr>
@@ -1400,22 +892,16 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="hasTier">
-          <h3>Has tier
+        <div class="property entity" id="describesResource">
+          <h3>describes resource
             <sup class="sup-op" title="OWL Object Property">op</sup>
           </h3>
           <table>
             <tr>
               <th>IRI</th>
               <td>
-                <code>http://example.org/mava/ontology#hasTier</code>
+                <code>http://example.org/mava/ontology#describesResource</code>
               </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Relates a document to an annotation tier.</p></td>
             </tr>
             <tr>
               <th>
@@ -1423,7 +909,7 @@ td {
               </th>
               <td>
                 <span>
-                  <a href="#Document">Document</a>
+                  <a href="#DataSeries">Data Series</a>
                   <sup class="sup-c" title="OWL/RDFS Class">c</sup>
                 </span>
               </td>
@@ -1434,39 +920,130 @@ td {
               </th>
               <td>
                 <span>
-                  <a href="#AnnotationTier">Annotation Tier</a>
+                  <a href="#Video">Video</a>
                   <sup class="sup-c" title="OWL/RDFS Class">c</sup>
                 </span>
               </td>
             </tr>
           </table>
         </div>
-        <div class="property entity" id="createdBy">
-          <h3>Created by
+        <div class="property entity" id="belongsToSeries">
+          <h3>belongs to series
             <sup class="sup-op" title="OWL Object Property">op</sup>
           </h3>
           <table>
             <tr>
               <th>IRI</th>
               <td>
-                <code>http://example.org/mava/ontology#createdBy</code>
+                <code>http://example.org/mava/ontology#belongsToSeries</code>
               </td>
             </tr>
             <tr>
               <th>
                 <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
               </th>
-              <td><p>Links an annotation to the agent that created it.</p></td>
+              <td><p>Relates a data point back to the data series it is a member of.</p></td>
             </tr>
             <tr>
               <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Domain</a>
               </th>
               <td>
                 <span>
-                  <a href="http://purl.org/dc/terms/creator">Creator</a>
-                  <sup class="sup-p" title="RDF Property">p</sup>
+                  <a href="#DataPoint">Data Point</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
                 </span>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
+              </th>
+              <td>
+                <span>
+                  <a href="#DataSeries">Data Series</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section" id="datatypeproperties">
+        <h2>Datatype Properties</h2>
+        <div class="property entity" id="startTime">
+          <h3>start time
+            <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>http://example.org/mava/ontology#startTime</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Domain</a>
+              </th>
+              <td>
+                <span>
+                  <a href="#Segment">Segment</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
+              </th>
+              <td>
+                <a href="http://www.w3.org/2001/XMLSchema#decimal">xsd:decimal</a>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="endTime">
+          <h3>end time
+            <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>http://example.org/mava/ontology#endTime</code>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Domain</a>
+              </th>
+              <td>
+                <span>
+                  <a href="#Segment">Segment</a>
+                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
+              </th>
+              <td>
+                <a href="http://www.w3.org/2001/XMLSchema#decimal">xsd:decimal</a>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="property entity" id="hasTextValue">
+          <h3>has text value
+            <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
+          </h3>
+          <table>
+            <tr>
+              <th>IRI</th>
+              <td>
+                <code>http://example.org/mava/ontology#hasTextValue</code>
               </td>
             </tr>
             <tr>
@@ -1485,30 +1062,21 @@ td {
                 <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
               </th>
               <td>
-                <a href="#Agent">mava:Agent</a>
+                <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a>
               </td>
             </tr>
           </table>
         </div>
-      </div>
-      <div class="section" id="datatypeproperties">
-        <h2>Datatype Properties</h2>
-        <div class="property entity" id="documentProfile">
-          <h3>Document profile
+        <div class="property entity" id="seriesType">
+          <h3>series type
             <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
           </h3>
           <table>
             <tr>
               <th>IRI</th>
               <td>
-                <code>http://example.org/mava/ontology#documentProfile</code>
+                <code>http://example.org/mava/ontology#seriesType</code>
               </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>A descriptive profile for the document.</p></td>
             </tr>
             <tr>
               <th>
@@ -1516,7 +1084,7 @@ td {
               </th>
               <td>
                 <span>
-                  <a href="#Document">Document</a>
+                  <a href="#DataSeries">Data Series</a>
                   <sup class="sup-c" title="OWL/RDFS Class">c</sup>
                 </span>
               </td>
@@ -1531,32 +1099,15 @@ td {
             </tr>
           </table>
         </div>
-        <div class="property entity" id="hasMediaProfile">
-          <h3>Has media profile
+        <div class="property entity" id="atTime">
+          <h3>at time
             <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
           </h3>
           <table>
             <tr>
               <th>IRI</th>
               <td>
-                <code>http://example.org/mava/ontology#hasMediaProfile</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Relates a media resource to its profile.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="http://purl.org/dc/terms/description">Description</a>
-                  <sup class="sup-p" title="RDF Property">p</sup>
-                </span>
+                <code>http://example.org/mava/ontology#atTime</code>
               </td>
             </tr>
             <tr>
@@ -1565,7 +1116,7 @@ td {
               </th>
               <td>
                 <span>
-                  <a href="#MediaResource">Media Resource</a>
+                  <a href="#DataPoint">Data Point</a>
                   <sup class="sup-c" title="OWL/RDFS Class">c</sup>
                 </span>
               </td>
@@ -1575,30 +1126,21 @@ td {
                 <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
               </th>
               <td>
-                <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a>
+                <a href="http://www.w3.org/2001/XMLSchema#decimal">xsd:decimal</a>
               </td>
             </tr>
           </table>
         </div>
-      </div>
-      <div class="section" id="functionalproperties">
-        <h2>Functional Properties</h2>
-        <div class="property entity" id="documentProfile">
-          <h3>Document profile
-            <sup class="sup-fp" title="OWL Functional Property">fp</sup>
+        <div class="property entity" id="numericValue">
+          <h3>numeric value
+            <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
           </h3>
           <table>
             <tr>
               <th>IRI</th>
               <td>
-                <code>http://example.org/mava/ontology#documentProfile</code>
+                <code>http://example.org/mava/ontology#numericValue</code>
               </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>A descriptive profile for the document.</p></td>
             </tr>
             <tr>
               <th>
@@ -1606,7 +1148,7 @@ td {
               </th>
               <td>
                 <span>
-                  <a href="#Document">Document</a>
+                  <a href="#DataPoint">Data Point</a>
                   <sup class="sup-c" title="OWL/RDFS Class">c</sup>
                 </span>
               </td>
@@ -1616,56 +1158,7 @@ td {
                 <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
               </th>
               <td>
-                <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="property entity" id="hasMediaProfile">
-          <h3>Has media profile
-            <sup class="sup-fp" title="OWL Functional Property">fp</sup>
-          </h3>
-          <table>
-            <tr>
-              <th>IRI</th>
-              <td>
-                <code>http://example.org/mava/ontology#hasMediaProfile</code>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">Description</a>
-              </th>
-              <td><p>Relates a media resource to its profile.</p></td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" title="The subject is a subproperty of a property. Defined in The RDF Schema vocabulary (RDFS)">Sub Property Of</a>
-              </th>
-              <td>
-                <span>
-                  <a href="http://purl.org/dc/terms/description">Description</a>
-                  <sup class="sup-p" title="RDF Property">p</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Domain</a>
-              </th>
-              <td>
-                <span>
-                  <a href="#MediaResource">Media Resource</a>
-                  <sup class="sup-c" title="OWL/RDFS Class">c</sup>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">Range</a>
-              </th>
-              <td>
-                <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a>
+                <a href="http://www.w3.org/2001/XMLSchema#decimal">xsd:decimal</a>
               </td>
             </tr>
           </table>
@@ -1686,10 +1179,6 @@ td {
           <dd>
             <code>http://usefulinc.com/ns/doap#</code>
           </dd>
-          <dt id="ebucore">ebucore</dt>
-          <dd>
-            <code>http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#</code>
-          </dd>
           <dt id="mava">mava</dt>
           <dd>
             <code>http://example.org/mava/ontology#</code>
@@ -1705,18 +1194,6 @@ td {
           <dt id="rdfs">rdfs</dt>
           <dd>
             <code>http://www.w3.org/2000/01/rdf-schema#</code>
-          </dd>
-          <dt id="sh">sh</dt>
-          <dd>
-            <code>http://www.w3.org/ns/shacl#</code>
-          </dd>
-          <dt id="skos">skos</dt>
-          <dd>
-            <code>http://www.w3.org/2004/02/skos/core#</code>
-          </dd>
-          <dt id="tei">tei</dt>
-          <dd>
-            <code>http://www.tei-c.org/ns/1.0/</code>
           </dd>
           <dt id="xsd">xsd</dt>
           <dd>
@@ -1735,12 +1212,6 @@ td {
           </tr>
           <tr>
             <td>
-              <sup class="sup-p" title="RDF Property">p</sup>
-            </td>
-            <td>Properties</td>
-          </tr>
-          <tr>
-            <td>
               <sup class="sup-op" title="OWL Object Property">op</sup>
             </td>
             <td>Object Properties</td>
@@ -1750,12 +1221,6 @@ td {
               <sup class="sup-dp" title="OWL Datatype Property">dp</sup>
             </td>
             <td>Datatype Properties</td>
-          </tr>
-          <tr>
-            <td>
-              <sup class="sup-fp" title="OWL Functional Property">fp</sup>
-            </td>
-            <td>Functional Properties</td>
           </tr>
         </table>
       </div>
@@ -1787,16 +1252,10 @@ td {
           </h4>
           <ul class="second">
             <li>
-              <a href="#Corpus">Corpus</a>
+              <a href="#VideoCorpus">Video Corpus</a>
             </li>
             <li>
-              <a href="#Document">Document</a>
-            </li>
-            <li>
-              <a href="#MediaResource">Media Resource</a>
-            </li>
-            <li>
-              <a href="#ResourceProxy">Resource Proxy</a>
+              <a href="#Video">Video</a>
             </li>
             <li>
               <a href="#Timeline">Timeline</a>
@@ -1808,26 +1267,10 @@ td {
               <a href="#Annotation">Annotation</a>
             </li>
             <li>
-              <a href="#AnnotationTier">Annotation Tier</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <h4>
-            <a href="#properties">Properties</a>
-          </h4>
-          <ul class="second">
-            <li>
-              <a href="#linksTo">Links to</a>
+              <a href="#DataSeries">Data Series</a>
             </li>
             <li>
-              <a href="#start">Start time</a>
-            </li>
-            <li>
-              <a href="#end">End time</a>
-            </li>
-            <li>
-              <a href="#Annotationvalue">Annotation value</a>
+              <a href="#DataPoint">Data Point</a>
             </li>
           </ul>
         </li>
@@ -1837,31 +1280,22 @@ td {
           </h4>
           <ul class="second">
             <li>
-              <a href="#hasDocument">Has document</a>
+              <a href="#hasMember">has member</a>
             </li>
             <li>
-              <a href="#hasMedia">Has media resource</a>
+              <a href="#hasTimeline">has timeline</a>
             </li>
             <li>
-              <a href="#belongsToTier">Belongs to tier</a>
+              <a href="#hasSegment">has segment</a>
             </li>
             <li>
-              <a href="#hasTimeline">Has timeline</a>
+              <a href="#hasAnnotation">has annotation</a>
             </li>
             <li>
-              <a href="#hasResourceProxy">Has resource proxy</a>
+              <a href="#describesResource">describes resource</a>
             </li>
             <li>
-              <a href="#hasSegment">Has segment</a>
-            </li>
-            <li>
-              <a href="#annotatedBy">Annotated by</a>
-            </li>
-            <li>
-              <a href="#hasTier">Has tier</a>
-            </li>
-            <li>
-              <a href="#createdBy">Created by</a>
+              <a href="#belongsToSeries">belongs to series</a>
             </li>
           </ul>
         </li>
@@ -1871,23 +1305,22 @@ td {
           </h4>
           <ul class="second">
             <li>
-              <a href="#documentProfile">Document profile</a>
+              <a href="#startTime">start time</a>
             </li>
             <li>
-              <a href="#hasMediaProfile">Has media profile</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <h4>
-            <a href="#functionalproperties">Functional Properties</a>
-          </h4>
-          <ul class="second">
-            <li>
-              <a href="#documentProfile">Document profile</a>
+              <a href="#endTime">end time</a>
             </li>
             <li>
-              <a href="#hasMediaProfile">Has media profile</a>
+              <a href="#hasTextValue">has text value</a>
+            </li>
+            <li>
+              <a href="#seriesType">series type</a>
+            </li>
+            <li>
+              <a href="#atTime">at time</a>
+            </li>
+            <li>
+              <a href="#numericValue">numeric value</a>
             </li>
           </ul>
         </li>
@@ -1906,9 +1339,6 @@ td {
               <a href="#doap">doap</a>
             </li>
             <li>
-              <a href="#ebucore">ebucore</a>
-            </li>
-            <li>
               <a href="#mava">mava</a>
             </li>
             <li>
@@ -1919,15 +1349,6 @@ td {
             </li>
             <li>
               <a href="#rdfs">rdfs</a>
-            </li>
-            <li>
-              <a href="#sh">sh</a>
-            </li>
-            <li>
-              <a href="#skos">skos</a>
-            </li>
-            <li>
-              <a href="#tei">tei</a>
             </li>
             <li>
               <a href="#xsd">xsd</a>
