@@ -3,7 +3,7 @@ name: Publish Documentation Site
 on:
   push:
     branches:
-      - main
+      - feat/mava-api
     paths:
       # Only run when docs-related files change
       - "docs/**"
