@@ -115,7 +115,7 @@ build-ontology-docs:
 build-mkdocs:
     @echo ">> Building MkDocs site..."
     # The -d flag tells mkdocs where to put the output
-    @uv run mkdocs build -f docs/mkdocs.yml -d {{site_dir}}/docs
+    @uv run mkdocs build -f docs/mkdocs.yml -d ../{{site_dir}}/docs
 
 # Copies the root index file to the final site directory
 build-root-index:
