@@ -50,6 +50,11 @@ build-docs:
     pylode src/ontology/mava.ttl -o docs/index.html 2> /dev/null
     @echo ">> Building documentation complete at docs/index.html."
 
+# Generates the OpenAPI spec without running the server
+generate-spec:
+    @echo ">> Generating OpenAPI specification..."
+    uv run python tools/scripts/generate-spec.py
+
 # Test the project.
 test *args:
     @echo ">> Running tests...."
