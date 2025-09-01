@@ -8,6 +8,7 @@ api_base_url := "http://localhost:8000"
 default_import_file := "examples/input/input.ttl"
 default_export_file := "examples/output/export.ttl"
 default_csv_file := "examples/input/input.csv"
+site_dir := "site"
 
 mod nix "./tools/just/nix.just"
 
@@ -43,12 +44,6 @@ build *args:
 # run mava server
 run:
     uv run uvicorn src.mava.main:app --reload "$@"
-
-# Build the documentation.
-build-ontology-docs:
-    @echo ">> Building documentation..."
-    pylode src/ontology/mava.ttl -o docs/index.html 2> /dev/null
-    @echo ">> Building documentation complete at docs/index.html."
 
 # Generates the OpenAPI spec without running the server
 build-openapi-docs:
@@ -105,10 +100,30 @@ docs-serve:
     @echo ">> Serving documentation at http://127.0.0.1:8001"
     uv run mkdocs serve -f docs/mkdocs.yml -a 127.0.0.1:8001
 
-# Builds the static documentation site
-docs-build:
-    @echo ">> Building documentation site..."
-    uv run mkdocs build -f docs/mkdocs.yml
+# Removes the old build directory
+clean-site:
+    @echo ">> Cleaning old site directory..."
+    @rm -rf {{site_dir}}
 
-# Build all documentation source files (Ontology, OpenAPI)
-build-all-docs: build-ontology-docs build-openapi-docs
+# Build the ontology documentation into the site/ontology directory
+build-ontology-docs:
+    @echo ">> Building ontology documentation..."
+    @mkdir -p {{site_dir}}/ontology
+    @pylode src/ontology/mava.ttl -o {{site_dir}}/ontology/index.html 2> /dev/null
+
+# Build the MkDocs site into the site/docs directory
+build-mkdocs:
+    @echo ">> Building MkDocs site..."
+    # The -d flag tells mkdocs where to put the output
+    @uv run mkdocs build -f docs/mkdocs.yml -d {{site_dir}}/docs
+
+# Copies the root index file to the final site directory
+build-root-index:
+    @echo ">> Creating root index page..."
+    @cp docs/root_index.html {{site_dir}}/index.html
+
+# Meta-command to build the entire documentation site from scratch
+build-site: clean-site build-ontology-docs build-mkdocs build-root-index
+    @echo ">> Documentation site successfully built in '{{site_dir}}' directory."
+    @echo ">> You can now serve the documentation using the following command:"
+    @echo ">> uv run mkdocs serve -f docs/mkdocs.yml -a 127.0.0.1:8001"
