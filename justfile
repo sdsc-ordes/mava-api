@@ -53,7 +53,8 @@ build-docs:
 # Test the project.
 test *args:
     @echo ">> Running tests...."
-    @pytest "$@"
+    # Set the PYTHONPATH to include the 'src' directory before running pytest
+    PYTHONPATH=src pytest "$@"
 
 # Checks the status of the API and the current graph size
 status:
