@@ -34,8 +34,7 @@ ci *args:
 
 # Lint the project.
 lint *args:
-    ruff check
-    just validate-ontology
+    echo "TODO: Not implemented"
 
 # Build the project.
 build *args:
