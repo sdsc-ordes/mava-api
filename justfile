@@ -106,9 +106,7 @@ docs-serve:
     uv run mkdocs serve -f docs/mkdocs.yml -a 127.0.0.1:8001
 
 # Builds the static documentation site
-docs-build: generate-spec
-    @echo ">> Copying OpenAPI spec to docs directory..."
-    @cp openapi.json docs/
+docs-build:
     @echo ">> Building documentation site..."
     uv run mkdocs build -f docs/mkdocs.yml
 
