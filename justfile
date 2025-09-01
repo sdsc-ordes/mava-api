@@ -55,9 +55,8 @@ test *args:
 
 # Checks the status of the API and the current graph size
 status:
-    # The -sS flags make curl silent but still show errors.
-    # We pipe the JSON output to `jq` to pretty-print it.
-    curl -sS {{api_base_url}} | jq
+    @echo ">> Checking API status..."
+    @curl -sS {{api_base_url}} | jq
 
 # Imports data from a specified Turtle file (defaults to data.ttl)
 import filename=default_import_file:
@@ -82,6 +81,7 @@ export filename=default_export_file:
 
 # Views graph directly in the terminal
 view:
+    @echo ">> Viewing graph..."
     @curl -sS {{api_base_url}}/graph/export
 
 # Delete Graph
