@@ -31,8 +31,6 @@ jobs:
           cachix_auth_token: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: build
         run: just ci just build
-      - name: build-docs
-        run: just ci just build-docs
 
   test:
     runs-on: ubuntu-latest
