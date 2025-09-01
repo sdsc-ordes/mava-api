@@ -31,5 +31,9 @@ __pycache*
 .yamllint.yaml
 .typos.toml
 
+# Examples
 examples/tmp/
 examples/output/
+
+# MkDocs build output
+docs/site/

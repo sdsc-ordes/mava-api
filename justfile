@@ -45,13 +45,13 @@ run:
     uv run uvicorn src.mava.main:app --reload "$@"
 
 # Build the documentation.
-build-docs:
+build-ontology-docs:
     @echo ">> Building documentation..."
     pylode src/ontology/mava.ttl -o docs/index.html 2> /dev/null
     @echo ">> Building documentation complete at docs/index.html."
 
 # Generates the OpenAPI spec without running the server
-generate-spec:
+build-openapi-docs:
     @echo ">> Generating OpenAPI specification..."
     uv run python tools/scripts/generate-spec.py
 
@@ -97,3 +97,20 @@ view:
 clear:
     @echo ">> Clearing graph..."
     @curl -sS -X DELETE {{api_base_url}}/graph/clear | jq
+
+# --- Documentation (MkDocs) ---
+
+# Serves the documentation site locally for development
+docs-serve:
+    @echo ">> Serving documentation at http://127.0.0.1:8001"
+    uv run mkdocs serve -f docs/mkdocs.yml -a 127.0.0.1:8001
+
+# Builds the static documentation site
+docs-build: generate-spec
+    @echo ">> Copying OpenAPI spec to docs directory..."
+    @cp openapi.json docs/
+    @echo ">> Building documentation site..."
+    uv run mkdocs build -f docs/mkdocs.yml
+
+# Build all documentation source files (Ontology, OpenAPI)
+build-all-docs: build-ontology-docs build-openapi-docs

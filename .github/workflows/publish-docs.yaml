@@ -1,0 +1,41 @@
+name: Publish Documentation Site
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Only run when docs-related files change
+      - "docs/**"
+      - "src/ontology/**"
+      - "justfile"
+      - ".github/workflows/publish-docs.yml"
+
+permissions:
+  contents: write # Required to push to the gh-pages branch
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Nix Environment
+        uses: ./.github/actions/setup-nix
+        with:
+          cachix_cache_name: "${{ secrets.CACHIX_CACHE_NAME }}"
+          cachix_auth_token: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      - name: Build All Documentation Sources
+        run: just ci just build-all-docs
+
+      - name: Build MkDocs Site
+        run: just ci just docs-build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # This is the directory that `mkdocs build` creates
+          publish_dir: ./site

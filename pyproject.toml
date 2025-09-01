@@ -17,6 +17,7 @@ dependencies = [
   "uvicorn[standard]>=0.35.0",
   "rdflib>=7.1.4",
   "python-multipart>=0.0.20",
+  "mkdocs-material>=9.6.18",
 ]
 
 [dependency-groups]
