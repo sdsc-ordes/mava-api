@@ -52,7 +52,8 @@ build-docs:
 
 # Test the project.
 test *args:
-    echo "TODO: Not implemented"
+    @echo ">> Running tests...."
+    @pytest "$@"
 
 # Checks the status of the API and the current graph size
 status:
