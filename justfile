@@ -48,7 +48,8 @@ run:
 # Build the documentation.
 build-docs:
     @echo ">> Building documentation..."
-    pylode src/ontology/mava.ttl -o docs/index.html
+    pylode src/ontology/mava.ttl -o docs/index.html 2> /dev/null
+    @echo ">> Building documentation complete at docs/index.html."
 
 # Test the project.
 test *args:
