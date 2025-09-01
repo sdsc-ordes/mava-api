@@ -1,0 +1,5 @@
+site_name: Mava Docs
+site_url: https://sdsc-ordes.github.io/mava-api/
+
+theme:
+  name: material

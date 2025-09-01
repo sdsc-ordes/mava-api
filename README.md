@@ -19,11 +19,31 @@
 
 ## Installation
 
-Describe the installation instruction here.
+### Prerequisites
+This repository relies on nix and direnv.
+- Clone the github repo.
+- `cd mava-api`
+- `just build`
+- `just run`
 
-## Usage
+## PoC
 
-Describe the installation instruction here.
+This is a PoC, for a connector to achieve interoperability between video metadata processing tools. It comes with the following building blocks:
+
+- ontology for a common terminology
+- api that allows to export and import into a graph that remains in memory.
+
+
+### Ontology
+
+- the ontology is provided in owl
+- so far it has been kept pragmatic, aligned to the use cases TIBAV-A and videoscope
+
+### API
+- It establishes an API, that allows to import gradually into a graph and then exports the graph once it is ready
+- The graph can also be cleared.
+- Data can be imported from csv files or from Turtle files
+- Data is exported as Turtle filed
 
 ## Development
 

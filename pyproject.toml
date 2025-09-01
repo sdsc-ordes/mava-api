@@ -13,26 +13,25 @@ dependencies = [
   "pydantic>=2.10.6",
   "notebook>=7.3.2",
   "pylode>=3.2.1",
+  "fastapi>=0.116.1",
+  "uvicorn[standard]>=0.35.0",
+  "rdflib>=7.1.4",
+  "python-multipart>=0.0.20",
+  "mkdocs-material>=9.6.18",
 ]
 
 [dependency-groups]
 dev = [
+  "httpx>=0.28.1",
   "ipython>=9.4.0",
   "pyshacl>=0.30.1",
+  "pytest>=8.4.1",
   "rdflib>=7.1.4",
 ]
-
-[project.scripts]
-cli = 'mava.cli:main'
-build-ontology = 'ci.build_ontology:main'
-validate-ontology = 'ci.validate_ontology:main'
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-# [tool.hatch.build.targets.wheel]
-# packages = [“src/mava_api”]
 
 [tool.hatch.build]
 exclude = [
@@ -66,3 +65,8 @@ ignore = [
 "__init__.py" = ["F401"]
 "tests/**" = ["INP001"]
 "[!t][!e][!s][!t][!s]*/**" = ["PT"]
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "tests"
+]
