@@ -5,3 +5,47 @@ docs_dir: mkdocs
 
 theme:
   name: material
+  features:
+    - content.tooltips
+    - navigation.tabs
+    - navigation.sections
+    - navigation.tracking
+    - navigation.indexes
+    - toc.follow
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - content.footnote.tooltips
+
+markdown_extensions:
+  - abbr
+  - attr_list
+  - md_in_html
+  - admonition
+  - footnotes
+  - pymdownx.blocks.caption
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.snippets:
+      auto_append:
+        - includes/glossary.md
+
+plugins:
+  - search
+  - render_swagger
+
+nav:
+  - Home: index.md
+
+  - API: api.md
