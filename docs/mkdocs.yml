@@ -1,5 +1,7 @@
-site_name: Mava Docs
-site_url: https://sdsc-ordes.github.io/mava-api/
+site_name: MAVA Project Documentation
+site_url: https://sdsc-ordes.github.io/mava-api/docs/
+
+docs_dir: mkdocs
 
 theme:
   name: material

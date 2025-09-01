@@ -36,4 +36,4 @@ examples/tmp/
 examples/output/
 
 # MkDocs build output
-docs/site/
+site/
