@@ -4,15 +4,9 @@ on:
   push:
     branches:
       - feat/mava-api
-    paths:
-      # Only run when docs-related files change
-      - "docs/**"
-      - "src/ontology/**"
-      - "justfile"
-      - ".github/workflows/publish-docs.yml"
 
 permissions:
-  contents: write # Required to push to the gh-pages branch
+  contents: write
 
 jobs:
   deploy-docs:
