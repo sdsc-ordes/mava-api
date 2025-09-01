@@ -21,7 +21,6 @@ app = FastAPI(
     version="1.0.0",
 )
 
-
 @app.get("/", summary="Check API status and graph size")
 def read_root():
     """Returns the current status and the number of triples in the graph."""
