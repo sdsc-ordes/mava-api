@@ -45,11 +45,6 @@ build *args:
 run:
     uv run uvicorn src.mava.main:app --reload "$@"
 
-# Generates the OpenAPI spec without running the server
-build-openapi-docs:
-    @echo ">> Generating OpenAPI specification..."
-    uv run python tools/scripts/generate-spec.py
-
 # Test the project.
 test *args:
     @echo ">> Running tests...."
@@ -111,6 +106,11 @@ build-ontology-docs:
     @mkdir -p {{site_dir}}/ontology
     @pylode src/ontology/mava.ttl -o {{site_dir}}/ontology/index.html 2> /dev/null
 
+# Generates the OpenAPI spec without running the server
+build-openapi-docs:
+    @echo ">> Generating OpenAPI specification..."
+    uv run python tools/scripts/generate-spec.py
+
 # Build the MkDocs site into the site/docs directory
 build-mkdocs:
     @echo ">> Building MkDocs site..."
@@ -123,7 +123,7 @@ build-root-index:
     @cp docs/root_index.html {{site_dir}}/index.html
 
 # Meta-command to build the entire documentation site from scratch
-build-site: clean-site build-ontology-docs build-mkdocs build-root-index
+build-site: clean-site build-ontology-docs build-openapi-docs build-mkdocs build-root-index
     @echo ">> Documentation site successfully built in '{{site_dir}}' directory."
     @echo ">> You can now serve the documentation using the following command:"
     @echo ">> uv run mkdocs serve -f docs/mkdocs.yml -a 127.0.0.1:8001"

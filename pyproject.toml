@@ -18,6 +18,7 @@ dependencies = [
   "rdflib>=7.1.4",
   "python-multipart>=0.0.20",
   "mkdocs-material>=9.6.18",
+  "mkdocs-render-swagger-plugin>=0.1.2",
 ]
 
 [dependency-groups]
