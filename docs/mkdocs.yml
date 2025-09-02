@@ -1,5 +1,6 @@
 site_name: MAVA Project Documentation
 site_url: https://sdsc-ordes.github.io/mava-api/docs/
+repo_url: https://github.com/sdsc-ordes/mava-api
 
 docs_dir: mkdocs
 
@@ -23,9 +24,11 @@ theme:
 markdown_extensions:
   - abbr
   - attr_list
+  - def_list
   - md_in_html
   - admonition
   - footnotes
+  - tables
   - pymdownx.blocks.caption
   - pymdownx.details
   - pymdownx.superfences
@@ -40,6 +43,15 @@ markdown_extensions:
   - pymdownx.snippets:
       auto_append:
         - includes/glossary.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+
 
 plugins:
   - search
@@ -47,5 +59,7 @@ plugins:
 
 nav:
   - Home: index.md
-
+  - Ontology: ontology.md
   - API: api.md
+  - Tools: tools.md
+  - Roadmap: roadmap.md
