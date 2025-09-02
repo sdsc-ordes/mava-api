@@ -7,13 +7,13 @@ docs_dir: mkdocs
 theme:
   name: material
   features:
+    - toc.integrate
     - content.tooltips
     - navigation.tabs
     - navigation.sections
     - navigation.tracking
     - navigation.indexes
     - toc.follow
-    - navigation.top
     - search.suggest
     - search.highlight
     - content.code.annotate
@@ -58,8 +58,10 @@ plugins:
   - render_swagger
 
 nav:
-  - Home: index.md
-  - Ontology: ontology.md
-  - API: api.md
-  - Tools: tools.md
-  - Roadmap: roadmap.md
+  - 'Home': 'index.md'
+  - 'Ontology': 'ontology.md'
+  - 'API':
+      - 'Usage': 'usage.md'
+      - 'Reference': 'api.md'
+      - 'Download': 'api/openapi.yaml'
+  - 'Roadmap': 'roadmap.md'
