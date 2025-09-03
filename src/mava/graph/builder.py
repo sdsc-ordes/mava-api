@@ -1,5 +1,7 @@
-import csv
+import pandas as pd
 import io
+import csv
+import uuid
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
 
@@ -23,26 +25,63 @@ class GraphBuilder:
         """Parses and adds new triples to the graph from a raw string."""
         self.g.parse(data=rdf_data, format=format)
 
-    def add_csv_data(self, csv_contents: str, filename: str):
-        """Transforms CSV data and adds it to the graph."""
-        csv_file = io.StringIO(csv_contents)
-        reader = csv.DictReader(csv_file)
+    def add_tsv_data(self, data_contents: str, filename: str, mapping: dict):
+        """
+        Transforms tabular data (CSV or TSV) into RDF and adds it to the graph
+        using a provided header-to-ontology mapping.
+        """
+        file_like_object = io.StringIO(data_contents)
 
-        # Create a unique series name from the CSV filename
-        series_name = filename.split('.')[0]
-        analysis_series = EX[series_name]
-        self.g.add((analysis_series, RDF.type, MAVA.DataSeries))
-        self.g.add((analysis_series, MAVA.seriesType, Literal("Voice Activity Score")))
+        # Use pandas to read the data, automatically handling delimiters
+        df = pd.read_csv(file_like_object, sep='\t')
 
-        for i, row in enumerate(reader):
-            start_time = row['startTime']
-            numeric_value = row['value']
-            data_point_uri = EX[f"{series_name}_point_{i+1}"]
+        # Get the required column names from the mapping
+        time_col = mapping.get("time_column", None)
+        value_col = mapping.get("value_column", None)
+        series_description = mapping.get("series_description", None)
+        value_description = mapping.get("value_description", None)
+        value_type = mapping.get("value_type", None)
+        duration_col = mapping.get("duration_column", None)
 
-            self.g.add((data_point_uri, RDF.type, MAVA.DataPoint))
-            self.g.add((data_point_uri, MAVA.atTime, Literal(start_time, datatype=XSD.decimal)))
-            self.g.add((data_point_uri, MAVA.numericValue, Literal(numeric_value, datatype=XSD.decimal)))
-            self.g.add((data_point_uri, MAVA.belongsToSeries, analysis_series))
+        if not time_col or not value_col:
+            raise ValueError("Mapping must include 'time_column' and 'value_column' keys.")
+
+        if time_col not in df.columns or value_col not in df.columns:
+            raise ValueError(f"Mapping columns '{time_col}' or '{value_col}' not found in file.")
+
+        # Create a unique series name from the filename
+        series_id = uuid.uuid4()
+        series_uri = EX[f"{series_id}"]
+        has_duration = duration_col and duration_col in df.columns
+        if has_duration:
+            self.g.add((series_uri, RDF.type, MAVA.AnnotationSeries))
+        else:
+            self.g.add((series_uri, RDF.type, MAVA.ObservationSeries))
+        self.g.add((series_uri, MAVA.seriesDescription, Literal(series_description)))
+        self.g.add((series_uri, MAVA.valueDescription, Literal(value_description)))
+
+        # Loop through the DataFrame rows
+        for i, row in df.iterrows():
+            start_time = row[time_col]
+            duration = row[duration_col] if has_duration else 0
+            value = row[value_col]
+
+            data_point_uri = EX[f"{series_id}_point_{i+1}"]
+            self.g.add((data_point_uri, MAVA.belongsToSeries, series_uri))
+            if has_duration:
+                duration = row[duration_col]
+                self.g.add((data_point_uri, RDF.type, MAVA.AnnotationSegment))
+                self.g.add((data_point_uri, MAVA.startTime, Literal(start_time, datatype=XSD.decimal)))
+                self.g.add((data_point_uri, MAVA.endTime, Literal(start_time + duration, datatype=XSD.decimal)))
+                self.g.add((data_point_uri, MAVA.stringValue, Literal(value, datatype=XSD.string)))
+            else:
+                self.g.add((data_point_uri, RDF.type, MAVA.ObservationPoint))
+                self.g.add((data_point_uri, MAVA.atTime, Literal(start_time, datatype=XSD.decimal)))
+                self.g.add((data_point_uri, MAVA.belongsToSeries, series_uri))
+                if value_type == "numeric":
+                    self.g.add((data_point_uri, MAVA.numericValue, Literal(value, datatype=XSD.decimal)))
+                elif value_type == "list":
+                    self.g.add((data_point_uri, MAVA.listValue, Literal(value, datatype=RDF.List)))
 
     def export_graph(self, format: str = "turtle") -> bytes:
         """Serializes the entire graph to the specified format."""
