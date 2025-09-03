@@ -2,12 +2,12 @@
 
 Currently only a first PoC is implemented, see [Roadmap](roadmap.md) for current status
 
-## Step 1: Install
+## Install
 
 ### Prerequisites
 This repository relies on `nix` and `direnv`.
 
-### Install
+### Installion
 
 First, clone the repository to your local machine:
 
@@ -22,7 +22,7 @@ just build
 just run
 ```
 
-## Step 2: Start the API
+## Serve
 
 - `just run`
 
@@ -43,7 +43,7 @@ The server should now be running at `http://127.0.0.1:8000`.
 
     All graph building steps can be repeated as often as you want. THe graph will not get confused and will only add new metadata.
 
-## Step 3: check the current status
+## Check
 
 ```
 ╰─❯ just status
@@ -54,9 +54,11 @@ The server should now be running at `http://127.0.0.1:8000`.
 }
 ```
 
-## Step 4: Import Turtle or CSV files
+## Import
 
 These imports default files from the `examples` directory. You can also add your own custom files on the import commands as argument. Then your file will be imported instead.
+
+### Turtle
 
 ```
 ╰─❯ just import
@@ -67,6 +69,8 @@ These imports default files from the `examples` directory. You can also add your
 }
 ```
 
+### CSV
+
 ```
 ╰─❯ just import-csv
 >> Importing data from CSV file 'examples/input/input.csv'...
@@ -75,7 +79,8 @@ These imports default files from the `examples` directory. You can also add your
   "new_graph_size": 11
 }
 ```
-## Step 5: Inspect the graph
+
+## View
 
 ```
 ╰─❯ just view
@@ -99,7 +104,7 @@ mava:Corpus1 a mava:Corpus .
 ex:input a mava:DataSeries ;
     mava:seriesType "Voice Activity Score" .
 ```
-## Step 6: Export the graph
+## Export
 
 ```
 ╰─❯ just export
@@ -107,7 +112,7 @@ ex:input a mava:DataSeries ;
 Done.
 ```
 
-## Step 7:  Clear the graph
+## Clear
 
 ```
 ╰─❯ just clear

@@ -1,7 +1,8 @@
 openapi: 3.1.0
 info:
   title: Graph Builder API
-  description: An API to incrementally build and export an RDF graph.
+  description: An API to incrementally build and export an RDF graph from various
+    sources.
   version: 1.0.0
 paths:
   /:
@@ -49,6 +50,31 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/Body_import_csv_graph_import_csv_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /graph/import_tsv:
+    post:
+      summary: Import data from a TSV file
+      description: 'Accepts a tabular file upload (TSV), transforms it to RDF
+
+        using a JSON mapping, and adds it to the graph.'
+      operationId: import_tsv_graph_import_tsv_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_import_tsv_graph_import_tsv_post'
         required: true
       responses:
         '200':
@@ -110,6 +136,20 @@ components:
       required:
       - file
       title: Body_import_csv_graph_import_csv_post
+    Body_import_tsv_graph_import_tsv_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+        mapping_json:
+          type: string
+          title: Mapping Json
+      type: object
+      required:
+      - file
+      - mapping_json
+      title: Body_import_tsv_graph_import_tsv_post
     HTTPValidationError:
       properties:
         detail:
