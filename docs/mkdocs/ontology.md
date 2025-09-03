@@ -19,67 +19,66 @@ The ontology is documented with [pylode](https://github.com/RDFLib/pyLODE).
 Below you can see the current class diagram:
 
 - **Video**: links the analyis together (as MAVA connects metadata on videos)
-- **DataSeries**: TIB AV-A provides some analysis as data series, with measurements at certain timepoints
-- **TImelines**: text annotations for example come as timelines, annotating for time intervals rather then for data points
+- **ObservationSeries**: analysis with measurements at certain timepoints
+- **AnnotationSeries**: annotations that relate to time intervals
 
 ```mermaid
 classDiagram
-    direction TB
+    direction LR
 
     class VideoCorpus {
         +hasMember(Video)
     }
 
     class Video {
-        +hasTimeline(Timeline)
+        +hasAnalysis(AnnotationSeries)
+        +hasAnalysis(ObservationSeries)
     }
 
-    class Timeline {
-        +hasSegment(Segment)
-    }
-
-    class Segment {
+    class AnnotationSegment {
         +startTime: decimal
         +endTime: decimal
-        +hasAnnotation(Annotation)
+        +stringValue: string
+        +listValue: list
+        +belongsToObservationSeries(AnnotationSeries)
     }
 
-    class Annotation {
-        +hasTextValue: string
+    class ObservationSeries {
+        +seriesDescription: string
+        +valueDescription: string
     }
 
-    class DataSeries {
-        +seriesType: string
-        +describesResource(Video)
+    class AnnotationSeries {
+        +seriesDescription: string
+        +valueDescription: string
     }
 
-    class DataPoint {
+    class ObservationPoint {
         +atTime: decimal
         +numericValue: decimal
-        +belongsToSeries(DataSeries)
+        +listValue: list
+        +belongsToObservationSeries(ObservationSeries)
     }
 
     note for Video "Central class linking different types of analysis"
 
     VideoCorpus --o Video : hasMember
-    Video --> Timeline : hasTimeline
-    Timeline --> Segment : hasSegment
-    Segment --> Annotation : hasAnnotation
+    Video --> ObservationSeries : hasAnalysis
+    Video --> AnnotationSeries : hasAnalysis
 
-    DataSeries ..> Video : describesResource
-    DataPoint ..> DataSeries : belongsToSeries
+    AnnotationSegment ..> AnnotationSeries : belongsToAnnotationSeries
+    ObservationPoint ..> ObservationSeries : belongsToObservationSeries
 ```
 
-## Timeline
+## Annotation Series
 
 ```mermaid
 graph LR
-    A[Video] -->|hasTimeline| B(Timeline)
-    B -->|hasSegment| C(Segment)
-    C -->|hasAnnotation| D(Annotation)
+    A[Video] -->|hasAnalysis| B(AnnotationSeries)
+    C(AnnotationSegment) -->|belongsToAnnatoationSeries| B
 ```
 
-**Segment**: represents a Duration:
+**Annotation Segment**: represents an annotation relating to a time interval:
 
 - startTime: 10.5s
 - endTime: 15.2s
@@ -89,12 +88,11 @@ graph LR
 
 ```mermaid
 graph LR
-    E[Video]
-    F(DataSeries) -->|describesResource| E
-    G(DataPoint) -->|belongsToSeries| F
+    A[Video] -->|hasAnalysis| B(ObservationSeries)
+    C(ObservationPoint) -->|belongsToObservationSeries| B
 ```
 
-**Data Point**: represents an Instant and a Measurement:
+**Observation Point**: represents an Instant and a Measurement:
 
 - atTime: 1.75s
 - numericValue: 0.883
