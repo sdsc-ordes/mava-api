@@ -39,10 +39,6 @@ INFO:     Application startup complete.
 
 The server should now be running at `http://127.0.0.1:8000`.
 
-!!! note
-
-    All graph building steps can be repeated as often as you want. THe graph will not get confused and will only add new metadata.
-
 ## Check
 
 ```
