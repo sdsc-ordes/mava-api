@@ -1,5 +1,5 @@
 {
-  "series_type": "Transcription",
+  "series_description": "Transcription",
   "value_description": "transcript",
   "value_type": "string",
   "value_prefix": "Transcript:: ",
