@@ -25,7 +25,7 @@
 
 ### Integration
 
-- :fontawesome-regular-circle: make concept for intrgration with existing [MAVA tools](tools.md)
+- :fontawesome-regular-circle: make concept for integration with existing [MAVA tools](tools.md)
 
 
 ### Open Questions
