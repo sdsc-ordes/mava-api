@@ -1,2 +1,0 @@
-@prefix mava: <http://example.org/mava/ontology#> .
-mava:Corpus2 a mava:Corpus .

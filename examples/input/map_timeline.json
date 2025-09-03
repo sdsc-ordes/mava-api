@@ -1,0 +1,9 @@
+{
+  "series_type": "Transcription",
+  "value_description": "transcript",
+  "value_type": "string",
+  "value_prefix": "Transcript:: ",
+  "time_column": "start_in_seconds",
+  "value_column": "annotations",
+  "duration_column": "duration_in_seconds"
+}
