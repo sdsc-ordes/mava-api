@@ -6,7 +6,7 @@ The API can be used to gradually combine metadata on videos to build an in memor
 graph TD
     subgraph "Data Import / Building the Graph"
         A[<b>POST /graph/add</b><br/><i>Client sends raw RDF data</i>] --> C{In-Memory Graph};
-        B[<b>POST /graph/import_csv</b><br/><i>Client uploads a CSV file</i>] --> C{In-Memory Graph};
+        B[<b>POST /graph/import_tsv</b><br/><i>Client uploads a TSV file</i>] --> C{In-Memory Graph};
     end
 
     subgraph "Data Export & Management"
@@ -22,7 +22,7 @@ graph TD
 The Graph can import arbitrary turtle files, to complement the graph for a video corpus with any metadata that is of value.
 
 - `POST graph/import`: for adding custom turtle metadata to the graph.
-- `POST graph/import_csv`: for adding timeline and timeseries data to the graph (see for example [TIB-AV-A](tools.md#tib-av-a))
+- `POST graph/import_tsv`: for adding videoanalysis data to the graph (see for example [TIB-AV-A](tools.md#tib-av-a))
 
 ## Export
 

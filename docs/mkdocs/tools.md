@@ -4,7 +4,7 @@ MAVA tools so far:
 
 - [TIB-AV-A](#tib-av-a)
 - [VIAN](#vian)
-- [videoscope](#videscope)
+- [videoscope](#videoscope)
 
 ## TIB-AV A
 
@@ -207,7 +207,7 @@ Metadata
 
     Does videoscope plan to offer MAVA exports?
 
-## VIAN Light
+## VIAN
 
 | Category | Link or Value |
 | ----------- | ------------------------------------ |
