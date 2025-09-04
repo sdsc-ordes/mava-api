@@ -35,3 +35,5 @@ The graph can be exported as any time. You can always take a look on the current
 The Graph will not be stored longterm, but only live during a MAVA session:
 
 - `DELETE graph/clear`: there is an api route to clear the graph
+
+<script src="https://hypothes.is/embed.js" async></script>

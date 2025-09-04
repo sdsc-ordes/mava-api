@@ -51,3 +51,5 @@ graph TD
 [MAVA-API](api.md){ .md-button }
 [MAVA-Tools](tools.md){ .md-button }
 [MAVA-Roadmap](roadmap.md){ .md-button }
+
+<script src="https://hypothes.is/embed.js" async></script>

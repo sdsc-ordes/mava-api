@@ -399,3 +399,5 @@ Metadata overview
 ???+ question
 
     Status and current data of VIAN Light? What are VIANs plans for MAVA?
+
+<script src="https://hypothes.is/embed.js" async></script>
