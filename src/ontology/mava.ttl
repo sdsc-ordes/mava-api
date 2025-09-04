@@ -3,6 +3,7 @@
 @prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix mava: <http://example.org/mava/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
@@ -37,32 +38,23 @@ mava:Video a owl:Class ;
     rdfs:comment "A media resource consisting of a sequence of images creating the illusion of movement." ;
     rdfs:subClassOf dcterms:MovingImage .
 
-# --- Span-Based Annotation Classes ---
+mava:AnnotationSeries a owl:Class ;
+    rdfs:label "Annotation Series" ;
+    rdfs:comment "A series of annotations for a video that align to intervals on its timeline." .
 
-mava:Timeline a owl:Class ;
-    rdfs:label "Timeline" ;
-    rdfs:comment "A temporal representation of a video, containing segments." .
+mava:AnnotationSegment a owl:Class ;
+    rdfs:label "Annotation Segment" ;
+    rdfs:comment "A defined portion of a timeline marked by a specific start and end time with an annotation that relates to that segment of the video." .
 
-mava:Segment a owl:Class ;
-    rdfs:label "Segment" ;
-    rdfs:comment "A defined portion of a timeline marked by a specific start and end time." .
+mava:ObservationSeries a owl:Class ;
+    rdfs:label "Observation Series" ;
+    rdfs:comment "A collection of observations at time points in a video." .
 
-mava:Annotation a owl:Class ;
-    rdfs:label "Annotation" ;
-    rdfs:comment "A descriptive piece of metadata (e.g., a textual transcription) linked to a specific segment." .
+mava:ObservationPoint a owl:Class ;
+    rdfs:label "Observation Point" ;
+    rdfs:comment "A single quantitative value recorded at a specific point on the timeline of a video." .
 
-# --- Time-Series Data Classes ---
-
-mava:DataSeries a owl:Class ;
-    rdfs:label "Data Series" ;
-    rdfs:comment "A collection of time-stamped data points, typically from an automated analysis." .
-
-mava:DataPoint a owl:Class ;
-    rdfs:label "Data Point" ;
-    rdfs:comment "A single quantitative value recorded at a specific point in time." .
-
-
-# --- Properties to Link Everything ---
+# --- Properties to Link Videos ---
 
 # Corpus and Video
 mava:hasMember a owl:ObjectProperty ;
@@ -70,61 +62,66 @@ mava:hasMember a owl:ObjectProperty ;
     rdfs:domain mava:VideoCorpus ;
     rdfs:range mava:Video .
 
-# Video and Span-Based Annotations
-mava:hasTimeline a owl:ObjectProperty ;
-    rdfs:label "has timeline" ;
+mava:hasAnalysis a owl:ObjectProperty ;
+    rdfs:label "has analysis" ;
+    rdfs:comment "Relates a video to its analysis series." ;
     rdfs:domain mava:Video ;
-    rdfs:range mava:Timeline .
+    rdfs:range mava:ObservationSeries, mava:AnnotationSeries .
 
-mava:hasSegment a owl:ObjectProperty ;
-    rdfs:label "has segment" ;
-    rdfs:domain mava:Timeline ;
-    rdfs:range mava:Segment .
+# --- Properties to Link Videos Analysis ---
 
-mava:hasAnnotation a owl:ObjectProperty ;
-    rdfs:label "has annotation" ;
-    rdfs:domain mava:Segment ;
-    rdfs:range mava:Annotation .
+mava:seriesDescription a owl:DatatypeProperty ;
+    rdfs:label "series description" ;
+    rdfs:domain mava:AnnotationSeries, mava:ObservationSeries ;
+    rdfs:range xsd:string .
+
+mava:valueDescription a owl:DatatypeProperty ;
+    rdfs:label "value description" ;
+    rdfs:domain mava:AnnotationSeries, mava:ObservationSeries ;
+    rdfs:range xsd:string .
+
+mava:belongsToAnnotationSeries a owl:ObjectProperty ;
+    rdfs:label "belongs to annotation series" ;
+    rdfs:comment "Relates a data point back to the data series it is a member of." ;
+    rdfs:domain mava:AnnotationSegment ;
+    rdfs:range mava:AnnotationSeries .
+
+mava:belongsToObservationSeries a owl:ObjectProperty ;
+    rdfs:label "belongs to observation series" ;
+    rdfs:comment "Relates a time interval back to the data series it is a member of." ;
+    rdfs:domain mava:ObservationPoint ;
+    rdfs:range mava:ObservationSeries .
+
+# --- Properties to Link Videos Analysis Times ---
+
+mava:atTime a owl:DatatypeProperty ;
+    rdfs:label "at time" ;
+    rdfs:domain mava:ObservationPoint;
+    rdfs:range xsd:decimal .
 
 mava:startTime a owl:DatatypeProperty ;
     rdfs:label "start time" ;
-    rdfs:domain mava:Segment ;
+    rdfs:domain mava:AnnotationSegment ;
     rdfs:range xsd:decimal .
 
 mava:endTime a owl:DatatypeProperty ;
     rdfs:label "end time" ;
-    rdfs:domain mava:Segment ;
+    rdfs:domain mava:AnnotationSegment ;
     rdfs:range xsd:decimal .
 
-mava:hasTextValue a owl:DatatypeProperty ;
-    rdfs:label "has text value" ;
-    rdfs:domain mava:Annotation ;
-    rdfs:range xsd:string .
-
-
-# Video and Time-Series Data
-mava:describesResource a owl:ObjectProperty ;
-    rdfs:label "describes resource" ;
-    rdfs:domain mava:DataSeries ;
-    rdfs:range mava:Video .
-
-mava:belongsToSeries a owl:ObjectProperty ;
-    rdfs:label "belongs to series" ;
-    rdfs:comment "Relates a data point back to the data series it is a member of." ;
-    rdfs:domain mava:DataPoint ;
-    rdfs:range mava:DataSeries .
-
-mava:seriesType a owl:DatatypeProperty ;
-    rdfs:label "series type" ;
-    rdfs:domain mava:DataSeries ;
-    rdfs:range xsd:string .
-
-mava:atTime a owl:DatatypeProperty ;
-    rdfs:label "at time" ;
-    rdfs:domain mava:DataPoint ;
-    rdfs:range xsd:decimal .
+# --- Properties to Link Videos Analysis Values ---
 
 mava:numericValue a owl:DatatypeProperty ;
     rdfs:label "numeric value" ;
-    rdfs:domain mava:DataPoint ;
+    rdfs:domain mava:ObservationPoint ;
     rdfs:range xsd:decimal .
+
+mava:listValue a owl:DatatypeProperty ;
+    rdfs:label "list value" ;
+    rdfs:domain mava:ObservationPoint, mava:AnnotationSegment ;
+    rdfs:range rdf:List .
+
+mava:stringValue a owl:DatatypeProperty ;
+    rdfs:label "string value" ;
+    rdfs:domain mava:ObservationPoint, mava:AnnotationSegment ;
+    rdfs:range xsd:string .

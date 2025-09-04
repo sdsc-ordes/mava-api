@@ -1,0 +1,7 @@
+{
+  "series_description": "Cityview",
+  "value_description": "probability for Cityview",
+  "value_type": "numeric",
+  "time_column": "start_in_seconds",
+  "value_column": "annotations"
+}

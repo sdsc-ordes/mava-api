@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Body, Response, HTTPException, UploadFile, File
+from fastapi import APIRouter, Body, Response, HTTPException, UploadFile, File, Form
 from mava.graph.builder import builder
+import json
 
 # Create an APIRouter instance
 router = APIRouter()
@@ -27,6 +28,33 @@ async def import_csv(file: UploadFile = File(...)):
         return {"message": f"Successfully imported data from {file.filename}", "new_graph_size": builder.get_size()}
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Failed to process CSV file: {e}")
+
+@router.post("/graph/import_tsv", summary="Import data from a TSV file")
+async def import_tsv(
+    file: UploadFile = File(...),
+    mapping_json: str = Form(...)
+):
+    """
+    Accepts a tabular file upload (TSV), transforms it to RDF
+    using a JSON mapping, and adds it to the graph.
+    """
+    try:
+        # The 'format' query parameter is no longer needed
+        mapping = json.loads(mapping_json)
+        contents = await file.read()
+
+        # Update this function call to remove the delimiter
+        builder.add_tsv_data(
+            data_contents=contents.decode("utf-8"),
+            filename=file.filename,
+            mapping=mapping
+        )
+        return {
+            "message": f"Successfully imported data from {file.filename}",
+            "new_graph_size": builder.get_size()
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Failed to process file: {e}")
 
 @router.get("/graph/export", summary="Export the entire graph")
 def export_graph(format: str = "turtle"):

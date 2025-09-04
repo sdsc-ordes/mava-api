@@ -61,8 +61,8 @@ nav:
   - 'Home': 'index.md'
   - 'Ontology': 'ontology.md'
   - 'API':
-      - 'Usage': 'usage.md'
-      - 'Reference': 'api.md'
-      - 'Download': 'api/openapi.yaml'
+      - 'Openapi': 'api.md'
+      - 'Concepts': 'concepts.md'
+      - 'API Usage': 'usage.md'
   - 'MAVA Tools': 'tools.md'
   - 'Roadmap': 'roadmap.md'

@@ -1,0 +1,7 @@
+start_hh:mm:ss.ms	start_in_seconds	duration_hh:mm:ss.ms	duration_in_seconds	annotations
+00:00:00.0	0.0	00:00:08.0	8.0	['Transcript:: Here is the first German television with the daily news.']
+00:00:15.0	15.0	00:00:03.0	3.0	['Transcript:: Today in the studio, Susanne Daubner.']
+00:00:18.0	18.0	00:00:04.0	4.0	['Transcript:: Good evening ladies and gentlemen, I welcome you to the daily news.']
+00:00:22.0	22.0	00:00:03.0	3.0	['Transcript:: On the sixth day of the invasion in Ukraine,']
+00:00:25.0	25.0	00:00:03.0	3.0	['Transcript:: the Russian troops have strengthened their attacks']
+00:00:28.0	28.0	00:00:03.0	3.0	['Transcript:: and also aimed at civilian targets.']

@@ -6,7 +6,7 @@
 
 - :fontawesome-regular-circle-check: simple ontology with dataseries and timelines
 - :fontawesome-regular-circle-check: simple api that allows to upload turtle files into a combined graph
-- :fontawesome-regular-circle-check: support uploading of csv files
+- :fontawesome-regular-circle-check: support uploading of tsv files
 - :fontawesome-regular-circle-check: provide test for api
 - :fontawesome-regular-circle-check: document mava app, [api](api.md) and [ontology](ontology.md)
 
@@ -25,7 +25,7 @@
 
 ### Integration
 
-- :fontawesome-regular-circle: make concept for intrgration with existing [MAVA tools](tools.md)
+- :fontawesome-regular-circle: make concept for integration with existing [MAVA tools](tools.md)
 
 
 ### Open Questions
