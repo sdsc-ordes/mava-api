@@ -18,7 +18,7 @@ paths:
               schema: {}
   /graph/add:
     post:
-      summary: Add RDF data to the graph
+      summary: Add Turtle data to the graph
       description: Parses and adds new triples to the in-memory graph.
       operationId: add_to_graph_graph_add_post
       requestBody:
@@ -40,33 +40,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
-  /graph/import_csv:
-    post:
-      summary: Import data from a CSV file
-      description: Accepts a CSV file upload, transforms it, and adds it to the graph.
-      operationId: import_csv_graph_import_csv_post
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Body_import_csv_graph_import_csv_post'
-        required: true
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema: {}
-        '422':
-          description: Validation Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
   /graph/import_tsv:
     post:
       summary: Import data from a TSV file
-      description: 'Accepts a tabular file upload (TSV), transforms it to RDF
+      description: 'Accepts a tsv file upload (TSV), transforms it to RDF
 
         using a JSON mapping, and adds it to the graph.'
       operationId: import_tsv_graph_import_tsv_post
@@ -126,16 +103,6 @@ paths:
               schema: {}
 components:
   schemas:
-    Body_import_csv_graph_import_csv_post:
-      properties:
-        file:
-          type: string
-          format: binary
-          title: File
-      type: object
-      required:
-      - file
-      title: Body_import_csv_graph_import_csv_post
     Body_import_tsv_graph_import_tsv_post:
       properties:
         file:
