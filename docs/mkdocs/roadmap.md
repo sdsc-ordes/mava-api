@@ -34,3 +34,5 @@
 
     - Requirements for imports and exports to and from MAVA
     - Integration with MAVA tools
+
+<script src="https://hypothes.is/embed.js" async></script>

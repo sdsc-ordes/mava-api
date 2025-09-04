@@ -96,3 +96,5 @@ graph LR
 
 - atTime: 1.75s
 - numericValue: 0.883
+
+<script src="https://hypothes.is/embed.js" async></script>

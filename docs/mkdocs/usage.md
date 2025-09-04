@@ -268,3 +268,4 @@ curl -sS -X DELETE http://localhost:8000/graph/clear | jq
   "message": "Graph cleared successfully"
 }
 ```
+<script src="https://hypothes.is/embed.js" async></script>
