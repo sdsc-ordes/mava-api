@@ -78,7 +78,10 @@ curl -sS -X POST http://localhost:8000/graph/add -H "Content-Type: text/turtle" 
 
 For TSV imports you neede to provide a json mapping so that the columns in the tsv file can be mapped to the ontology:
 
-observations.tsv
+<details>
+
+<summary>observations.tsv</summary>
+
 ```
 start_in_seconds	start_hh:mm:ss.ms	annotations
 0.0	00:00:00.0	0.11306
@@ -88,7 +91,12 @@ start_in_seconds	start_hh:mm:ss.ms	annotations
 2.0	00:00:02.0	0.18213
 ```
 
-map_observations.json
+</details>
+
+<details>
+
+<summary>map_observations.json</summary>
+
 ```
 {
   "series_description": "Cityview",
@@ -98,6 +106,7 @@ map_observations.json
   "value_column": "annotations"
 }
 ```
+</details>
 
 ```
 ╰─❯ just import-observations
@@ -111,7 +120,10 @@ curl -sS -X POST "http://localhost:8000/graph/import_tsv?" -F "file=@examples/in
 
 Annotations have also columns for duration of the annotation interval:
 
-annotations.tsv
+<details>
+
+<summary>annotations.tsv</summary>
+
 ```
 start_hh:mm:ss.ms	start_in_seconds	duration_hh:mm:ss.ms	duration_in_seconds	annotations
 00:00:00.0	0.0	00:00:08.0	8.0	['Transcript:: Here is the first German television with the daily news.']
@@ -122,7 +134,12 @@ start_hh:mm:ss.ms	start_in_seconds	duration_hh:mm:ss.ms	duration_in_seconds	anno
 00:00:28.0	28.0	00:00:03.0	3.0	['Transcript:: and also aimed at civilian targets.']
 ```
 
-map_annotations.json
+</details>
+
+<details>
+
+<summary>map_annotations.json</summary>
+
 ```
 {
   "series_description": "Transcription",
@@ -134,6 +151,8 @@ map_annotations.json
   "duration_column": "duration_in_seconds"
 }
 ```
+
+</details>
 
 ```
 ╰─❯ just import-annotations
