@@ -5,11 +5,19 @@ title: "mava-api"
 authors:
   - family-names: Milosavljevic
     given-names: Stefan
-    orcid: "..."
+    orcid: "https://orcid.org/0000-0002-9135-1353"
     affiliation: "SDSC - Swiss Data Science Center"
   - family-names: Maennel
     given-names: Sabine
     orcid: "..."
+    affiliation: "SDSC - Swiss Data Science Center"
+  - family-names: Franken
+    given-names: Robin Maurits
+    orcid: "https://orcid.org/0009-0008-0143-9118"
+    affiliation: "SDSC - Swiss Data Science Center"
+  - family-names: Riba Grognuz
+    given-names: Oksana
+    orcid: "https://orcid.org/0000-0002-2961-2655"
     affiliation: "SDSC - Swiss Data Science Center"
 date-released: 2025-53-05
 version: "0.0.1"
