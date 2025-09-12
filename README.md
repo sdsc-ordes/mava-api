@@ -54,13 +54,15 @@ For technical documentation on setup and development, see the
 
 ## Acknowledgement
 
-Acknowledge all contributors and external collaborators here.
+This work was funded by the Swiss Data Science Center (SDSC) through its 
+National Call for Projects as an Infrastructure project. We gratefully 
+acknowledge the contributions of all project members and external collaborators.
 
 ## Copyright
 
 Copyright © 2025-2028 Swiss Data Science Center (SDSC),
-[www.datascience.ch](http://www.datascience.ch/). All rights reserved. The SDSC
-is jointly established and legally represented by the École Polytechnique
-Fédérale de Lausanne (EPFL) and the Eidgenössische Technische Hochschule Zürich
-(ETH Zürich). This copyright encompasses all materials, software, documentation,
-and other content created and developed by the SDSC.
+[www.datascience.ch](http://www.datascience.ch/). All rights reserved. 
+The SDSC is a Swiss National Research Infrastructure, jointly established and legally represented 
+by the École Polytechnique Fédérale de Lausanne (EPFL) and the Eidgenössische Technische Hochschule 
+Zürich (ETH Zürich) as a société simple. This copyright encompasses all materials, software, 
+documentation, and other content created and developed by the SDSC.
