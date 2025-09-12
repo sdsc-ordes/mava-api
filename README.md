@@ -12,11 +12,6 @@
 [![Pipeline Status](https://img.shields.io/github/actions/workflow/status/sdsc-ordes/mava-api/normal.yaml?label=ci)](https://github.com/sdsc-ordes/mava-api/actions/workflows/normal.yaml)
 [![License label](https://img.shields.io/badge/License-Apache2.0-blue.svg?)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-**Authors:**
-
-- [Stefan Milosavljevic](mailto:stefan.milosavljevic@sdsc.ethz.ch)
-- [Sabine Maennel](mailto:sabine.maennel@sdsc.ethz.ch)
-
 ## Installation
 
 ### Prerequisites
@@ -61,7 +56,7 @@ acknowledge the contributions of all project members and external collaborators.
 ## Copyright
 
 Copyright © 2025-2028 Swiss Data Science Center (SDSC),
-[www.datascience.ch](http://www.datascience.ch/). All rights reserved. 
+[www.datascience.ch](http://www.datascience.ch/), [ror.org/02hdt9m26](https://ror.org/02hdt9m26). All rights reserved. 
 The SDSC is a Swiss National Research Infrastructure, jointly established and legally represented 
 by the École Polytechnique Fédérale de Lausanne (EPFL) and the Eidgenössische Technische Hochschule 
 Zürich (ETH Zürich) as a société simple. This copyright encompasses all materials, software, 
