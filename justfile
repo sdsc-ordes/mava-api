@@ -16,13 +16,13 @@ run:
     uv run uvicorn src.mava.main:app --reload "$@"
 
 # --- just commands to use the api ---
-import 'just/ci.just'
+import './tools/just/ci.just'
 
 # --- just commands to use the api ---
-import 'just/test.just'
+import './tools/just/test.just'
 
 # --- just commands to use the api ---
-import 'just/api.just'
+import './tools/just/api.just'
 
 # --- just commands to build and serve documentation ---
-import 'just/docs.just'
+import './tools/just/docs.just'
