@@ -6,6 +6,11 @@ output_dir := root_dir / ".output"
 build_dir := output_dir / "build"
 
 mod nix "./tools/just/nix.just"
+mod api './tools/just/api.just'
+
+# Default target if you do not specify a target.
+default:
+    just --list
 
 # Build the project.
 build *args:
@@ -20,9 +25,6 @@ import './tools/just/ci.just'
 
 # --- just commands to use the api ---
 import './tools/just/test.just'
-
-# --- just commands to use the api ---
-import './tools/just/api.just'
 
 # --- just commands to build and serve documentation ---
 import './tools/just/docs.just'
