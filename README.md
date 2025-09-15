@@ -47,16 +47,41 @@ Read first the [Contribution Guidelines](/CONTRIBUTING.md).
 For technical documentation on setup and development, see the
 [Development Guide](docs/development-guide.md)
 
-## Acknowledgement
+## Acknowledgements
 
-This work was funded by the Swiss Data Science Center (SDSC) through its 
-National Call for Projects as an Infrastructure project. We gratefully 
-acknowledge the contributions of all project members and external collaborators.
+This work was funded by the Swiss Data Science Center (SDSC) through its
+National Call for Projects as an Infrastructure project.  
+
+We gratefully acknowledge the contributions of the SDSC experts and our partners.
+
+**SDSC Experts**:
+- Dr. Stefan Milosavljevic, ORCID ID [0000-0002-9135-1353](https://orcid.org/0000-0002-9135-1353)
+- Sabine Maennel
+- Robin Franken, ORCID ID [0009-0008-0143-9118](https://orcid.org/0009-0008-0143-9118)
+- Dr. Oksana Riba Grognuz, ORCID ID [0000-0002-2961-2655](https://orcid.org/0000-0002-2961-2655)
+
+**Partner Institutions**
+- Dr. Teodora Vuković, ORCID ID [0000-0002-5780-5665](https://orcid.org/0000-0002-5780-5665)
+- Dr. Jeremy Zehr, ORCID ID [0000-0002-6046-8647](https://orcid.org/0000-0002-6046-8647)
+- Prof. Dr. Josephine Diecke, ORCID ID [0000-0002-9342-0631](https://orcid.org/0000-0002-9342-0631)
+- Dr. Simon Spiegel, ORCID ID [0000-0003-2141-5566](https://orcid.org/0000-0003-2141-5566)
+- Prof. Dr. Ralph Ewerth, ORCID ID [0000-0003-0918-6297](https://orcid.org/0000-0003-0918-6297)
+- Dr. Eric Müller-Budack, ORCID ID [0000-0002-6802-1241](https://orcid.org/0000-0002-6802-1241)
+- Dr. Cristina Grisot, ORCID ID [0000-0003-0684-4442](https://orcid.org/0000-0003-0684-4442)
+
+## How to Cite
+
+If you use this software, please cite it as follows:  
+
+👉 See the [CITATION.cff](./CITATION.cff) file for the full list of software authors and citation formats.  
+  
+When referring to the project more broadly (including partner contributions), please acknowledge the funding statement and collaborators listed in the [Acknowledgements](#acknowledgements) section:
+> "This work was funded by the Swiss Data Science Center (SDSC) through its National Call for Projects as an Infrastructure project."
 
 ## Copyright
 
-Copyright © 2025-2028 Swiss Data Science Center (SDSC),
-[www.datascience.ch](http://www.datascience.ch/), [ror.org/02hdt9m26](https://ror.org/02hdt9m26). All rights reserved. 
+Copyright © 2025-2026 Swiss Data Science Center (SDSC),[www.datascience.ch](http://www.datascience.ch/), 
+ROR: [ror.org/02hdt9m26](https://ror.org/02hdt9m26). All rights reserved. 
 The SDSC is a Swiss National Research Infrastructure, jointly established and legally represented 
 by the École Polytechnique Fédérale de Lausanne (EPFL) and the Eidgenössische Technische Hochschule 
 Zürich (ETH Zürich) as a société simple. This copyright encompasses all materials, software, 
