@@ -14,8 +14,8 @@ Make sure the API is running: see [Installation innstructions](install.md)
 
 Check the API status and current graph size.
 
-```hl_lines="3"
-╰─❯ just status
+```hl_lines="1 3" title="Check API status"
+╰─❯ just api status
 >> Checking API status...
 curl -sS http://localhost:8000 | jq
 {
@@ -30,8 +30,9 @@ These imports have default files from the `examples` directory. You can also add
 
 **Turtle**
 
-```
-╰─❯ just import
+```hl_lines="1 3" title="Import any Turtle file"
+╰─❯ just api import
+>> Importing data from 'examples/input/corpus.ttl'...
 curl -sS -X POST http://localhost:8000/graph/add -H "Content-Type: text/turtle" -d @examples/input/corpus.ttl | jq
 {
   "message": "Data added successfully",
@@ -73,7 +74,7 @@ start_in_seconds	start_hh:mm:ss.ms	annotations
 ```
 </details>
 
-```
+```hl_lines="3" title="Import a TSV file with observation (probabilities at time points)"
 ╰─❯ just import-observations
 >> Importing tabular data from 'examples/input/observations.tsv' with mapping 'examples/input/map_observations.json'...
 curl -sS -X POST "http://localhost:8000/graph/import_tsv?" -F "file=@examples/input/observations.tsv" -F "mapping_json=$(< examples/input/map_observations.json)" | jq
@@ -119,8 +120,8 @@ start_hh:mm:ss.ms	start_in_seconds	duration_hh:mm:ss.ms	duration_in_seconds	anno
 
 </details>
 
-```
-╰─❯ just import-annotations
+```hl_lines="1 3" title="Import a TSV file with annotations (with duration)"
+╰─❯ just api import-annotations
 >> Importing tabular data from 'examples/input/annotations.tsv' with mapping 'examples/input/map_annotations.json'...
 curl -sS -X POST "http://localhost:8000/graph/import_tsv?" -F "file=@examples/input/annotations.tsv" -F "mapping_json=$(< examples/input/map_annotations.json)" | jq
 {
@@ -131,8 +132,8 @@ curl -sS -X POST "http://localhost:8000/graph/import_tsv?" -F "file=@examples/in
 
 ## View
 
-```
-╰─❯ just view
+```hl_lines="1 3" title="View the graph after several imports"
+╰─❯ just api view
 >> Viewing graph...
 curl -sS http://localhost:8000/graph/export
 @prefix ex: <http://example.org/data/> .
@@ -214,8 +215,8 @@ ex:af2bf119-4c06-4bab-ab27-4b99f0aacfe8 a mava:AnnotationSeries ;
 
 Export the current graph to a Turtle file.
 
-```
-╰─❯ just export
+```hl_lines="1 3" title="Export the graph when finished"
+╰─❯ just api export
 >> Exporting graph to 'examples/output/export.ttl'...
 curl -sS -o examples/output/export.ttl http://localhost:8000/graph/export
 Done.
@@ -225,8 +226,8 @@ Done.
 
 Clear the current graph to start from scratch.
 
-```
-╰─❯ just clear
+```hl_lines="1 3" title="Clear the graph after export"
+╰─❯ just api clear
 >> Clearing graph...
 curl -sS -X DELETE http://localhost:8000/graph/clear | jq
 {
