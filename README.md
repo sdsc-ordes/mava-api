@@ -12,6 +12,20 @@
 [![Pipeline Status](https://img.shields.io/github/actions/workflow/status/sdsc-ordes/mava-api/normal.yaml?label=ci)](https://github.com/sdsc-ordes/mava-api/actions/workflows/normal.yaml)
 [![License label](https://img.shields.io/badge/License-Apache2.0-blue.svg?)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
+## Project Context
+
+This work is part of the **MAVA Project**, which aims to improve 
+interoperability and data exchange among three research tools – *VideoScope*, 
+*TIB-AV-A*, and *VIAN*.  
+
+By standardizing data formats and developing shared APIs, the project enhances 
+data sharing and analysis capabilities across linguistic, media studies, and 
+audiovisual research.  
+
+This infrastructure will, for the first time, enable shared research workflows 
+and ensure adherence to *FAIR principles*, improving the accessibility and 
+reusability of research data.
+
 ## Installation
 
 ### Prerequisites
