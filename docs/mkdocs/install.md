@@ -22,5 +22,19 @@ just build
 just run
 ```
 
-### Install the docs
+### Serve
 
+- `just run`
+
+```
+╰─❯ just run
+uv run uvicorn src.mava.main:app --reload "$@"
+INFO:     Will watch for changes in these directories: ['/Users/smaennel/WORK/MAVA/mava-api']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [50168] using WatchFiles
+INFO:     Started server process [50170]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+```
+
+The server should now be running at `http://127.0.0.1:8000`.
