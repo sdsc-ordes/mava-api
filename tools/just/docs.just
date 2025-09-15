@@ -2,6 +2,10 @@
 
 docs_build_dir := "site"
 
+# Lists all available 'docs' subcommands when 'just docs' is run
+default:
+    @just --list docs
+
 # Meta-command to build the entire documentation site from scratch
 [no-cd]
 build: clean-site build-pylode build-openapi build-mkdocs build-root
@@ -20,9 +24,9 @@ build-mkdocs:
 [no-cd]
 build-pylode:
     @echo ">> Building ontology documentation..."
-    @mkdir -p site/ontology
-    @pylode src/ontology/mava.ttl -o site/ontology/index.html
-    @echo ">> Ontology documentation available at docs/ontology/index.html"
+    @mkdir -p {{docs_build_dir}}/ontology
+    @pylode src/ontology/mava.ttl -o {{docs_build_dir}}/ontology/index.html
+    @echo ">> Ontology documentation available at {{docs_build_dir}}/ontology/index.html"
 
 # Generates the OpenAPI spec without running the server
 [no-cd]

@@ -8,6 +8,10 @@ default_annotations_tsv_file := "examples/input/annotations.tsv"
 default_map_annotations := "examples/input/map_annotations.json"
 default_map_observations := "examples/input/map_observations.json"
 
+# Default target if you do not specify a target.
+default:
+    @just --list api
+
 # Checks the status of the API and the current graph size
 status:
     @echo ">> Checking API status..."
