@@ -64,6 +64,7 @@ nav:
   - 'API':
       - 'Openapi': 'api.md'
       - 'Concepts': 'concepts.md'
-      - 'API Usage': 'usage.md'
+      - 'Usage': 'usage.md'
+  - 'Install': 'install.md'
   - 'MAVA Tools': 'tools.md'
   - 'Roadmap': 'roadmap.md'

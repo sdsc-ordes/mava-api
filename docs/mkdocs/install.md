@@ -1,13 +1,13 @@
-## Install
+# Install
 
-### Prerequisites
+## Prerequisites
 
 - Install just: https://github.com/casey/just: just is a command runner
 - Install Nix: https://docs.determinate.systems/: Nix is a tool for package management that uses declarative language to provide reproducible systems
 - Install Direnv: https://direnv.net/docs/installation.html: direnv is an open source environment management tool that allows setting unique environment variables per directory in your file system
 
 
-### Installation
+## Installation
 
 First, clone the repository to your local machine:
 
@@ -22,7 +22,7 @@ just build
 just run
 ```
 
-### Serve
+## Serve
 
 - `just run`
 
@@ -38,3 +38,6 @@ INFO:     Application startup complete.
 ```
 
 The server should now be running at `http://127.0.0.1:8000`.
+
+## Docs
+

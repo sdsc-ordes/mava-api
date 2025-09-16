@@ -10,6 +10,22 @@ Make sure the API is running: see [Installation innstructions](install.md)
 
     For your convenience there are just command that show you how to call the api with curl. You will get the curl command that was executed printed out before the output. You can directly copy, customize and use the curl command with your own files.
 
+### List implemented api just commands
+
+```title="List API commands"
+╰─❯ just api
+>> List api commands...
+Available recipes:
+    clear                               # Clears the entire graph on the server
+    default                             # Lists api commands
+    export filename=default_export_file # Exports the entire graph to a file (defaults to export.ttl)
+    import filename=default_import_file # Imports data from a Turtle file
+    import-annotations file=default_annotations_tsv_file mapping=default_map_annotations # Imports Annotation Series using a specified mapping
+    import-observations file=default_observations_tsv_file mapping=default_map_observations # Imports Observation Series using a specified mapping
+    status                              # Checks the status of the API and the current graph size
+    view                                # Views graph directly in the terminal
+```
+
 ### Check
 
 Check the API status and current graph size.
