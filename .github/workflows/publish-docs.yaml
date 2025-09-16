@@ -35,7 +35,7 @@ jobs:
           cachix_auth_token: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Build Complete Documentation Site
-        run: just ci just docs-build-site
+        run: just ci just docs build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
