@@ -8,8 +8,9 @@ default_annotations_tsv_file := "examples/input/annotations.tsv"
 default_map_annotations := "examples/input/map_annotations.json"
 default_map_observations := "examples/input/map_observations.json"
 
-# Default target if you do not specify a target.
+# Lists api commands
 default:
+    @echo ">> List api commands..."
     @just --list api
 
 # Checks the status of the API and the current graph size
@@ -17,7 +18,7 @@ status:
     @echo ">> Checking API status..."
     curl -sS {{api_base_url}} | jq
 
-# Imports data from a specified Turtle file (defaults to data.ttl)
+# Imports data from a Turtle file
 [no-cd]
 import filename=default_import_file:
     @echo ">> Importing data from '{{filename}}'..."
@@ -53,7 +54,6 @@ view:
     @echo ">> Viewing graph..."
     curl -sS {{api_base_url}}/graph/export
 
-# Delete Graph
 # Clears the entire graph on the server
 clear:
     @echo ">> Clearing graph..."

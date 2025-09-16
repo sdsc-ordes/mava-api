@@ -21,8 +21,5 @@ build *args:
 run:
     uv run uvicorn src.mava.main:app --reload "$@"
 
-# --- just commands to use the api ---
+# ci tasks
 import './tools/just/ci.just'
-
-# --- just commands to use the api ---
-import './tools/just/test.just'

@@ -4,6 +4,7 @@ docs_build_dir := "site"
 
 # Lists all available 'docs' subcommands when 'just docs' is run
 default:
+    @echo ">>List just commands for docs"
     @just --list docs
 
 # Meta-command to build the entire documentation site from scratch
