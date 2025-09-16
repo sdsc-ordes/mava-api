@@ -1,9 +1,5 @@
 # ci commands
 
-# Default target if you do not specify a target.
-default:
-    just --list --unsorted
-
 # Enter the default Nix development shell and execute the command `"$@`.
 develop *args:
     just nix::develop "default" "$@"
@@ -24,3 +20,9 @@ ci *args:
 # Lint the project.
 lint *args:
     echo "TODO: Not implemented"
+
+# Run tests
+test *args:
+    @echo ">> Running tests...."
+    # Set the PYTHONPATH to include the 'src' directory before running pytest
+    PYTHONPATH=src pytest "$@"
