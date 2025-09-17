@@ -6,6 +6,12 @@ output_dir := root_dir / ".output"
 build_dir := output_dir / "build"
 
 mod nix "./tools/just/nix.just"
+mod api './tools/just/api.just'
+mod docs './tools/just/docs.just'
+
+# Default target if you do not specify a target.
+default:
+    just --list
 
 # Build the project.
 build *args:
@@ -15,14 +21,5 @@ build *args:
 run:
     uv run uvicorn src.mava.main:app --reload "$@"
 
-# --- just commands to use the api ---
-import 'just/ci.just'
-
-# --- just commands to use the api ---
-import 'just/test.just'
-
-# --- just commands to use the api ---
-import 'just/api.just'
-
-# --- just commands to build and serve documentation ---
-import 'just/docs.just'
+# ci tasks
+import './tools/just/ci.just'

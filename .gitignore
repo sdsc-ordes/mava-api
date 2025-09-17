@@ -32,7 +32,6 @@ __pycache*
 .typos.toml
 
 # Examples
-examples/tmp/
 examples/output/
 
 # MkDocs build output

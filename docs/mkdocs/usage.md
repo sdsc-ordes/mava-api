@@ -2,42 +2,7 @@
 
 Currently only a first PoC is implemented, see [Roadmap](roadmap.md) for current status.
 
-## Install
-
-### Prerequisites
-This repository relies on `nix` and `direnv`.
-
-### Installation
-
-First, clone the repository to your local machine:
-
-```sh
-git clone [https://github.com/sdsc-ordes/mava-api.git](https://github.com/sdsc-ordes/mava-api.git)
-
-All the following commands must be run from inside the project's root directory.
-
-```sh
-cd mava-api
-just build
-just run
-```
-
-### Serve
-
-- `just run`
-
-```
-╰─❯ just run
-uv run uvicorn src.mava.main:app --reload "$@"
-INFO:     Will watch for changes in these directories: ['/Users/smaennel/WORK/MAVA/mava-api']
-INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [50168] using WatchFiles
-INFO:     Started server process [50170]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-```
-
-The server should now be running at `http://127.0.0.1:8000`.
+Make sure the API is running: see [Installation innstructions](install.md)
 
 ### API usage
 
@@ -45,12 +10,28 @@ The server should now be running at `http://127.0.0.1:8000`.
 
     For your convenience there are just command that show you how to call the api with curl. You will get the curl command that was executed printed out before the output. You can directly copy, customize and use the curl command with your own files.
 
+### List implemented api just commands
+
+```title="List API commands"
+╰─❯ just api
+>> List api commands...
+Available recipes:
+    clear                               # Clears the entire graph on the server
+    default                             # Lists api commands
+    export filename=default_export_file # Exports the entire graph to a file (defaults to export.ttl)
+    import filename=default_import_file # Imports data from a Turtle file
+    import-annotations file=default_annotations_tsv_file mapping=default_map_annotations # Imports Annotation Series using a specified mapping
+    import-observations file=default_observations_tsv_file mapping=default_map_observations # Imports Observation Series using a specified mapping
+    status                              # Checks the status of the API and the current graph size
+    view                                # Views graph directly in the terminal
+```
+
 ### Check
 
 Check the API status and current graph size.
 
-```
-╰─❯ just status
+```hl_lines="1 3" title="Check API status"
+╰─❯ just api status
 >> Checking API status...
 curl -sS http://localhost:8000 | jq
 {
@@ -65,8 +46,9 @@ These imports have default files from the `examples` directory. You can also add
 
 **Turtle**
 
-```
-╰─❯ just import
+```hl_lines="1 3" title="Import any Turtle file"
+╰─❯ just api import
+>> Importing data from 'examples/input/corpus.ttl'...
 curl -sS -X POST http://localhost:8000/graph/add -H "Content-Type: text/turtle" -d @examples/input/corpus.ttl | jq
 {
   "message": "Data added successfully",
@@ -108,7 +90,7 @@ start_in_seconds	start_hh:mm:ss.ms	annotations
 ```
 </details>
 
-```
+```hl_lines="3" title="Import a TSV file with observation (probabilities at time points)"
 ╰─❯ just import-observations
 >> Importing tabular data from 'examples/input/observations.tsv' with mapping 'examples/input/map_observations.json'...
 curl -sS -X POST "http://localhost:8000/graph/import_tsv?" -F "file=@examples/input/observations.tsv" -F "mapping_json=$(< examples/input/map_observations.json)" | jq
@@ -154,8 +136,8 @@ start_hh:mm:ss.ms	start_in_seconds	duration_hh:mm:ss.ms	duration_in_seconds	anno
 
 </details>
 
-```
-╰─❯ just import-annotations
+```hl_lines="1 3" title="Import a TSV file with annotations (with duration)"
+╰─❯ just api import-annotations
 >> Importing tabular data from 'examples/input/annotations.tsv' with mapping 'examples/input/map_annotations.json'...
 curl -sS -X POST "http://localhost:8000/graph/import_tsv?" -F "file=@examples/input/annotations.tsv" -F "mapping_json=$(< examples/input/map_annotations.json)" | jq
 {
@@ -166,8 +148,8 @@ curl -sS -X POST "http://localhost:8000/graph/import_tsv?" -F "file=@examples/in
 
 ## View
 
-```
-╰─❯ just view
+```hl_lines="1 3" title="View the graph after several imports"
+╰─❯ just api view
 >> Viewing graph...
 curl -sS http://localhost:8000/graph/export
 @prefix ex: <http://example.org/data/> .
@@ -249,8 +231,8 @@ ex:af2bf119-4c06-4bab-ab27-4b99f0aacfe8 a mava:AnnotationSeries ;
 
 Export the current graph to a Turtle file.
 
-```
-╰─❯ just export
+```hl_lines="1 3" title="Export the graph when finished"
+╰─❯ just api export
 >> Exporting graph to 'examples/output/export.ttl'...
 curl -sS -o examples/output/export.ttl http://localhost:8000/graph/export
 Done.
@@ -260,8 +242,8 @@ Done.
 
 Clear the current graph to start from scratch.
 
-```
-╰─❯ just clear
+```hl_lines="1 3" title="Clear the graph after export"
+╰─❯ just api clear
 >> Clearing graph...
 curl -sS -X DELETE http://localhost:8000/graph/clear | jq
 {
