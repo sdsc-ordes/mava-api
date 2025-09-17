@@ -41,3 +41,29 @@ The server should now be running at `http://127.0.0.1:8000`.
 
 ## Docs
 
+Set up docs locally you have two steps:
+
+- build all docs with `just docs build`
+- serve mkdocs with `just docs serve`
+- then the documentation will be available at `http://127.0.0.1:8001/mava-api/docs/` or open `site/docs/index.html` with a browser of your choice
+
+
+```hl_lines="1 7 9" title="Build all docs"
+╰─❯ just docs build
+>> Cleaning old site directory...site
+>> Building ontology documentation...
+>> Ontology documentation available at site/ontology/index.html
+>> Generating OpenAPI specification...
+>> Building MkDocs site...
+>> Documentation site successfully built in 'site' directory.
+```
+
+```hl_lines="1 7" title="Serve mkdocs"
+╰─❯ just docs serve-mkdocs
+>> Serving documentation...
+uv run mkdocs serve -f docs/mkdocs.yml -a 127.0.0.1:8001
+INFO    -  Building documentation...
+INFO    -  Cleaning site directory
+INFO    -  [11:54:50] Watching paths for changes: 'docs/mkdocs', 'docs/mkdocs.yml'
+INFO    -  [11:54:50] Serving on http://127.0.0.1:8001/mava-api/docs/
+```

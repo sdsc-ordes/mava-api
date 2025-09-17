@@ -9,10 +9,8 @@ default:
 
 # Meta-command to build the entire documentation site from scratch
 [no-cd]
-build: clean-site build-pylode build-openapi build-mkdocs build-root
+build: clean-site build-pylode build-openapi build-mkdocs
     @echo ">> Documentation site successfully built in '{{docs_build_dir}}' directory."
-    @echo ">> You can now serve the documentation using the following command:"
-    @echo ">> uv run mkdocs serve -f docs/mkdocs.yml -a 127.0.0.1:8001"
 
 # Build the MkDocs site into the site/docs directory
 [no-cd]
@@ -35,18 +33,10 @@ build-openapi:
     @echo ">> Generating OpenAPI specification..."
     uv run python tools/scripts/generate-spec.py
 
-# Copies the root index file to the final site directory
-[no-cd]
-build-root:
-    @echo ">> Copying root index page..."
-    @mkdir -p {{docs_build_dir}}
-    @cp docs/root_index.html {{docs_build_dir}}/index.html
-    @echo ">> Root index page available at {{docs_build_dir}}/index-html"
-
 # Serves the documentation site with live reloading
 [no-cd]
-serve-mkdocs:
-    @echo ">> Serving documentation at http://127.0.0.1:8001"
+serve:
+    @echo ">> Serving documentation..."
     uv run mkdocs serve -f docs/mkdocs.yml -a 127.0.0.1:8001
 
 # Removes the old build directory
