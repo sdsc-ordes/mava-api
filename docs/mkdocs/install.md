@@ -2,9 +2,9 @@
 
 ## Prerequisites
 
-- Install just: https://github.com/casey/just: just is a command runner
-- Install Nix: https://docs.determinate.systems/: Nix is a tool for package management that uses declarative language to provide reproducible systems
-- Install Direnv: https://direnv.net/docs/installation.html: direnv is an open source environment management tool that allows setting unique environment variables per directory in your file system
+- [Install just](https://github.com/casey/just): just is a command runner
+- [Install Nix](https://docs.determinate.systems/): Nix is a tool for package management that uses declarative language to provide reproducible systems
+- [Install Direnv](https://direnv.net/docs/installation.html): direnv is an open source environment management tool that allows setting unique environment variables per directory in your file system
 
 
 ## Installation
@@ -59,7 +59,7 @@ Set up docs locally you have two steps:
 ```
 
 ```hl_lines="1 7" title="Serve mkdocs"
-╰─❯ just docs serve-mkdocs
+╰─❯ just docs serve
 >> Serving documentation...
 uv run mkdocs serve -f docs/mkdocs.yml -a 127.0.0.1:8001
 INFO    -  Building documentation...
