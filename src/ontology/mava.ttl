@@ -82,46 +82,46 @@ mava:valueDescription a owl:DatatypeProperty ;
 
 mava:belongsToAnnotationSeries a owl:ObjectProperty ;
     rdfs:label "belongs to annotation series" ;
-    rdfs:comment "Relates a data point back to the data series it is a member of." ;
+    rdfs:comment "Relates an annotation segment back to the annotation series it is a member of." ;
     rdfs:domain mava:AnnotationSegment ;
     rdfs:range mava:AnnotationSeries .
 
 mava:belongsToObservationSeries a owl:ObjectProperty ;
     rdfs:label "belongs to observation series" ;
-    rdfs:comment "Relates a time interval back to the data series it is a member of." ;
+    rdfs:comment "Relates an observation point back to the observation series it is a member of." ;
     rdfs:domain mava:ObservationPoint ;
     rdfs:range mava:ObservationSeries .
 
 # --- Properties to Link Videos Analysis Times ---
 
 mava:atTime a owl:DatatypeProperty ;
-    rdfs:label "at time" ;
+    rdfs:label "time of an observation measured from the start of the video in seconds" ;
     rdfs:domain mava:ObservationPoint;
     rdfs:range xsd:decimal .
 
 mava:startTime a owl:DatatypeProperty ;
-    rdfs:label "start time" ;
+    rdfs:label "start time of an interval measured from the start of the video in seconds" ;
     rdfs:domain mava:AnnotationSegment ;
     rdfs:range xsd:decimal .
 
 mava:endTime a owl:DatatypeProperty ;
-    rdfs:label "end time" ;
+    rdfs:label "end time of an interval measured from the start of the video in seconds" ;
     rdfs:domain mava:AnnotationSegment ;
     rdfs:range xsd:decimal .
 
 # --- Properties to Link Videos Analysis Values ---
 
 mava:numericValue a owl:DatatypeProperty ;
-    rdfs:label "numeric value" ;
+    rdfs:label "numeric probability observation value" ;
     rdfs:domain mava:ObservationPoint ;
     rdfs:range xsd:decimal .
 
 mava:listValue a owl:DatatypeProperty ;
-    rdfs:label "list value" ;
+    rdfs:label "list of string or numeric values as annotation" ;
     rdfs:domain mava:ObservationPoint, mava:AnnotationSegment ;
     rdfs:range rdf:List .
 
 mava:stringValue a owl:DatatypeProperty ;
-    rdfs:label "string value" ;
+    rdfs:label "string annotation value" ;
     rdfs:domain mava:ObservationPoint, mava:AnnotationSegment ;
     rdfs:range xsd:string .
