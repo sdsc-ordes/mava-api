@@ -59,12 +59,13 @@ mava:ObservationPoint a owl:Class ;
 # Corpus and Video
 mava:hasMember a owl:ObjectProperty ;
     rdfs:label "has member" ;
+    rdfs:comment "Relates a video to a corpus." ;
     rdfs:domain mava:VideoCorpus ;
     rdfs:range mava:Video .
 
 mava:hasAnalysis a owl:ObjectProperty ;
     rdfs:label "has analysis" ;
-    rdfs:comment "Relates a video to its analysis series." ;
+    rdfs:comment "Relates a video to an analysis series." ;
     rdfs:domain mava:Video ;
     rdfs:range mava:ObservationSeries, mava:AnnotationSeries .
 
@@ -72,11 +73,13 @@ mava:hasAnalysis a owl:ObjectProperty ;
 
 mava:seriesDescription a owl:DatatypeProperty ;
     rdfs:label "series description" ;
+    rdfs:comment "Describes an analysis series." ;
     rdfs:domain mava:AnnotationSeries, mava:ObservationSeries ;
     rdfs:range xsd:string .
 
 mava:valueDescription a owl:DatatypeProperty ;
     rdfs:label "value description" ;
+    rdfs:comment "Describes the meaning of values in an analysis series." ;
     rdfs:domain mava:AnnotationSeries, mava:ObservationSeries ;
     rdfs:range xsd:string .
 
@@ -95,33 +98,39 @@ mava:belongsToObservationSeries a owl:ObjectProperty ;
 # --- Properties to Link Videos Analysis Times ---
 
 mava:atTime a owl:DatatypeProperty ;
-    rdfs:label "time of an observation measured from the start of the video in seconds" ;
+    rdfs:label "time at" ;
+    rdfs:comment "Time of an observation measured from the start of the video in seconds." ;
     rdfs:domain mava:ObservationPoint;
     rdfs:range xsd:decimal .
 
 mava:startTime a owl:DatatypeProperty ;
-    rdfs:label "start time of an interval measured from the start of the video in seconds" ;
+    rdfs:label "start time" ;
+    rdfs:comment "Start time of an interval measured from the start of the video in seconds." ;
     rdfs:domain mava:AnnotationSegment ;
     rdfs:range xsd:decimal .
 
 mava:endTime a owl:DatatypeProperty ;
-    rdfs:label "end time of an interval measured from the start of the video in seconds" ;
+    rdfs:label "end time" ;
+    rdfs:comment "End time of an interval measured from the start of the video in seconds." ;
     rdfs:domain mava:AnnotationSegment ;
     rdfs:range xsd:decimal .
 
 # --- Properties to Link Videos Analysis Values ---
 
 mava:numericValue a owl:DatatypeProperty ;
-    rdfs:label "numeric probability observation value" ;
+    rdfs:label "probability value" ;
+    rdfs:comment "A numeric value representing a probability observation." ;
     rdfs:domain mava:ObservationPoint ;
     rdfs:range xsd:decimal .
 
 mava:listValue a owl:DatatypeProperty ;
-    rdfs:label "list of string or numeric values as annotation" ;
+    rdfs:label "list of annotations" ;
+    rdfs:comment "A list of string or numeric values representing an annotation." ;
     rdfs:domain mava:ObservationPoint, mava:AnnotationSegment ;
     rdfs:range rdf:List .
 
 mava:stringValue a owl:DatatypeProperty ;
-    rdfs:label "string annotation value" ;
+    rdfs:label "annotation value" ;
+    rdfs:comment "A string value representing an annotation." ;
     rdfs:domain mava:ObservationPoint, mava:AnnotationSegment ;
     rdfs:range xsd:string .
