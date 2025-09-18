@@ -20,6 +20,8 @@ dependencies = [
   "mkdocs-material>=9.6.18",
   "mkdocs-render-swagger-plugin>=0.1.2",
   "pandas>=2.3.2",
+  "mkdocs-link-marker>=0.2.0",
+  "mkdocs-linkcheck>=1.0.6",
 ]
 
 [dependency-groups]
