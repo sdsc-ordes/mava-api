@@ -1,5 +1,5 @@
 [project]
-name = "mava"
+name = "mava-api"
 authors = [
   { name = "Stefan Milosavljevic", email = "stefan.milosavljevic@sdsc.ethz.ch" },
   { name = "Sabine Maennel", email = "sabine.maennel@sdsc.ethz.ch" },
