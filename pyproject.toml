@@ -6,7 +6,7 @@ authors = [
 ]
 description = "An ontology based API to allow video-annotation tools to communicate and exchange information."
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 version = "0.0.1"
 
 dependencies = [
