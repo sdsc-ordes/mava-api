@@ -110,12 +110,12 @@ class GraphBuilder:
         self.add_data(series_id=series_id, data=data, mapping=mapping, has_duration=has_duration)
 
 
-    def add_tsv_data(self, filename: str, mapping: dict):
+    def add_tsv_data(self, data_contents: str, filename: str, mapping: dict):
         """
         Transforms tabular data (CSV or TSV) into RDF and adds it to the graph
         using a provided header-to-ontology mapping.
         """
-        file_like_object = io.StringIO(filename)
+        file_like_object = io.StringIO(data_contents)
 
         # Use pandas to read the data, automatically handling delimiters
         df = pd.read_csv(file_like_object, sep='\t')
