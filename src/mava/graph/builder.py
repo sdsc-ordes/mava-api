@@ -2,7 +2,7 @@ from typing import List, Dict
 import pandas as pd
 import io
 import csv
-from uuid import UUID
+from uuid import uuid4, UUID
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
 
@@ -101,7 +101,7 @@ class GraphBuilder:
         validate_mapping(mapping=mapping, data=data)
 
         # Generate a unique series ID and add series information to the graph
-        series_id = uuid.uuid4()
+        series_id = uuid4()
         duration_key = mapping.get("duration_key", None)
         has_duration = duration_key is not None
         self.add_series(series_id=series_id, mapping=mapping, has_duration=has_duration)
