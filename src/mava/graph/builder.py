@@ -1,3 +1,4 @@
+from typing import List, Dict, Optional
 import pandas as pd
 import io
 import csv
@@ -9,6 +10,19 @@ from rdflib.namespace import RDF, XSD
 MAVA = Namespace("http://example.org/mava/ontology#")
 EX = Namespace("http://example.org/data/")
 
+def validate_mapping(mapping: dict, data: List[Dict]):
+    """
+    Validates that the dictionary-based mapping and data contain the required keys for time and value columns.
+    If either is missing, a `ValueError` is raised.
+    """
+    time_key = mapping.get("time_column")
+    value_key = mapping.get("value_column")
+
+    if not time_key or not value_key:
+        raise ValueError("Mapping must include 'time_column' and 'value_column' keys.")
+    if any(time_key not in entry or value_key not in entry for entry in data):
+        raise ValueError(f"Required keys '{time_key}' or '{value_key}' missing in some data entries.")
+    
 
 class GraphBuilder:
     """A service class to manage the in-memory RDF graph."""
@@ -24,6 +38,39 @@ class GraphBuilder:
     def add_rdf_data(self, rdf_data: str, format: str = "turtle"):
         """Parses and adds new triples to the graph from a raw string."""
         self.g.parse(data=rdf_data, format=format)
+
+    def add_series(self, has_duration: bool):
+        # Generate a unique series ID
+        series_id = uuid.uuid4()
+        series_uri = EX[f"{series_id}"]
+
+        # Set the series type
+        if has_duration:
+            self.g.add((series_uri, RDF.type, MAVA.AnnotationSeries))
+        else:
+            self.g.add((series_uri, RDF.type, MAVA.ObservationSeries))
+    
+    def add_mapped_data(
+        self,
+        data: List[Dict],
+        mapping: Dict,
+        series_description: str,
+        value_description: str,
+        value_type: str,
+        duration_key: Optional[str] = None
+    ):
+        """
+        Adds data to the RDF graph based on a mapping of field names.
+
+        Parameters:
+        - data: List of dictionaries representing each row of tabular data.
+        - mapping: Dictionary mapping field names to ontology properties.
+        - series_description: Description of the series.
+        - value_description: Description of the values in the series.
+        - value_type: Type of the value ("numeric", "list", etc.).
+        - duration_key: Optional key indicating a duration field.
+        """
+
 
     def add_tsv_data(self, data_contents: str, filename: str, mapping: dict):
         """
