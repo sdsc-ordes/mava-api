@@ -1,8 +1,8 @@
-from typing import List, Dict, Optional, Bool, UUID
+from typing import List, Dict
 import pandas as pd
 import io
 import csv
-import uuid
+from uuid import UUID
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
 
@@ -39,7 +39,7 @@ class GraphBuilder:
         """Parses and adds new triples to the graph from a raw string."""
         self.g.parse(data=rdf_data, format=format)
 
-    def add_series(self, series_id: UUID, mapping: Dict, has_duration: Bool):
+    def add_series(self, series_id: UUID, mapping: Dict, has_duration: bool):
         series_uri = EX[f"{series_id}"]
 
         series_description = mapping.get("series_description", None)
