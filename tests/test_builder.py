@@ -110,7 +110,6 @@ def test_add_mapped_data_full_flow(mocker):
     instance = GraphBuilder()
     instance.add_series = mocker.MagicMock()
     instance.add_data = mocker.MagicMock()
-    instance.validate_mapping = mocker.MagicMock()
 
     data = [{"time": 1, "value": 2}]
     mapping = {"time_column": "time", "value_column": "value"}
@@ -120,7 +119,7 @@ def test_add_mapped_data_full_flow(mocker):
 
     instance.add_mapped_data(data, mapping)
 
-    instance.validate_mapping.assert_called_once_with(mapping=mapping, data=data)
+    validate_mapping.assert_called_once_with(mapping=mapping, data=data)
     instance.add_series.assert_called_once_with(
         series_id=mock_uuid,
         mapping=mapping,
