@@ -94,6 +94,11 @@ def test_add_data(mocker, has_duration, value_type, expected_triples):
         mocker.call(data_point_uri, MAVA.belongsToSeries, series_uri),
     ]
 
+    if has_duration:
+        expected.append(mocker.call(data_point_uri, RDF.type, MAVA.AnnotationSegment))
+    else:
+        expected.append(mocker.call(data_point_uri, RDF.type, MAVA.ObservationPoint))
+
     for pred, obj in expected_triples:
         expected.append(mocker.call(data_point_uri, pred, obj))
 
