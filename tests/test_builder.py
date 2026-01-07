@@ -115,8 +115,8 @@ def test_add_mapped_data_full_flow(mocker):
     data = [{"time": 1, "value": 2}]
     mapping = {"time_column": "time", "value_column": "value"}
 
-    mock_uuid = UUID("fixed-uuid")
-    mocker.patch("your_module.uuid4", return_value=mock_uuid)
+    mock_uuid = UUID("12345678123456781234567812345678")
+    mocker.patch("mava.graph.builder.uuid4", return_value=mock_uuid)
 
     instance.add_mapped_data(data, mapping)
 
