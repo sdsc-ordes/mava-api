@@ -91,16 +91,16 @@ def test_add_data(mocker, has_duration, value_type, expected_triples):
     instance.add_data(series_id, data, mapping, has_duration)
 
     expected = [
-        mocker.call(data_point_uri, MAVA.belongsToSeries, series_uri),
+        mocker.call((data_point_uri, MAVA.belongsToSeries, series_uri)),
     ]
 
     if has_duration:
-        expected.append(mocker.call(data_point_uri, RDF.type, MAVA.AnnotationSegment))
+        expected.append(mocker.call((data_point_uri, RDF.type, MAVA.AnnotationSegment)))
     else:
-        expected.append(mocker.call(data_point_uri, RDF.type, MAVA.ObservationPoint))
+        expected.append(mocker.call((data_point_uri, RDF.type, MAVA.ObservationPoint)))
 
     for pred, obj in expected_triples:
-        expected.append(mocker.call(data_point_uri, pred, obj))
+        expected.append(mocker.call((data_point_uri, pred, obj)))
 
     instance.g.add.assert_has_calls(expected)
     assert instance.g.add.call_count == len(expected)
