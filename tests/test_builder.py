@@ -91,11 +91,11 @@ def test_add_data(mocker, has_duration, value_type, expected_triples):
     instance.add_data(series_id, data, mapping, has_duration)
 
     expected = [
-        ((data_point_uri, MAVA.belongsToSeries, series_uri), {}),
+        mocker.call(data_point_uri, MAVA.belongsToSeries, series_uri),
     ]
 
     for pred, obj in expected_triples:
-        expected.append(((data_point_uri, pred, obj), {}))
+        expected.append(mocker.call(data_point_uri, pred, obj))
 
     instance.g.add.assert_has_calls(expected)
     assert instance.g.add.call_count == len(expected)
