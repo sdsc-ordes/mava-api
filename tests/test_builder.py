@@ -1,6 +1,7 @@
 import pytest
 from mava.graph.builder import validate_mapping, GraphBuilder, MAVA, EX
 from rdflib import Literal, RDF, XSD
+from uuid import UUID
 
 def test_validate_mapping_valid():
     mapping = {"time_column": "t", "value_column": "v"}
@@ -104,3 +105,30 @@ def test_add_data(mocker, has_duration, value_type, expected_triples):
 
     instance.g.add.assert_has_calls(expected)
     assert instance.g.add.call_count == len(expected)
+
+def test_add_mapped_data_full_flow(mocker):
+    instance = GraphBuilder()
+    instance.add_series = mocker.MagicMock()
+    instance.add_data = mocker.MagicMock()
+    instance.validate_mapping = mocker.MagicMock()
+
+    data = [{"time": 1, "value": 2}]
+    mapping = {"time_column": "time", "value_column": "value"}
+
+    mock_uuid = UUID("fixed-uuid")
+    mocker.patch("your_module.uuid4", return_value=mock_uuid)
+
+    instance.add_mapped_data(data, mapping)
+
+    instance.validate_mapping.assert_called_once_with(mapping=mapping, data=data)
+    instance.add_series.assert_called_once_with(
+        series_id=mock_uuid,
+        mapping=mapping,
+        has_duration=False
+    )
+    instance.add_data.assert_called_once_with(
+        series_id=mock_uuid,
+        data=data,
+        mapping=mapping,
+        has_duration=False
+    )
