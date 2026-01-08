@@ -4,6 +4,9 @@ from fastapi.testclient import TestClient
 from mava.main import app
 from mava.graph.builder import builder
 
+OK = 200
+EXPECTED_SIZE = 23
+
 # Create a TestClient instance based on your FastAPI app
 client = TestClient(app)
 
@@ -18,7 +21,7 @@ def clean_graph_before_each_test():
 def test_read_root():
     """Test the root endpoint to ensure it starts with an empty graph."""
     response = client.get("/")
-    assert response.status_code == 200
+    assert response.status_code == OK
     assert response.json() == {"status": "ok", "graph_size": 0}
 
 
@@ -28,7 +31,7 @@ def test_add_to_graph():
     response = client.post(
         "/graph/add", headers={"Content-Type": "text/turtle"}, content=rdf_data
     )
-    assert response.status_code == 200
+    assert response.status_code == OK
     assert response.json() == {
         "message": "Data added successfully",
         "new_graph_size": 1,
@@ -77,8 +80,8 @@ def test_import_tsv():
     )
 
     # 4. Assert the results
-    assert response.status_code == 200
-    assert response.json()["new_graph_size"] == 23
+    assert response.status_code == OK
+    assert response.json()["new_graph_size"] == EXPECTED_SIZE
 
 
 def test_export_graph():
@@ -90,7 +93,7 @@ def test_export_graph():
 
     # Now, export it
     response = client.get("/graph/export")
-    assert response.status_code == 200
+    assert response.status_code == OK
     assert "mava:TestSubject" in response.text
     assert "mava:TestClass" in response.text
 

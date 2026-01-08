@@ -3,6 +3,8 @@ from mava.graph.builder import validate_mapping, GraphBuilder, MAVA, EX
 from rdflib import Literal, RDF, XSD
 from uuid import UUID
 
+EXPECTED_CALLS = 3
+
 
 def test_validate_mapping_valid():
     mapping = {"time_column": "t", "value_column": "v"}
@@ -29,7 +31,7 @@ def test_validate_mapping_missing_in_data():
 
 
 @pytest.mark.parametrize(
-    "has_duration,expected_type",
+    ("has_duration", "expected_type"),
     [
         (True, "AnnotationSeries"),
         (False, "ObservationSeries"),
@@ -58,11 +60,11 @@ def test_add_series(mocker, has_duration, expected_type):
         mocker.call(value_desc_triple),
     ]
     instance.g.add.assert_has_calls(calls)
-    instance.g.add.call_count == 3
+    instance.g.add.call_count == EXPECTED_CALLS
 
 
 @pytest.mark.parametrize(
-    "has_duration,value_type,expected_triples",
+    ("has_duration", "value_type", "expected_triples"),
     [
         # Case 1: With duration
         (
