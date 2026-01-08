@@ -24,6 +24,7 @@ def add_to_graph(rdf_data: str = Body(..., media_type="text/plain")):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Failed to parse RDF data: {e}")
 
+
 @router.post("/graph/import_tsv", summary="Import data from a TSV file")
 async def import_tsv(file: UploadFile = File(...), mapping_json: str = Form(...)):
     """
