@@ -1,7 +1,8 @@
 openapi: 3.1.0
 info:
   title: Graph Builder API
-  description: An API to incrementally build and export an RDF graph from various
+  description:
+    An API to incrementally build and export an RDF graph from various
     sources.
   version: 1.0.0
 paths:
@@ -11,7 +12,7 @@ paths:
       description: Returns the current status and the number of triples in the graph.
       operationId: read_root__get
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
@@ -29,74 +30,74 @@ paths:
               title: Rdf Data
         required: true
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
               schema: {}
-        '422':
+        "422":
           description: Validation Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
+                $ref: "#/components/schemas/HTTPValidationError"
   /graph/import_tsv:
     post:
       summary: Import data from a TSV file
-      description: 'Accepts a tsv file upload (TSV), transforms it to RDF
+      description: "Accepts a tsv file upload (TSV), transforms it to RDF
 
-        using a JSON mapping, and adds it to the graph.'
+        using a JSON mapping, and adds it to the graph."
       operationId: import_tsv_graph_import_tsv_post
       requestBody:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Body_import_tsv_graph_import_tsv_post'
+              $ref: "#/components/schemas/Body_import_tsv_graph_import_tsv_post"
         required: true
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
               schema: {}
-        '422':
+        "422":
           description: Validation Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
+                $ref: "#/components/schemas/HTTPValidationError"
   /graph/export:
     get:
       summary: Export the entire graph
       description: Serializes and returns the entire graph in the specified format.
       operationId: export_graph_graph_export_get
       parameters:
-      - name: format
-        in: query
-        required: false
-        schema:
-          type: string
-          default: turtle
-          title: Format
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: turtle
+            title: Format
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
               schema: {}
-        '422':
+        "422":
           description: Validation Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
+                $ref: "#/components/schemas/HTTPValidationError"
   /graph/clear:
     delete:
       summary: Clear all triples from the graph
       description: Resets the graph to be empty.
       operationId: clear_graph_graph_clear_delete
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
@@ -114,14 +115,14 @@ components:
           title: Mapping Json
       type: object
       required:
-      - file
-      - mapping_json
+        - file
+        - mapping_json
       title: Body_import_tsv_graph_import_tsv_post
     HTTPValidationError:
       properties:
         detail:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            $ref: "#/components/schemas/ValidationError"
           type: array
           title: Detail
       type: object
@@ -131,8 +132,8 @@ components:
         loc:
           items:
             anyOf:
-            - type: string
-            - type: integer
+              - type: string
+              - type: integer
           type: array
           title: Location
         msg:
@@ -143,7 +144,7 @@ components:
           title: Error Type
       type: object
       required:
-      - loc
-      - msg
-      - type
+        - loc
+        - msg
+        - type
       title: ValidationError
