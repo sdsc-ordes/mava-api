@@ -4,36 +4,43 @@ from fastapi.testclient import TestClient
 from mava.main import app
 from mava.graph.builder import builder
 
+OK = 200
+EXPECTED_SIZE = 23
+
 # Create a TestClient instance based on your FastAPI app
 client = TestClient(app)
+
 
 # A pytest fixture to ensure the graph is clean before each test
 @pytest.fixture(autouse=True)
 def clean_graph_before_each_test():
     """Fixture to automatically clear the graph before every test."""
     builder.clear_graph()
-    yield # This is where the test runs
+
 
 def test_read_root():
     """Test the root endpoint to ensure it starts with an empty graph."""
     response = client.get("/")
-    assert response.status_code == 200
+    assert response.status_code == OK
     assert response.json() == {"status": "ok", "graph_size": 0}
+
 
 def test_add_to_graph():
     """Test adding a single triple via the raw RDF endpoint."""
-    rdf_data = '@prefix mava: <http://example.org/mava/ontology#> . mava:Corpus1 a mava:Corpus .'
+    rdf_data = "@prefix mava: <http://example.org/mava/ontology#> . mava:Corpus1 a mava:Corpus ."
     response = client.post(
-        "/graph/add",
-        headers={"Content-Type": "text/turtle"},
-        content=rdf_data
+        "/graph/add", headers={"Content-Type": "text/turtle"}, content=rdf_data
     )
-    assert response.status_code == 200
-    assert response.json() == {"message": "Data added successfully", "new_graph_size": 1}
+    assert response.status_code == OK
+    assert response.json() == {
+        "message": "Data added successfully",
+        "new_graph_size": 1,
+    }
 
     # Verify the graph size with a subsequent call
     status_response = client.get("/")
     assert status_response.json()["graph_size"] == 1
+
 
 def test_import_tsv():
     """
@@ -51,11 +58,11 @@ def test_import_tsv():
 
     # 2. Define the mapping and convert it to a JSON string
     mapping_data = {
-      "series_description": "Cityview",
-      "value_description": "probability for Cityview",
-      "value_type": "numeric",
-      "time_column": "start_in_seconds",
-      "value_column": "annotations"
+        "series_description": "Cityview",
+        "value_description": "probability for Cityview",
+        "value_type": "numeric",
+        "time_column": "start_in_seconds",
+        "value_column": "annotations",
     }
     mapping_json_string = json.dumps(mapping_data)
 
@@ -65,31 +72,36 @@ def test_import_tsv():
         # The 'files' parameter can send both file uploads and form fields
         files={
             "file": ("test.tsv", tsv_content, "text/tab-separated-values"),
-            "mapping_json": (None, mapping_json_string) # Send the mapping as a string field
-        }
+            "mapping_json": (
+                None,
+                mapping_json_string,
+            ),  # Send the mapping as a string field
+        },
     )
 
     # 4. Assert the results
-    assert response.status_code == 200
-    assert response.json()["new_graph_size"] == 23
+    assert response.status_code == OK
+    assert response.json()["new_graph_size"] == EXPECTED_SIZE
+
 
 def test_export_graph():
     """Test that the export endpoint returns the added data."""
     # First, add some data to the graph
-    rdf_data = '@prefix mava: <http://example.org/mava/ontology#> . mava:TestSubject a mava:TestClass .'
+    rdf_data = "@prefix mava: <http://example.org/mava/ontology#> . mava:TestSubject a mava:TestClass ."
     # FIX: Added the required Content-Type header to the request.
     client.post("/graph/add", content=rdf_data, headers={"Content-Type": "text/turtle"})
 
     # Now, export it
     response = client.get("/graph/export")
-    assert response.status_code == 200
+    assert response.status_code == OK
     assert "mava:TestSubject" in response.text
     assert "mava:TestClass" in response.text
+
 
 def test_clear_graph():
     """Test that the clear endpoint resets the graph."""
     # Add data
-    rdf_data = '@prefix mava: <http://example.org/mava/ontology#> . mava:Corpus1 a mava:Corpus .'
+    rdf_data = "@prefix mava: <http://example.org/mava/ontology#> . mava:Corpus1 a mava:Corpus ."
     # FIX: Added the required Content-Type header to the request.
     client.post("/graph/add", content=rdf_data, headers={"Content-Type": "text/turtle"})
 
@@ -98,7 +110,7 @@ def test_clear_graph():
 
     # Clear the graph
     response = client.delete("/graph/clear")
-    assert response.status_code == 200
+    assert response.status_code == OK
     assert response.json() == {"message": "Graph cleared successfully"}
 
     # Verify it's empty

@@ -4,10 +4,10 @@
 develop *args:
     just nix::develop "default" "$@"
 
-# Format the project.
+# Format the project. Use --check to assess formatting.
 format *args:
-    "{{root_dir}}/tools/scripts/setup-config-files.sh"
-    nix run --accept-flake-config {{flake_dir}}#treefmt -- "$@"
+    @echo ">> Running formatter check (Ruff)..."
+    nix run --accept-flake-config {{flake_dir}}#ruff -- format . "$@"
 
 # Setup the project.
 setup *args:
@@ -19,7 +19,8 @@ ci *args:
 
 # Lint the project.
 lint *args:
-    echo "TODO: Not implemented"
+    "{{root_dir}}/tools/scripts/setup-config-files.sh"
+    nix run --accept-flake-config {{flake_dir}}#treefmt -- "$@"
 
 # Run tests
 test *args:

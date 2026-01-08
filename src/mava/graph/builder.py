@@ -1,7 +1,6 @@
 from typing import List, Dict
 import pandas as pd
 import io
-import csv
 from uuid import uuid4, UUID
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
@@ -9,6 +8,7 @@ from rdflib.namespace import RDF, XSD
 # Define namespaces here, close to the logic that uses them
 MAVA = Namespace("http://example.org/mava/ontology#")
 EX = Namespace("http://example.org/data/")
+
 
 def validate_mapping(mapping: dict, data: List[Dict]):
     """
@@ -21,11 +21,14 @@ def validate_mapping(mapping: dict, data: List[Dict]):
     if not time_key or not value_key:
         raise ValueError("Mapping must include 'time_column' and 'value_column' keys.")
     if any(time_key not in entry or value_key not in entry for entry in data):
-        raise ValueError(f"Required keys '{time_key}' or '{value_key}' missing in some data entries.")
-    
+        raise ValueError(
+            f"Required keys '{time_key}' or '{value_key}' missing in some data entries."
+        )
+
 
 class GraphBuilder:
     """A service class to manage the in-memory RDF graph."""
+
     def __init__(self):
         self.g = Graph()
         self.g.bind("mava", MAVA)
@@ -53,7 +56,9 @@ class GraphBuilder:
         self.g.add((series_uri, MAVA.seriesDescription, Literal(series_description)))
         self.g.add((series_uri, MAVA.valueDescription, Literal(value_description)))
 
-    def add_data(self, series_id: UUID, data: List[Dict], mapping: Dict, has_duration: bool):
+    def add_data(
+        self, series_id: UUID, data: List[Dict], mapping: Dict, has_duration: bool
+    ):
         series_uri = EX[f"{series_id}"]
 
         # Get the required column names from the mapping
@@ -64,7 +69,7 @@ class GraphBuilder:
 
         # Process each data point
         for i, entry in enumerate(data):
-            data_point_uri = EX[f"{series_id}_point_{i+1}"]
+            data_point_uri = EX[f"{series_id}_point_{i + 1}"]
             self.g.add((data_point_uri, MAVA.belongsToSeries, series_uri))
 
             time_value = entry[time_key]
@@ -73,18 +78,54 @@ class GraphBuilder:
             if has_duration:
                 duration = entry[duration_key]
                 self.g.add((data_point_uri, RDF.type, MAVA.AnnotationSegment))
-                self.g.add((data_point_uri, MAVA.startTime, Literal(time_value, datatype=XSD.decimal)))
-                self.g.add((data_point_uri, MAVA.endTime, Literal(time_value + duration, datatype=XSD.decimal)))
-                self.g.add((data_point_uri, MAVA.stringValue, Literal(str(value), datatype=XSD.string)))
+                self.g.add(
+                    (
+                        data_point_uri,
+                        MAVA.startTime,
+                        Literal(time_value, datatype=XSD.decimal),
+                    )
+                )
+                self.g.add(
+                    (
+                        data_point_uri,
+                        MAVA.endTime,
+                        Literal(time_value + duration, datatype=XSD.decimal),
+                    )
+                )
+                self.g.add(
+                    (
+                        data_point_uri,
+                        MAVA.stringValue,
+                        Literal(str(value), datatype=XSD.string),
+                    )
+                )
             else:
                 self.g.add((data_point_uri, RDF.type, MAVA.ObservationPoint))
-                self.g.add((data_point_uri, MAVA.atTime, Literal(time_value, datatype=XSD.decimal)))
-                
+                self.g.add(
+                    (
+                        data_point_uri,
+                        MAVA.atTime,
+                        Literal(time_value, datatype=XSD.decimal),
+                    )
+                )
+
                 if value_type == "numeric":
-                    self.g.add((data_point_uri, MAVA.numericValue, Literal(value, datatype=XSD.decimal)))
+                    self.g.add(
+                        (
+                            data_point_uri,
+                            MAVA.numericValue,
+                            Literal(value, datatype=XSD.decimal),
+                        )
+                    )
                 elif value_type == "list":
-                    self.g.add((data_point_uri, MAVA.listValue, Literal(str(value), datatype=RDF.List)))
-    
+                    self.g.add(
+                        (
+                            data_point_uri,
+                            MAVA.listValue,
+                            Literal(str(value), datatype=RDF.List),
+                        )
+                    )
+
     def add_mapped_data(
         self,
         data: List[Dict],
@@ -107,8 +148,9 @@ class GraphBuilder:
         self.add_series(series_id=series_id, mapping=mapping, has_duration=has_duration)
 
         # Add data instances to the graph
-        self.add_data(series_id=series_id, data=data, mapping=mapping, has_duration=has_duration)
-
+        self.add_data(
+            series_id=series_id, data=data, mapping=mapping, has_duration=has_duration
+        )
 
     def add_tsv_data(self, data_contents: str, filename: str, mapping: dict):
         """
@@ -118,10 +160,10 @@ class GraphBuilder:
         file_like_object = io.StringIO(data_contents)
 
         # Use pandas to read the data, automatically handling delimiters
-        df = pd.read_csv(file_like_object, sep='\t')
+        df = pd.read_csv(file_like_object, sep="\t")
 
         # Convert pandas dataframe to list of dictionaries
-        data = df.to_dict(orient='records')
+        data = df.to_dict(orient="records")
         self.add_mapped_data(data=data, mapping=mapping)
 
     def export_graph(self, format: str = "turtle") -> bytes:

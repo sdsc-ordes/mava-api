@@ -1,14 +1,14 @@
-import json
 import yaml
 import os
 from mava.main import app
+
 
 # The main function to generate and save the spec
 def generate_openapi_spec():
     """Generates the OpenAPI spec from the FastAPI app and saves it to a file."""
     print("Generating OpenAPI specification...")
 
- # Define the output path inside the 'docs' directory
+    # Define the output path inside the 'docs' directory
     output_path = "docs/mkdocs/openapi.yaml"
     output_dir = os.path.dirname(output_path)
 

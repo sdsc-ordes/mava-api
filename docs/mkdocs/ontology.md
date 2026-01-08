@@ -4,15 +4,16 @@ The MAVA Ontology is just a Draft for now and will be revised later on.
 
 ## Guiding Principles
 
-- establish the ontology in owl
-. start with the basic vocabulary that the tools need to describe their metadata
-. complexity and alingment with existing vocabularies can be acchieved later on
+- establish the ontology in owl . start with the basic vocabulary that the tools
+  need to describe their metadata . complexity and alingment with existing
+  vocabularies can be acchieved later on
 
 ## Pylode Documentation
 
 The ontology is documented with [pylode](https://github.com/RDFLib/pyLODE).
 
-[MAVA-Ontology Documentation](https://sdsc-ordes.github.io/mava-api/ontology/){ .md-button }
+[MAVA-Ontology Documentation](https://sdsc-ordes.github.io/mava-api/ontology/){
+.md-button }
 
 ## Classes
 

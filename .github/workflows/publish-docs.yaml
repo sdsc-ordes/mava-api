@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # This is the directory that `mkdocs build` creates
-          path: './site'
+          path: "./site"
 
   # Deployment job
   deploy:
