@@ -53,6 +53,29 @@ exclude = [
 ]
 extend-include = ["*.py", "*.ipynb"]
 
+[tool.ruff.lint]
+extend-select = [
+    "E",       # pycodestyle (PEP8)
+    "F",       # flake8
+    "W605",    # invalid escape sequence
+    "S102",    # exec built-in
+    "INP",     # no-implicit-namespace-packages
+    "PYI",     # flake8-pyi
+    "PT",      # flake8-pytest-style
+    "PGH",     # pygrep-hooks
+    "PL",      # Pylint
+    "NPY",     # NumPy
+    "RUF",     # Ruff-specific
+]
+ignore = [
+    "NPY002",  # numpy-legacy-random
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/**" = ["INP001"]
+"tools/**" = ["PT"]
+
 [tool.pytest.ini_options]
 pythonpath = [
   "tests"
