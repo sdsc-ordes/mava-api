@@ -110,7 +110,7 @@ def test_clear_graph():
 
     # Clear the graph
     response = client.delete("/graph/clear")
-    assert response.status_code == 200
+    assert response.status_code == OK
     assert response.json() == {"message": "Graph cleared successfully"}
 
     # Verify it's empty
