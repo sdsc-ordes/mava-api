@@ -1,7 +1,8 @@
+from typing import List, Dict
 import pandas as pd
 import io
 import csv
-import uuid
+from uuid import uuid4, UUID
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
 
@@ -9,6 +10,19 @@ from rdflib.namespace import RDF, XSD
 MAVA = Namespace("http://example.org/mava/ontology#")
 EX = Namespace("http://example.org/data/")
 
+def validate_mapping(mapping: dict, data: List[Dict]):
+    """
+    Validates that the dictionary-based mapping and data contain the required keys for time and value columns.
+    If either is missing, a `ValueError` is raised.
+    """
+    time_key = mapping.get("time_column")
+    value_key = mapping.get("value_column")
+
+    if not time_key or not value_key:
+        raise ValueError("Mapping must include 'time_column' and 'value_column' keys.")
+    if any(time_key not in entry or value_key not in entry for entry in data):
+        raise ValueError(f"Required keys '{time_key}' or '{value_key}' missing in some data entries.")
+    
 
 class GraphBuilder:
     """A service class to manage the in-memory RDF graph."""
@@ -25,6 +39,77 @@ class GraphBuilder:
         """Parses and adds new triples to the graph from a raw string."""
         self.g.parse(data=rdf_data, format=format)
 
+    def add_series(self, series_id: UUID, mapping: Dict, has_duration: bool):
+        series_uri = EX[f"{series_id}"]
+
+        series_description = mapping.get("series_description", None)
+        value_description = mapping.get("value_description", None)
+
+        # Set the series type
+        if has_duration:
+            self.g.add((series_uri, RDF.type, MAVA.AnnotationSeries))
+        else:
+            self.g.add((series_uri, RDF.type, MAVA.ObservationSeries))
+        self.g.add((series_uri, MAVA.seriesDescription, Literal(series_description)))
+        self.g.add((series_uri, MAVA.valueDescription, Literal(value_description)))
+
+    def add_data(self, series_id: UUID, data: List[Dict], mapping: Dict, has_duration: bool):
+        series_uri = EX[f"{series_id}"]
+
+        # Get the required column names from the mapping
+        time_key = mapping.get("time_column", None)
+        value_key = mapping.get("value_column", None)
+        value_type = mapping.get("value_type", None)
+        duration_key = mapping.get("duration_column", None)
+
+        # Process each data point
+        for i, entry in enumerate(data):
+            data_point_uri = EX[f"{series_id}_point_{i+1}"]
+            self.g.add((data_point_uri, MAVA.belongsToSeries, series_uri))
+
+            time_value = entry[time_key]
+            value = entry[value_key]
+
+            if has_duration:
+                duration = entry[duration_key]
+                self.g.add((data_point_uri, RDF.type, MAVA.AnnotationSegment))
+                self.g.add((data_point_uri, MAVA.startTime, Literal(time_value, datatype=XSD.decimal)))
+                self.g.add((data_point_uri, MAVA.endTime, Literal(time_value + duration, datatype=XSD.decimal)))
+                self.g.add((data_point_uri, MAVA.stringValue, Literal(str(value), datatype=XSD.string)))
+            else:
+                self.g.add((data_point_uri, RDF.type, MAVA.ObservationPoint))
+                self.g.add((data_point_uri, MAVA.atTime, Literal(time_value, datatype=XSD.decimal)))
+                
+                if value_type == "numeric":
+                    self.g.add((data_point_uri, MAVA.numericValue, Literal(value, datatype=XSD.decimal)))
+                elif value_type == "list":
+                    self.g.add((data_point_uri, MAVA.listValue, Literal(str(value), datatype=RDF.List)))
+    
+    def add_mapped_data(
+        self,
+        data: List[Dict],
+        mapping: Dict,
+    ):
+        """
+        Validate and add data to the RDF graph based on a mapping of field names.
+
+        Parameters:
+        - data: List of dictionaries representing each row of tabular data.
+        - mapping: Dictionary mapping field names to ontology properties.
+        """
+
+        validate_mapping(mapping=mapping, data=data)
+
+        # Generate a unique series ID and add series information to the graph
+        series_id = uuid4()
+        duration_key = mapping.get("duration_key", None)
+        has_duration = duration_key is not None
+        self.add_series(series_id=series_id, mapping=mapping, has_duration=has_duration)
+
+        # Add data instances to the graph
+        self.add_data(series_id=series_id, data=data, mapping=mapping, has_duration=has_duration)
+
+
     def add_tsv_data(self, data_contents: str, filename: str, mapping: dict):
         """
         Transforms tabular data (CSV or TSV) into RDF and adds it to the graph
@@ -35,53 +120,9 @@ class GraphBuilder:
         # Use pandas to read the data, automatically handling delimiters
         df = pd.read_csv(file_like_object, sep='\t')
 
-        # Get the required column names from the mapping
-        time_col = mapping.get("time_column", None)
-        value_col = mapping.get("value_column", None)
-        series_description = mapping.get("series_description", None)
-        value_description = mapping.get("value_description", None)
-        value_type = mapping.get("value_type", None)
-        duration_col = mapping.get("duration_column", None)
-
-        if not time_col or not value_col:
-            raise ValueError("Mapping must include 'time_column' and 'value_column' keys.")
-
-        if time_col not in df.columns or value_col not in df.columns:
-            raise ValueError(f"Mapping columns '{time_col}' or '{value_col}' not found in file.")
-
-        # Create a unique series name from the filename
-        series_id = uuid.uuid4()
-        series_uri = EX[f"{series_id}"]
-        has_duration = duration_col and duration_col in df.columns
-        if has_duration:
-            self.g.add((series_uri, RDF.type, MAVA.AnnotationSeries))
-        else:
-            self.g.add((series_uri, RDF.type, MAVA.ObservationSeries))
-        self.g.add((series_uri, MAVA.seriesDescription, Literal(series_description)))
-        self.g.add((series_uri, MAVA.valueDescription, Literal(value_description)))
-
-        # Loop through the DataFrame rows
-        for i, row in df.iterrows():
-            start_time = row[time_col]
-            duration = row[duration_col] if has_duration else 0
-            value = row[value_col]
-
-            data_point_uri = EX[f"{series_id}_point_{i+1}"]
-            self.g.add((data_point_uri, MAVA.belongsToSeries, series_uri))
-            if has_duration:
-                duration = row[duration_col]
-                self.g.add((data_point_uri, RDF.type, MAVA.AnnotationSegment))
-                self.g.add((data_point_uri, MAVA.startTime, Literal(start_time, datatype=XSD.decimal)))
-                self.g.add((data_point_uri, MAVA.endTime, Literal(start_time + duration, datatype=XSD.decimal)))
-                self.g.add((data_point_uri, MAVA.stringValue, Literal(value, datatype=XSD.string)))
-            else:
-                self.g.add((data_point_uri, RDF.type, MAVA.ObservationPoint))
-                self.g.add((data_point_uri, MAVA.atTime, Literal(start_time, datatype=XSD.decimal)))
-                self.g.add((data_point_uri, MAVA.belongsToSeries, series_uri))
-                if value_type == "numeric":
-                    self.g.add((data_point_uri, MAVA.numericValue, Literal(value, datatype=XSD.decimal)))
-                elif value_type == "list":
-                    self.g.add((data_point_uri, MAVA.listValue, Literal(value, datatype=RDF.List)))
+        # Convert pandas dataframe to list of dictionaries
+        data = df.to_dict(orient='records')
+        self.add_mapped_data(data=data, mapping=mapping)
 
     def export_graph(self, format: str = "turtle") -> bytes:
         """Serializes the entire graph to the specified format."""
