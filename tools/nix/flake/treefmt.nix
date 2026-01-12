@@ -3,20 +3,22 @@
   # Used to find the project root
   projectRootFile = ".git/config";
 
-  settings.global.excludes = [ "external/*" ];
+  settings.global.excludes = [
+    "external/*"
+    "tools/scripts/generate-spec.py"
+  ];
 
   # Markdown, JSON, YAML, etc.
   programs.prettier.enable = true;
 
   # Python
-  programs.ruff.enable = true;
+  programs.ruff-format.enable = true;
 
   # Shell.
   programs.shfmt = {
     enable = true;
     indent_size = 4;
   };
-  programs.shellcheck.enable = true;
 
   programs.gofmt.enable = true;
   programs.goimports.enable = true;
@@ -26,7 +28,4 @@
 
   # Nix.
   programs.nixfmt.enable = true;
-
-  # Typos.
-  programs.typos.enable = false;
 }

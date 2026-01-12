@@ -6,8 +6,8 @@ develop *args:
 
 # Format the project. Use --check to assess formatting.
 format *args:
-    @echo ">> Running formatter check (Ruff)..."
-    nix run --accept-flake-config {{flake_dir}}#ruff -- format --no-cache --config="./pyproject.toml" . "$@"
+    "{{root_dir}}/tools/scripts/setup-config-files.sh"
+    nix run --accept-flake-config {{flake_dir}}#treefmt -- "$@"
 
 # Setup the project.
 setup *args:
@@ -19,8 +19,7 @@ ci *args:
 
 # Lint the project.
 lint *args:
-    "{{root_dir}}/tools/scripts/setup-config-files.sh"
-    nix run --accept-flake-config {{flake_dir}}#treefmt -- --excludes "tools/scripts/generate-spec.py" "$@"
+    nix run --accept-flake-config {{flake_dir}}#treefmt-lint -- "$@"
 
 # Run tests
 test *args:
