@@ -27,7 +27,8 @@ def test_read_root():
 
 def test_add_to_graph():
     """Test adding a single triple via the raw RDF endpoint."""
-    rdf_data = "@prefix mava: <http://example.org/mava/ontology#> . mava:Corpus1 a mava:Corpus ."
+    rdf_data = """  @prefix mava: <http://example.org/mava/ontology#> .
+                    mava:Corpus1 a mava:Corpus ."""
     response = client.post(
         "/graph/add", headers={"Content-Type": "text/turtle"}, content=rdf_data
     )
@@ -87,7 +88,8 @@ def test_import_tsv():
 def test_export_graph():
     """Test that the export endpoint returns the added data."""
     # First, add some data to the graph
-    rdf_data = "@prefix mava: <http://example.org/mava/ontology#> . mava:TestSubject a mava:TestClass ."
+    rdf_data = """  @prefix mava: <http://example.org/mava/ontology#> . 
+                    mava:TestSubject a mava:TestClass ."""
     # FIX: Added the required Content-Type header to the request.
     client.post("/graph/add", content=rdf_data, headers={"Content-Type": "text/turtle"})
 
@@ -101,7 +103,8 @@ def test_export_graph():
 def test_clear_graph():
     """Test that the clear endpoint resets the graph."""
     # Add data
-    rdf_data = "@prefix mava: <http://example.org/mava/ontology#> . mava:Corpus1 a mava:Corpus ."
+    rdf_data = """  @prefix mava: <http://example.org/mava/ontology#> .
+                    mava:Corpus1 a mava:Corpus ."""
     # FIX: Added the required Content-Type header to the request.
     client.post("/graph/add", content=rdf_data, headers={"Content-Type": "text/turtle"})
 

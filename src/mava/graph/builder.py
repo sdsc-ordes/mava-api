@@ -12,8 +12,8 @@ EX = Namespace("http://example.org/data/")
 
 def validate_mapping(mapping: dict, data: List[Dict]):
     """
-    Validates that the dictionary-based mapping and data contain the required keys for time and value columns.
-    If either is missing, a `ValueError` is raised.
+    Validates that the dictionary-based mapping and data contain the required keys
+    for time and value columns. If either is missing, a `ValueError` is raised.
     """
     time_key = mapping.get("time_column")
     value_key = mapping.get("value_column")
