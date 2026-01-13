@@ -12,6 +12,7 @@ let
     {
       packages = [
         self'.packages.treefmt
+        self'.packages.treefmt-lint
       ];
     }
   ];

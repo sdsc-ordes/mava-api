@@ -60,12 +60,12 @@ plugins:
   - link-marker
 
 nav:
-  - 'Home': 'index.md'
-  - 'Ontology': 'ontology.md'
-  - 'API':
-      - 'Openapi': 'api.md'
-      - 'Concepts': 'concepts.md'
-      - 'Usage': 'usage.md'
-  - 'Install': 'install.md'
-  - 'MAVA Tools': 'tools.md'
-  - 'Roadmap': 'roadmap.md'
+  - "Home": "index.md"
+  - "Ontology": "ontology.md"
+  - "API":
+      - "Openapi": "api.md"
+      - "Concepts": "concepts.md"
+      - "Usage": "usage.md"
+  - "Install": "install.md"
+  - "MAVA Tools": "tools.md"
+  - "Roadmap": "roadmap.md"

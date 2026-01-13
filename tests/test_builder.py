@@ -3,27 +3,40 @@ from mava.graph.builder import validate_mapping, GraphBuilder, MAVA, EX
 from rdflib import Literal, RDF, XSD
 from uuid import UUID
 
+EXPECTED_CALLS = 3
+
+
 def test_validate_mapping_valid():
     mapping = {"time_column": "t", "value_column": "v"}
     data = [{"t": 1, "v": 2}]
     validate_mapping(mapping, data)
 
+
 def test_validate_mapping_missing_keys():
     mapping = {"time_column": "t"}
     data = [{"t": 1, "v": 2}]
-    with pytest.raises(ValueError, match="Mapping must include 'time_column' and 'value_column' keys"):
+    with pytest.raises(
+        ValueError, match="Mapping must include 'time_column' and 'value_column' keys"
+    ):
         validate_mapping(mapping, data)
+
 
 def test_validate_mapping_missing_in_data():
     mapping = {"time_column": "t", "value_column": "v"}
     data = [{"t": 1}]  # Missing 'v'
-    with pytest.raises(ValueError, match="Required keys 't' or 'v' missing in some data entries"):
+    with pytest.raises(
+        ValueError, match="Required keys 't' or 'v' missing in some data entries"
+    ):
         validate_mapping(mapping, data)
 
-@pytest.mark.parametrize("has_duration,expected_type", [
-    (True, "AnnotationSeries"),
-    (False, "ObservationSeries"),
-])
+
+@pytest.mark.parametrize(
+    ("has_duration", "expected_type"),
+    [
+        (True, "AnnotationSeries"),
+        (False, "ObservationSeries"),
+    ],
+)
 def test_add_series(mocker, has_duration, expected_type):
     instance = GraphBuilder()
     instance.g = mocker.MagicMock()
@@ -47,26 +60,42 @@ def test_add_series(mocker, has_duration, expected_type):
         mocker.call(value_desc_triple),
     ]
     instance.g.add.assert_has_calls(calls)
-    instance.g.add.call_count == 3
+    instance.g.add.call_count == EXPECTED_CALLS
 
-@pytest.mark.parametrize("has_duration,value_type,expected_triples", [
-    # Case 1: With duration
-    (True, None, [
-        (MAVA.startTime, Literal(10, datatype=XSD.decimal)),
-        (MAVA.endTime, Literal(15, datatype=XSD.decimal)),
-        (MAVA.stringValue, Literal("abc", datatype=XSD.string)),
-    ]),
-    # Case 2: Without duration, numeric value
-    (False, "numeric", [
-        (MAVA.atTime, Literal(10, datatype=XSD.decimal)),
-        (MAVA.numericValue, Literal(42, datatype=XSD.decimal)),
-    ]),
-    # Case 3: Without duration, list value
-    (False, "list", [
-        (MAVA.atTime, Literal(10, datatype=XSD.decimal)),
-        (MAVA.listValue, Literal(str([1, 2, 3]), datatype=RDF.List)),
-    ]),
-])
+
+@pytest.mark.parametrize(
+    ("has_duration", "value_type", "expected_triples"),
+    [
+        # Case 1: With duration
+        (
+            True,
+            None,
+            [
+                (MAVA.startTime, Literal(10, datatype=XSD.decimal)),
+                (MAVA.endTime, Literal(15, datatype=XSD.decimal)),
+                (MAVA.stringValue, Literal("abc", datatype=XSD.string)),
+            ],
+        ),
+        # Case 2: Without duration, numeric value
+        (
+            False,
+            "numeric",
+            [
+                (MAVA.atTime, Literal(10, datatype=XSD.decimal)),
+                (MAVA.numericValue, Literal(42, datatype=XSD.decimal)),
+            ],
+        ),
+        # Case 3: Without duration, list value
+        (
+            False,
+            "list",
+            [
+                (MAVA.atTime, Literal(10, datatype=XSD.decimal)),
+                (MAVA.listValue, Literal(str([1, 2, 3]), datatype=RDF.List)),
+            ],
+        ),
+    ],
+)
 def test_add_data(mocker, has_duration, value_type, expected_triples):
     instance = GraphBuilder()
     instance.g = mocker.MagicMock()
@@ -106,6 +135,7 @@ def test_add_data(mocker, has_duration, value_type, expected_triples):
     instance.g.add.assert_has_calls(expected)
     assert instance.g.add.call_count == len(expected)
 
+
 def test_add_mapped_data_full_flow(mocker):
     instance = GraphBuilder()
     instance.add_series = mocker.MagicMock()
@@ -122,13 +152,8 @@ def test_add_mapped_data_full_flow(mocker):
 
     mock_validate.assert_called_once_with(mapping=mapping, data=data)
     instance.add_series.assert_called_once_with(
-        series_id=mock_uuid,
-        mapping=mapping,
-        has_duration=False
+        series_id=mock_uuid, mapping=mapping, has_duration=False
     )
     instance.add_data.assert_called_once_with(
-        series_id=mock_uuid,
-        data=data,
-        mapping=mapping,
-        has_duration=False
+        series_id=mock_uuid, data=data, mapping=mapping, has_duration=False
     )

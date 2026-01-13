@@ -3,15 +3,17 @@
 ## Prerequisites
 
 - [Install just](https://github.com/casey/just): just is a command runner
-- [Install Nix](https://docs.determinate.systems/): Nix is a tool for package management that uses declarative language to provide reproducible systems
-- [Install Direnv](https://direnv.net/docs/installation.html): direnv is an open source environment management tool that allows setting unique environment variables per directory in your file system
-
+- [Install Nix](https://docs.determinate.systems/): Nix is a tool for package
+  management that uses declarative language to provide reproducible systems
+- [Install Direnv](https://direnv.net/docs/installation.html): direnv is an open
+  source environment management tool that allows setting unique environment
+  variables per directory in your file system
 
 ## Installation
 
 First, clone the repository to your local machine:
 
-```sh
+````sh
 git clone [https://github.com/sdsc-ordes/mava-api.git](https://github.com/sdsc-ordes/mava-api.git)
 
 All the following commands must be run from inside the project's root directory.
@@ -20,7 +22,7 @@ All the following commands must be run from inside the project's root directory.
 cd mava-api
 just build
 just run
-```
+````
 
 ## Serve
 
@@ -45,8 +47,9 @@ Set up docs locally you have two steps:
 
 - build all docs with `just docs build`
 - serve mkdocs with `just docs serve`
-- then the documentation will be available at `http://127.0.0.1:8001/mava-api/docs/` or open `site/docs/index.html` with a browser of your choice
-
+- then the documentation will be available at
+  `http://127.0.0.1:8001/mava-api/docs/` or open `site/docs/index.html` with a
+  browser of your choice
 
 ```hl_lines="1 7 9" title="Build all docs"
 ╰─❯ just docs build

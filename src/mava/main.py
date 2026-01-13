@@ -3,7 +3,10 @@ from mava.api import graph
 
 app = FastAPI(
     title="Graph Builder API",
-    description="An API to incrementally build and export an RDF graph from various sources.",
+    description="""
+                An API to incrementally build and export an RDF graph from various 
+                sources
+                """,
     version="1.0.0",
 )
 

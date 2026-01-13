@@ -1,6 +1,7 @@
 # Usage of the MAVA API
 
-Currently only a first PoC is implemented, see [Roadmap](roadmap.md) for current status.
+Currently only a first PoC is implemented, see [Roadmap](roadmap.md) for current
+status.
 
 Make sure the API is running: see [Installation innstructions](install.md)
 
@@ -42,7 +43,9 @@ curl -sS http://localhost:8000 | jq
 
 ### Import
 
-These imports have default files from the `examples` directory. You can also add your own custom files on the import commands as argument. Then your file will be imported instead.
+These imports have default files from the `examples` directory. You can also add
+your own custom files on the import commands as argument. Then your file will be
+imported instead.
 
 **Turtle**
 
@@ -58,7 +61,8 @@ curl -sS -X POST http://localhost:8000/graph/add -H "Content-Type: text/turtle" 
 
 **TSV**
 
-For TSV imports you neede to provide a json mapping so that the columns in the tsv file can be mapped to the ontology:
+For TSV imports you neede to provide a json mapping so that the columns in the
+tsv file can be mapped to the ontology:
 
 <details>
 
@@ -88,6 +92,7 @@ start_in_seconds	start_hh:mm:ss.ms	annotations
   "value_column": "annotations"
 }
 ```
+
 </details>
 
 ```hl_lines="3" title="Import a TSV file with observation (probabilities at time points)"
@@ -227,6 +232,7 @@ ex:af2bf119-4c06-4bab-ab27-4b99f0aacfe8 a mava:AnnotationSeries ;
     mava:seriesDescription "Transcription" ;
     mava:valueDescription "transcript" .
 ```
+
 ## Export
 
 Export the current graph to a Turtle file.
@@ -250,4 +256,5 @@ curl -sS -X DELETE http://localhost:8000/graph/clear | jq
   "message": "Graph cleared successfully"
 }
 ```
+
 <script src="https://hypothes.is/embed.js" async></script>
