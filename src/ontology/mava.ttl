@@ -1,17 +1,20 @@
 @prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
-@prefix mava: <http://example.org/mava/ontology#> .
+@prefix mava: <http://example.org/mava/ontology/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 
-mava: a owl:Ontology ;
-  dcterms:title "MAVA Ontology" ;
+mava:scheme a skos:ConceptScheme ;
+  dcterms:title "MAVA Ontology"@en ;
   dcterms:author "Stefan Milosavljevic" , "Sabine Maennel" , "Robin Franken";
-  dcterms:abstract "An ontology for multimodal audio-visual corpora to allow interoperability and data exchange" ;
-  dcterms:description "This ontology provides classes and properties for representing corpora, documents, media resources, time and/or text annotations. It is designed to be a reference point for data exchange across annotation tools in linguistics." ;
+  dcterms:abstract "An ontology for multimodal audio-visual corpora to allow interoperability and data exchange"@en ;
+  dcterms:description "This ontology provides classes and properties for representing corpora, documents, media resources, time and/or text annotations. It is designed to be a reference point for data exchange across annotation tools in linguistics."@en ;
   adms:versionNotes "Initial version. Please update with release notes as needed." ;
   dcterms:modified "2025-08-12"^^xsd:date ;
   dcterms:created "2025-08-12"^^xsd:date ;
@@ -23,114 +26,292 @@ mava: a owl:Ontology ;
   owl:versionInfo "0.0.1" ;
   doap:repository <https://github.com/sdsc-ordes/mava-api> ;
   rdfs:label "MAVA Ontology" ;
+  vann:preferredNamespacePrefix "mava" ;
+  vann:preferredNamespaceUri "http://example.org/mava/ontology/" ;
   rdfs:comment "Ontology for corpora, documents, media resources, time and/or text annotations in linguistics." ;
+  skos:hasTopConcept mava:object, mava:property ;
 .
+
+# --- Top-level SKOS Concepts ---
+
+mava:object a skos:Concept ;
+    skos:prefLabel "Object"@en ;
+    skos:definition "Top-level concept for all classes/object types in the MAVA ontology."@en ;
+    skos:inScheme mava:scheme ;
+    skos:topConceptOf mava:scheme .
+
+mava:property a skos:Concept ;
+    skos:prefLabel "Property"@en ;
+    skos:definition "Top-level concept for all properties in the MAVA ontology."@en ;
+    skos:inScheme mava:scheme ;
+    skos:topConceptOf mava:scheme .
 
 # --- Core Classes ---
 
-mava:VideoCorpus a owl:Class ;
-    rdfs:label "Video Corpus" ;
-    rdfs:comment "A collection of videos that share a common context or purpose." ;
+mava:VideoCorpus a skos:Concept, rdfs:Class ;
+    skos:prefLabel "Video Corpus"@en ;
+    skos:definition "A collection of videos that share a common context or purpose."@en ;
+    skos:broader mava:object ;
+    skos:inScheme mava:scheme ;
     rdfs:subClassOf dcterms:Collection .
 
-mava:Video a owl:Class ;
-    rdfs:label "Video" ;
-    rdfs:comment "A media resource consisting of a sequence of images creating the illusion of movement." ;
+mava:Video a skos:Concept, rdfs:Class ;
+    skos:prefLabel "Video"@en ;
+    skos:definition "A media resource consisting of a sequence of images creating the illusion of movement."@en ;
+    skos:broader mava:object ;
+    skos:inScheme mava:scheme ;
     rdfs:subClassOf dcterms:MovingImage .
 
-mava:AnnotationSeries a owl:Class ;
-    rdfs:label "Annotation Series" ;
-    rdfs:comment "A series of annotations for a video that align to intervals on its timeline." .
+mava:AnnotationSeries a skos:Concept, rdfs:Class ;
+    skos:prefLabel "Annotation Series"@en ;
+    skos:definition "A series of annotations for a video that align to intervals on its timeline."@en ;
+    skos:broader mava:object ;
+    skos:inScheme mava:scheme .
 
-mava:AnnotationSegment a owl:Class ;
-    rdfs:label "Annotation Segment" ;
-    rdfs:comment "A defined portion of a timeline marked by a specific start and end time with an annotation that relates to that segment of the video." .
+mava:AnnotationSegment a skos:Concept, rdfs:Class ;
+    skos:prefLabel "Annotation Segment"@en ;
+    skos:definition "A defined portion of a timeline marked by a specific start and end time with an annotation that relates to that segment of the video."@en ;
+    skos:broader mava:object ;
+    skos:inScheme mava:scheme .
 
-mava:ObservationSeries a owl:Class ;
-    rdfs:label "Observation Series" ;
-    rdfs:comment "A collection of observations at time points in a video." .
+mava:ObservationSeries a skos:Concept, rdfs:Class ;
+    skos:prefLabel "Observation Series"@en ;
+    skos:definition "A collection of observations at time points in a video."@en ;
+    skos:broader mava:object ;
+    skos:inScheme mava:scheme .
 
-mava:ObservationPoint a owl:Class ;
-    rdfs:label "Observation Point" ;
-    rdfs:comment "A single quantitative value recorded at a specific point on the timeline of a video." .
+mava:ObservationPoint a skos:Concept, rdfs:Class ;
+    skos:prefLabel "Observation Point"@en ;
+    skos:definition "A single quantitative value recorded at a specific point on the timeline of a video."@en ;
+    skos:broader mava:object ;
+    skos:inScheme mava:scheme .
 
 # --- Properties to Link Videos ---
 
 # Corpus and Video
-mava:hasMember a owl:ObjectProperty ;
-    rdfs:label "has member" ;
-    rdfs:comment "Relates a video to a corpus." ;
-    rdfs:domain mava:VideoCorpus ;
-    rdfs:range mava:Video .
+mava:hasMember a skos:Concept, rdf:Property ;
+    skos:prefLabel "has member"@en ;
+    skos:definition "Relates a video to a corpus."@en ;
+    skos:broader mava:property ;
+    skos:inScheme mava:scheme .
 
-mava:hasAnalysis a owl:ObjectProperty ;
-    rdfs:label "has analysis" ;
-    rdfs:comment "Relates a video to an analysis series." ;
-    rdfs:domain mava:Video ;
-    rdfs:range mava:ObservationSeries, mava:AnnotationSeries .
+mava:hasAnalysis a skos:Concept, rdf:Property ;
+    skos:prefLabel "has analysis"@en ;
+    skos:definition "Relates a video to an analysis series."@en ;
+    skos:broader mava:property ;
+    skos:inScheme mava:scheme .
 
 # --- Properties to Link Videos Analysis ---
 
-mava:seriesDescription a owl:DatatypeProperty ;
-    rdfs:label "series description" ;
-    rdfs:comment "Describes an analysis series." ;
-    rdfs:domain mava:AnnotationSeries, mava:ObservationSeries ;
-    rdfs:range xsd:string .
+mava:seriesDescription a skos:Concept, rdf:Property ;
+    skos:prefLabel "series description"@en ;
+    skos:definition "Describes an analysis series."@en ;
+    skos:broader mava:property ;
+    skos:inScheme mava:scheme .
 
-mava:valueDescription a owl:DatatypeProperty ;
-    rdfs:label "value description" ;
-    rdfs:comment "Describes the meaning of values in an analysis series." ;
-    rdfs:domain mava:AnnotationSeries, mava:ObservationSeries ;
-    rdfs:range xsd:string .
+mava:valueDescription a skos:Concept, rdf:Property ;
+    skos:prefLabel "value description"@en ;
+    skos:definition "Describes the meaning of values in an analysis series."@en ;
+    skos:broader mava:property ;
+    skos:inScheme mava:scheme .
 
-mava:belongsToAnnotationSeries a owl:ObjectProperty ;
-    rdfs:label "belongs to annotation series" ;
-    rdfs:comment "Relates an annotation segment back to the annotation series it is a member of." ;
-    rdfs:domain mava:AnnotationSegment ;
-    rdfs:range mava:AnnotationSeries .
+mava:belongsToAnnotationSeries a skos:Concept, rdf:Property ;
+    skos:prefLabel "belongs to annotation series"@en ;
+    skos:definition "Relates an annotation segment back to the annotation series it is a member of."@en ;
+    skos:broader mava:property ;
+    skos:inScheme mava:scheme .
 
-mava:belongsToObservationSeries a owl:ObjectProperty ;
-    rdfs:label "belongs to observation series" ;
-    rdfs:comment "Relates an observation point back to the observation series it is a member of." ;
-    rdfs:domain mava:ObservationPoint ;
-    rdfs:range mava:ObservationSeries .
+mava:belongsToObservationSeries a skos:Concept, rdf:Property ;
+    skos:prefLabel "belongs to observation series"@en ;
+    skos:definition "Relates an observation point back to the observation series it is a member of."@en ;
+    skos:broader mava:property ;
+    skos:inScheme mava:scheme .
 
 # --- Properties to Link Videos Analysis Times ---
 
-mava:atTime a owl:DatatypeProperty ;
-    rdfs:label "time at" ;
-    rdfs:comment "Time of an observation measured from the start of the video in seconds." ;
-    rdfs:domain mava:ObservationPoint;
-    rdfs:range xsd:decimal .
+mava:atTime a skos:Concept, rdf:Property ;
+    skos:prefLabel "time at"@en ;
+    skos:definition "Time of an observation measured from the start of the video in seconds."@en ;
+    skos:broader mava:property ;
+    skos:inScheme mava:scheme .
 
-mava:startTime a owl:DatatypeProperty ;
-    rdfs:label "start time" ;
-    rdfs:comment "Start time of an interval measured from the start of the video in seconds." ;
-    rdfs:domain mava:AnnotationSegment ;
-    rdfs:range xsd:decimal .
+mava:startTime a skos:Concept, rdf:Property ;
+    skos:prefLabel "start time"@en ;
+    skos:definition "Start time of an interval measured from the start of the video in seconds."@en ;
+    skos:broader mava:property ;
+    skos:inScheme mava:scheme .
 
-mava:endTime a owl:DatatypeProperty ;
-    rdfs:label "end time" ;
-    rdfs:comment "End time of an interval measured from the start of the video in seconds." ;
-    rdfs:domain mava:AnnotationSegment ;
-    rdfs:range xsd:decimal .
+mava:endTime a skos:Concept, rdf:Property ;
+    skos:prefLabel "end time"@en ;
+    skos:definition "End time of an interval measured from the start of the video in seconds."@en ;
+    skos:broader mava:property ;
+    skos:inScheme mava:scheme .
 
 # --- Properties to Link Videos Analysis Values ---
 
-mava:numericValue a owl:DatatypeProperty ;
-    rdfs:label "probability value" ;
-    rdfs:comment "A numeric value representing a probability observation." ;
-    rdfs:domain mava:ObservationPoint ;
-    rdfs:range xsd:decimal .
+mava:numericValue a skos:Concept, rdf:Property ;
+    skos:prefLabel "probability value"@en ;
+    skos:definition "A numeric value representing a probability observation."@en ;
+    skos:broader mava:property ;
+    skos:inScheme mava:scheme .
 
-mava:listValue a owl:DatatypeProperty ;
-    rdfs:label "list of annotations" ;
-    rdfs:comment "A list of string or numeric values representing an annotation." ;
-    rdfs:domain mava:ObservationPoint, mava:AnnotationSegment ;
-    rdfs:range rdf:List .
+mava:listValue a skos:Concept, rdf:Property ;
+    skos:prefLabel "list of annotations"@en ;
+    skos:definition "A list of string or numeric values representing an annotation."@en ;
+    skos:broader mava:property ;
+    skos:inScheme mava:scheme .
 
-mava:stringValue a owl:DatatypeProperty ;
-    rdfs:label "annotation value" ;
-    rdfs:comment "A string value representing an annotation." ;
-    rdfs:domain mava:ObservationPoint, mava:AnnotationSegment ;
-    rdfs:range xsd:string .
+mava:stringValue a skos:Concept, rdf:Property ;
+    skos:prefLabel "annotation value"@en ;
+    skos:definition "A string value representing an annotation."@en ;
+    skos:broader mava:property ;
+    skos:inScheme mava:scheme .
+
+# --- SHACL Shapes ---
+
+# Node Shapes for Classes
+
+mava:VideoCorpusShape a sh:NodeShape ;
+    sh:targetClass mava:VideoCorpus ;
+    sh:property mava:hasMemberShape .
+
+mava:VideoShape a sh:NodeShape ;
+    sh:targetClass mava:Video ;
+    sh:property mava:hasAnalysisShape .
+
+mava:AnnotationSeriesShape a sh:NodeShape ;
+    sh:targetClass mava:AnnotationSeries ;
+    sh:property mava:seriesDescriptionShape-AnnotationSeries ;
+    sh:property mava:valueDescriptionShape-AnnotationSeries .
+
+mava:ObservationSeriesShape a sh:NodeShape ;
+    sh:targetClass mava:ObservationSeries ;
+    sh:property mava:seriesDescriptionShape-ObservationSeries ;
+    sh:property mava:valueDescriptionShape-ObservationSeries .
+
+mava:AnnotationSegmentShape a sh:NodeShape ;
+    sh:targetClass mava:AnnotationSegment ;
+    sh:property mava:belongsToAnnotationSeriesShape ;
+    sh:property mava:startTimeShape-AnnotationSegment ;
+    sh:property mava:endTimeShape ;
+    sh:property mava:stringValueShape-AnnotationSegment ;
+    sh:property mava:listValueShape-AnnotationSegment .
+
+mava:ObservationPointShape a sh:NodeShape ;
+    sh:targetClass mava:ObservationPoint ;
+    sh:property mava:belongsToObservationSeriesShape ;
+    sh:property mava:atTimeShape ;
+    sh:property mava:numericValueShape ;
+    sh:property mava:stringValueShape-ObservationPoint ;
+    sh:property mava:listValueShape-ObservationPoint .
+
+# Property Shapes
+
+mava:hasMemberShape a sh:PropertyShape ;
+    sh:path mava:hasMember ;
+    sh:class mava:Video ;
+    sh:name "has member" ;
+    sh:description "A corpus can have videos as members." .
+
+mava:hasAnalysisShape a sh:PropertyShape ;
+    sh:path mava:hasAnalysis ;
+    sh:or (
+        [ sh:class mava:ObservationSeries ]
+        [ sh:class mava:AnnotationSeries ]
+    ) ;
+    sh:name "has analysis" ;
+    sh:description "A video can have observation series or annotation series as analysis." .
+
+mava:seriesDescriptionShape-AnnotationSeries a sh:PropertyShape ;
+    sh:path mava:seriesDescription ;
+    sh:datatype xsd:string ;
+    sh:name "series description" ;
+    sh:description "Description of the annotation series." .
+
+mava:valueDescriptionShape-AnnotationSeries a sh:PropertyShape ;
+    sh:path mava:valueDescription ;
+    sh:datatype xsd:string ;
+    sh:name "value description" ;
+    sh:description "Description of values in the annotation series." .
+
+mava:seriesDescriptionShape-ObservationSeries a sh:PropertyShape ;
+    sh:path mava:seriesDescription ;
+    sh:datatype xsd:string ;
+    sh:name "series description" ;
+    sh:description "Description of the observation series." .
+
+mava:valueDescriptionShape-ObservationSeries a sh:PropertyShape ;
+    sh:path mava:valueDescription ;
+    sh:datatype xsd:string ;
+    sh:name "value description" ;
+    sh:description "Description of values in the observation series." .
+
+mava:belongsToAnnotationSeriesShape a sh:PropertyShape ;
+    sh:path mava:belongsToAnnotationSeries ;
+    sh:class mava:AnnotationSeries ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:name "belongs to annotation series" ;
+    sh:description "Each annotation segment must belong to exactly one annotation series." .
+
+mava:startTimeShape-AnnotationSegment a sh:PropertyShape ;
+    sh:path mava:startTime ;
+    sh:datatype xsd:decimal ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:name "start time" ;
+    sh:description "Start time of the segment in seconds." .
+
+mava:endTimeShape a sh:PropertyShape ;
+    sh:path mava:endTime ;
+    sh:datatype xsd:decimal ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:name "end time" ;
+    sh:description "End time of the segment in seconds." .
+
+mava:stringValueShape-AnnotationSegment a sh:PropertyShape ;
+    sh:path mava:stringValue ;
+    sh:datatype xsd:string ;
+    sh:name "string value" ;
+    sh:description "String annotation value for the segment." .
+
+mava:listValueShape-AnnotationSegment a sh:PropertyShape ;
+    sh:path mava:listValue ;
+    sh:nodeKind sh:BlankNode ;
+    sh:name "list value" ;
+    sh:description "List annotation value for the segment." .
+
+mava:belongsToObservationSeriesShape a sh:PropertyShape ;
+    sh:path mava:belongsToObservationSeries ;
+    sh:class mava:ObservationSeries ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:name "belongs to observation series" ;
+    sh:description "Each observation point must belong to exactly one observation series." .
+
+mava:atTimeShape a sh:PropertyShape ;
+    sh:path mava:atTime ;
+    sh:datatype xsd:decimal ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:name "time at" ;
+    sh:description "Time of the observation in seconds." .
+
+mava:numericValueShape a sh:PropertyShape ;
+    sh:path mava:numericValue ;
+    sh:datatype xsd:decimal ;
+    sh:name "numeric value" ;
+    sh:description "Numeric observation value." .
+
+mava:stringValueShape-ObservationPoint a sh:PropertyShape ;
+    sh:path mava:stringValue ;
+    sh:datatype xsd:string ;
+    sh:name "string value" ;
+    sh:description "String observation value." .
+
+mava:listValueShape-ObservationPoint a sh:PropertyShape ;
+    sh:path mava:listValue ;
+    sh:nodeKind sh:BlankNode ;
+    sh:name "list value" ;
+    sh:description "List observation value." .
